@@ -15,10 +15,11 @@ We will need to:
 - Search
 - Favorites (saved)
 - Production README
+- Explore page
 
 ### Bonus Features
 - Quiz
-- Marketplace/trending/recents
+- Trending/Rating
 
 ## WireFrames
 
