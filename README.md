@@ -45,6 +45,8 @@ Frontend: React/Redux/Node.js
 
 ### Day 4 (June 13th) 
 - Upload pdf section for ai generated flashcards, explore page for all users flashcard decks (initial seed data) - **Jaspreet, Dharani**
-- add favorites to database schema
+- Add favorites to database schema, add algo for a smart studying feature (bonus) - **Charlie, Rafa**
 
 ### Day 5 (June 14th)
+- Polish, host, debug, dont crash the site - **Everyone**
+- TBD
