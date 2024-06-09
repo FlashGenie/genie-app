@@ -4,7 +4,7 @@
 **Genie** is a study aid app that leverages AI to generate flashcards from user-uploaded notes. Users can create flashcard decks using AI, customize them to their liking, and search through existing decks created by other users.
 
 We will need to:
-- Figure out how craft fetchs to OpenAI api in order to generate desired flashcards response
+- Figure out how craft fetch requests to OpenAI api in order to generate desired flashcards response
 - Build a database to store user and flashcard data
 - Construct a Web application for visualization of and interaction with the flashcard data
 
