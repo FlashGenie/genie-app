@@ -1,4 +1,4 @@
-# genie-app
+# Genie
 
 ## Background and overview
 Genie is a study aid app that uses AI to generate flashcards from user uploaded notes. Users can generate flashcards decks using AI and customize it to their liking as well as search existing decks created by other users. 
