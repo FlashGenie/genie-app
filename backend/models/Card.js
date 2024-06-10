@@ -13,6 +13,10 @@ const cardSchema = new Schema ({
     category: {
         type: String,
         required: true
+    },
+    author: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
     }
 }, {
     timestamps: true

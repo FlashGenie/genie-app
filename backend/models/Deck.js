@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const cardSchema = require('cardSchema')
+const cardSchema = require('./Card')
 
 
 const deckSchema = new Schema ({
@@ -14,7 +14,13 @@ const deckSchema = new Schema ({
     },
     cards: {
         type: [cardSchema]
+    },
+    author: {
+        type: Schema.Types.Object_id,
+        ref: 'User'
     }
+}, {
+    timestamps: true
 })
 
 module.exports = mongoose.model('Deck', deckSchema);
