@@ -32,7 +32,7 @@ function NavBar () {
   
     return (
       <>
-        <h1>MERN Genie</h1>
+        <h1>Trial Genie</h1>
         { getLinks() }
       </>
     );
