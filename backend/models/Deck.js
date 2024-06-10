@@ -13,8 +13,8 @@ const deckSchema = new Schema ({
         required: true
     },
     cards: {
-        type: [cardSchema],
-    
-
+        type: [cardSchema]
     }
 })
+
+module.exports = mongoose.model('Deck', deckSchema);
