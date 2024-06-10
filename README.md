@@ -22,7 +22,7 @@ We will need to:
 - Trending/Rating
 
 ## WireFrames
-![](https://github.com/FlashGenie/genie-app/blob/main/genie-logo.svg)
+![Landing Page](https://github.com/FlashGenie/genie-app/blob/main/landing-page.png)
 ## Technologies and Technical Challenges
 Database: MongoDB
 Backend: OpenAi API, Express.js
