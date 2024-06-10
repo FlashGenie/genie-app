@@ -12,7 +12,7 @@ router.post('/new', validateCardInput, async (req, res, next) => {
             title: req.body.title,
             body: req.body.body,
             category: req.body.category,
-            author: req.user._id
+            author: req.body.user_id
         })
 
         let card = await newCard.save()
@@ -24,5 +24,19 @@ router.post('/new', validateCardInput, async (req, res, next) => {
     }
 
 })
+
+
+router.get('/', async (req, res, next) => {
+
+    try {
+
+    }
+    catch(err) {
+        next(err)
+    }
+
+})
+
+
 
 module.exports = router;
