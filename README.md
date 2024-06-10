@@ -12,30 +12,39 @@ We will need to:
 - Construct a Web application for visualization of and interaction with the flashcard data
 
 ## Functionality and MVP
-- User AUTH
-- User generated flashcards (CRUD)
-- AI generated flashcards (CRUD)
-- Explore page
-- Search
-- Favorites (saved)
+- User Authentication: Secure sign-up and login
+- User generated flashcards: Create, read, update, and delete flashcards
+- AI generated flashcards (CRUD): Generate flashcards from user-uploaded notes using OpenAI API
+- Explore page/Community Sharing: Users can browse and access decks created by others
+- Search: Implement search capabilities to find flashcards and decks created by other users
+- Favorites: Allow users to save their favorite flashcards for easy access
 - Production README
 
 ### Bonus Features
 - Quiz
 - Trending/Rating
 
+## UI/UX
+The goal is to make a sleek and intuitive interface for users to quickly engage with. Pages will be self-explanatory with a minimal feel to avoid overwhelming users.
+
 ## WireFrames
 Landing Page
 ![Landing Page](https://github.com/FlashGenie/genie-app/blob/main/landing-page.png)
 
-## Technologies and Technical Challenges
-- Database: MongoDB
-- Backend: OpenAi API, Express.js, Mongoose
-- Frontend: React/Redux/Node.js/TailwindCSS
-
 ### Architecture
-MERN - MongoDB, Express, React, Node
+Genie is built with the MERN stack (MongoDB, Express, React, and Node)
 ![Architecture](https://github.com/FlashGenie/genie-app/blob/main/architecture.png)
+
+## Technologies and Technical Challenges
+
+### Database: MongoDB and Mongoose
+MongoDB, a NoSQL database, will be used for its flexibility and scalability. Mongoose will be employed to define schemas and models, enabling efficient data validation and manipulation.
+
+### Backend: Node.js, Express.js, and OpenAI
+The backend's primary role is to handle user authentication, store flashcard data, and integrate with the OpenAI API to generate flashcards.
+
+### Frontend: React, Redux, and TailwindCSS
+React and Redux will handle the application state, ensuring a responsive and dynamic user experience. TailwindCSS will be utilized for styling, allowing for rapid and consistent UI development.
 
 ## Group Members and Work Breakdown
 **Charlie, Rafa, Jaspreet, Dharani, Edison**
