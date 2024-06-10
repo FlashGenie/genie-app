@@ -1,4 +1,4 @@
-![Landing Page](https://github.com/FlashGenie/genie-app/blob/main/banner.png)
+![Landing Page](https://github.com/FlashGenie/genie-app/blob/main/big-banner.png)
 <h1 align="center"> Genie </h1>
 
 ## Background and overview
