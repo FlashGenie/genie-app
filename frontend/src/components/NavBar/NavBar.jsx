@@ -31,10 +31,30 @@ function NavBar () {
     };
   
     return (
-      <>
-        <h1>Trial Genie</h1>
-        { getLinks() }
-      </>
+      <nav className="p-5 bg-white shadow md:flex md:items-center md:justify-between">
+        <div>
+          <span className="text-2xl font-sans font-bold cursor-pointer">
+            Genie.
+          </span>
+        </div>
+
+        <ul className="md:flex md:items-center">
+          <li className="mx-4">
+            <a href="#" className="text-xl hover:text-slate-800 duration-500">Home</a>
+          </li>
+          <li className="mx-4">
+            <a href="#" className="text-xl hover:text-slate-800 duration-500">Product</a>
+          </li>
+          <li className="mx-4">
+            <a href="#" className="text-xl hover:text-slate-800 duration-500">About Us</a>
+          </li>
+
+          <button className="bg-black text-white font-sans duratio-500 px-5 mx-4">
+            Get Started
+          </button>
+        </ul>
+
+      </nav>
     );
   }
   
