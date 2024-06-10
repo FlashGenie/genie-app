@@ -1,18 +1,19 @@
 const express = require('express');
 const router = express.Router();
+const {requireUser} = require('../../config/passport')
 const validateDeckInput = require('../../validations/decks');
 const mongoose = require('mongoose');
 const Deck = mongoose.model('Deck');
 const Card = mongoose.model('Card');
 
 
-router.post('/new', validateDeckInput, async (req, res, next) => {
+router.post('/new', requireUser, validateDeckInput, async (req, res, next) => {
     debugger;
     try {
         const newDeck = new Deck ({
             name: req.body.name,
             category: req.body.category,
-            author: req.body.user_id,
+            author: req.user._id,
             cards: []
         })
 
@@ -24,7 +25,7 @@ router.post('/new', validateDeckInput, async (req, res, next) => {
                 title: card.title,
                 body: card.body,
                 category: req.body.category,
-                author: req.body.user_id
+                author: req.user._id
             })
 
             return await newCard.save()
