@@ -4,10 +4,10 @@ import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 
 import { AuthRoute } from './components/Routes/Routes';
 import NavBar from './components/NavBar/NavBar';
-
-import MainPage from './components/MainPage/MainPage';
+// import MainPage from './components/MainPage/MainPage';
 import LoginForm from './components/SessionForms/LoginForm';
 import SignupForm from './components/SessionForms/SignupForm';
+import Footer from './components/Footer/Footer';
 
 import { getCurrentUser } from './store/session';
 
@@ -26,7 +26,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <AuthRoute component={MainPage} />
+        element: <AuthRoute component={Footer} />
       },
       {
         path: "login",
