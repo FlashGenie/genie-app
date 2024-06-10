@@ -9,11 +9,13 @@ const { isProduction } = require('./config/keys');
 const csurf = require('csurf');
 
 require('./models/User');
+require('./models/Card')
 require('./config/passport');
 const passport = require('passport');
 
 
 const usersRouter = require('./routes/api/users');
+const cardsRouter = require('./routes/api/cards');
 const csrfRouter = require('./routes/api/csrf');
 
 const app = express();
@@ -24,26 +26,26 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 
-
 // Security Middleware
 if (!isProduction) {
     // Enable CORS only in development because React will be on the React
     // development server (http://localhost:5173). (In production, the Express 
     // server will serve the React files statically.)
     app.use(cors());
-  }
+}
 
-  app.use(
-    csurf({
-      cookie: {
-        secure: isProduction,
-        sameSite: isProduction && "Lax",
-        httpOnly: true
-      }
-    })
-  );
+app.use(
+  csurf({
+    cookie: {
+      secure: isProduction,
+      sameSite: isProduction && "Lax",
+      httpOnly: true
+    }
+  })
+);
   
 app.use('/api/users', usersRouter);
+app.use('/api/cards', cardsRouter);
 app.use('/api/csrf', csrfRouter);
 
 // Serve static React build files statically in production
