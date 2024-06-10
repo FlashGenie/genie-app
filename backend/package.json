@@ -17,9 +17,11 @@
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.4.1",
     "morgan": "~1.9.1",
+    "openai": "^4.50.0",
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",
-    "passport-local": "^1.0.0"
+    "passport-local": "^1.0.0",
+    "pdf-parse": "^1.1.1"
   },
   "devDependencies": {
     "dotenv-cli": "^7.4.2",
