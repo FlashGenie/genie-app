@@ -10,9 +10,7 @@ const validateCardInput = [
         .exists({checkFalsy:true})
         .isLength({min: 1, max: 250})
         .withMessage('Body must not be empty'),
-    check('author')
-        .exists({checkFalsy:true})
-        .withMessage('Author is required'),
+
     check('category')
         .exists({checkFalsy:true})
         .withMessage('Category is required'),

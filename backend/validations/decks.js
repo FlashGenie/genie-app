@@ -6,9 +6,7 @@ const validateDeckInput = [
         .exists({checkFalsy:true})
         .isLength({min: 1, max: 40})
         .withMessage('Deck must have a name'),
-    check('author')
-        .exists({checkFalsy:true})
-        .withMessage('Author must exist'),
+
     check('category')
         .exists({checkFalsy:true})
         .withMessage('Category is required'),
