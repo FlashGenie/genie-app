@@ -12,27 +12,33 @@ We will need to:
 - User AUTH
 - User generated flashcards (CRUD)
 - AI generated flashcards (CRUD)
+- Explore page
 - Search
 - Favorites (saved)
 - Production README
-- Explore page
 
 ### Bonus Features
 - Quiz
 - Trending/Rating
 
 ## WireFrames
+Landing Page
 ![Landing Page](https://github.com/FlashGenie/genie-app/blob/main/landing-page.png)
-## Technologies and Technical Challenges
-Database: MongoDB
-Backend: OpenAi API, Express.js
-Frontend: React/Redux/Node.js
 
+## Technologies and Technical Challenges
+- Database: MongoDB
+- Backend: OpenAi API, Express.js, Mongoose
+- Frontend: React/Redux/Node.js/TailwindCSS
+
+### Architecture
+MERN - MongoDB, Express, React, Node
+![Architecture](https://github.com/FlashGenie/genie-app/blob/main/architecture.png)
 
 ## Group Members and Work Breakdown
+**Charlie, Rafa, Jaspreet, Dharani, Edison**
 
 ### Day 1 (June 10th)
-- Build skeleton react site, landing page, login/signup modal - **Jaspreet, Dharani**
+- Build skeleton react site, landing page, login/signup modal - **Jaspreet, Dharani, Edison**
 - Backend skeleton, User auth, Flashcard model/migration - **Charlie, Rafa**
 - Openai api testing - **Edison**
 
