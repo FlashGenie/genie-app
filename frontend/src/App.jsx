@@ -8,12 +8,14 @@ import MainPage from './components/MainPage/MainPage';
 import LoginForm from './components/SessionForms/LoginForm';
 import SignupForm from './components/SessionForms/SignupForm';
 import Footer from './components/Footer/Footer';
+import LoginModal from './components/Modal/LoginModal';
 
 import { getCurrentUser } from './store/session';
 
 const Layout = () => {
   return (
     <>
+      <LoginModal />
       <NavBar />
       <Outlet />
       <Footer />

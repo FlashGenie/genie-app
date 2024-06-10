@@ -1,9 +1,19 @@
 import { Link } from 'react-router-dom';
 import { useSelector} from 'react-redux';
 import ProfileButton from '../ProfileButton/ProfileButton';
+import { openLoginModal } from '../../store/modal';
+import { useDispatch } from 'react-redux';
 
 
 function NavBar () {
+
+    const dispatch = useDispatch();
+
+    const handleOpenLoginModal = () => {
+      console.log('Login button clicked');
+      dispatch(openLoginModal()); // Dispatch the action to open the login modal
+    };
+
     const loggedIn = useSelector(state => !!state.session.user);
   
     const getLinks = () => {
@@ -13,8 +23,15 @@ function NavBar () {
         );
       } else {
         return (
+          // <div className="links-auth flex items-center space-x-4">
+          //   <Link to="/login" className="text-xl hover:text-slate-800 duration-500">Log in</Link>
+          //   <Link to="/signup" className="bg-black text-white font-sans duration-500 px-5 hover:bg-slate-800 rounded">
+          //     Get Started
+          //   </Link>
+          // </div>
           <div className="links-auth flex items-center space-x-4">
-            <Link to="/login" className="text-xl hover:text-slate-800 duration-500">Log in</Link>
+            {/* Update the onClick handler to open the login modal */}
+            <button onClick={handleOpenLoginModal} className="text-xl hover:text-slate-800 duration-500">Log in</button>
             <Link to="/signup" className="bg-black text-white font-sans duration-500 px-5 hover:bg-slate-800 rounded">
               Get Started
             </Link>
