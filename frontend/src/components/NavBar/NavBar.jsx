@@ -1,24 +1,15 @@
 import { Link } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import { logout } from '../../store/session';
+import { useSelector} from 'react-redux';
+import ProfileButton from '../ProfileButton/ProfileButton';
 
 
 function NavBar () {
     const loggedIn = useSelector(state => !!state.session.user);
-    const dispatch = useDispatch();
-    
-    const logoutUser = e => {
-        e.preventDefault();
-        dispatch(logout());
-    };
   
     const getLinks = () => {
       if (loggedIn) {
         return (
-          <div className="links-nav flex items-center space-x-4">
-            <Link to="/profile" className="text-xl hover:text-slate-800 duration-500">Profile</Link>
-            <button onClick={logoutUser} className="text-xl hover:text-slate-800 duration-500">Logout</button>
-          </div>
+          <ProfileButton/>
         );
       } else {
         return (
@@ -35,7 +26,7 @@ function NavBar () {
     return (
       <nav className="p-4 bg-white shadow md:flex md:items-center md:justify-between">
         <div className="flex justify-between items-center">
-          <span className="text-2xl font-sans font-bold cursor-pointer">
+          <span className="text-3xl font-sans font-bold cursor-pointer">
             Genie.
           </span>
         </div>
@@ -62,5 +53,4 @@ function NavBar () {
     );
   }
   
-  export default NavBar;
-  
+export default NavBar;
