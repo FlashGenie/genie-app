@@ -1,5 +1,5 @@
 <p align="center">
-    <img width="400" src="https://github.com/FlashGenie/genie-app/blob/main/big-banner.png" alt="Genie logo">
+    <img width="1000" src="https://github.com/FlashGenie/genie-app/blob/main/big-banner.png" alt="Genie logo">
 </p>
 <h1 align="center"> Genie </h1>
 
