@@ -1,6 +1,6 @@
-<p align="center">
- #Genie
-</p>
+![Landing Page](https://github.com/FlashGenie/genie-app/blob/main/banner.png)
+<h1 align="center"> Genie </h1>
+
 ## Background and overview
 **Genie** is a study aid app that leverages AI to generate flashcards from user-uploaded notes. Users can create flashcard decks using AI, customize them to their liking, and search through existing decks created by other users.
 
