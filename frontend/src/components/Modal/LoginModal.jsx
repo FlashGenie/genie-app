@@ -2,6 +2,7 @@ import { useState, useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { closeLoginModal } from '../../store/modal';
 import * as sessionActions from '../../store/session';
+import { clearSessionErrors } from '../../store/session';
 import Modal from './Modal';
 
 const LoginModal = () => {
@@ -10,11 +11,20 @@ const LoginModal = () => {
     const sessionUser = useSelector((state) => state.session.user);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [errors, setErrors] = useState([]);
+    // const [errors, setErrors] = useState([]);
+    const errors = useSelector(state => state.errors.session);
+    
 
     const onClose = () => {
         dispatch(closeLoginModal());
     }
+
+    useEffect(() => {
+        return () => {
+          dispatch(clearSessionErrors());
+        };
+    }, [dispatch]);
+
 
     useEffect(() => {
         if (sessionUser) {
@@ -25,34 +35,16 @@ const LoginModal = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        setErrors([]);
+        // setErrors([]);
         return dispatch(sessionActions.login({ email, password }))
-          .catch(async (res) => {
-            let data;
-            try {
-              // .clone() essentially allows you to read the response body twice
-            } catch {
-              data = await res.text(); // Will hit this case if, e.g., server is down
-            }
-
-            // Check if unauthorized error (typically 401)
-            if (res.status === 401) {
-                setErrors(["Incorrect username or password"]);
-            } else if (data?.errors) {
-                setErrors(data.errors);
-            } else if (data) {
-                setErrors([data]);
-            } else {
-                setErrors([res.statusText]);
-            }
-          });
     };
 
     const bodyContent = (
         <div className="flex flex-col gap-4">
             <form onSubmit={handleSubmit}>
-                <ul className='text-red-600'>
-                    {errors.map(error => <li key={error}>{error}</li>)}
+                <ul>
+                    <li className="errors text-red-600">{errors?.email}</li>
+                    <li className="errors text-red-600">{errors?.password}</li>
                 </ul>
                 <div className='"w-full mb-5 relative'>
                     <input
