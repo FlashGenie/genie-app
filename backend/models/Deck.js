@@ -16,7 +16,7 @@ const deckSchema = new Schema ({
         type: [cardSchema]
     },
     author: {
-        type: Schema.Types.Object_id,
+        type: Schema.Types.ObjectId,
         ref: 'User'
     }
 }, {

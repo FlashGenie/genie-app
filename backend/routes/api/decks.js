@@ -7,7 +7,7 @@ const Card = mongoose.model('Card');
 
 
 router.post('/new', validateDeckInput, async (req, res, next) => {
-
+    debugger;
     try {
         const newDeck = new Deck ({
             name: req.body.name,
@@ -16,20 +16,22 @@ router.post('/new', validateDeckInput, async (req, res, next) => {
             cards: []
         })
 
+        debugger;
         const cardsArray = Object.values(req.body.cards)
-
-        cardsArray.forEach( async (card) => {
+        debugger;
+            const savedCards = await Promise.all(cardsArray.map(async(card)=>{
             const newCard = new Card({
                 title: card.title,
                 body: card.body,
                 category: req.body.category,
                 author: req.body.user_id
             })
-            let savedCard = await newCard.save();
 
-            newDeck.cards.push(savedCard)
+            return await newCard.save()
+            // console.log(card)
+        }))
 
-        })
+        newDeck.cards.push(...savedCards)
 
         let deck = await newDeck.save()
 
