@@ -48,9 +48,11 @@ router.post('/new', requireUser, validateDeckInput, async (req, res, next) => {
 
 router.delete('/:id', async(req, res, next)=>{
     try{
-        const deck = await Deck.findById(req.params.id)
-        .populate();
-            return res.json(deck)
+        const deck = await Deck.findByIdAndDelete(req.params.id)
+        res.json('deck:deleted')
+        console.log(deck)
+        
+       
     } 
     catch(err){
         const error = new Error('Deck not found');
