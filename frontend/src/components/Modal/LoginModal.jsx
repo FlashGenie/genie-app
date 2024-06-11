@@ -45,6 +45,10 @@ const LoginModal = () => {
         return dispatch(sessionActions.login({ email, password }))
     };
 
+    const handleDemoLogin = () => {
+        return dispatch(sessionActions.login({ email: 'demo-user@appacademy.io', password: 'starwars' }));
+    };
+
     const bodyContent = (
         <div className="flex flex-col gap-4">
             <form onSubmit={handleSubmit}>
@@ -168,6 +172,17 @@ const LoginModal = () => {
                     Log In
                 </button>
             </form>
+            <button 
+                onClick={handleDemoLogin}
+                className='
+                    mt-2
+                    text-blue-500
+                    hover:text-blue-700
+                    transition
+                '
+            >
+                Log in as Demo User
+            </button>
         </div>
     )
 
