@@ -12,16 +12,19 @@ import LoginModal from './components/Modal/LoginModal';
 import RegisterModal from './components/Modal/RegisterModal';
 import Dashboard from './components/Dashboard/Dashboard';
 
+import { useSelector } from 'react-redux';
+
 import { getCurrentUser } from './store/session';
 
 const Layout = () => {
+  const loggedIn = useSelector(state => !!state.session.user);
   return (
     <>
       <RegisterModal/>
       <LoginModal />
       <NavBar />
       <Outlet />
-      <Footer />
+      {!loggedIn && <Footer />}
     </>
   );
 };
