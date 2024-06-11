@@ -5,6 +5,7 @@ const validateDeckInput = require('../../validations/decks');
 const mongoose = require('mongoose');
 const Deck = mongoose.model('Deck');
 const Card = mongoose.model('Card');
+const User = mongoose.model('User');
 
 
 router.post('/new', requireUser, validateDeckInput, async (req, res, next) => {
@@ -47,10 +48,9 @@ router.post('/new', requireUser, validateDeckInput, async (req, res, next) => {
 
 router.delete('/:id', async(req, res, next)=>{
     try{
-        ;
-       
-        await Deck.findByIdAndDelete(req.params.id);
-        res.json('result : success')
+        const deck = await Deck.findById(req.params.id)
+        .populate();
+            return res.json(deck)
     } 
     catch(err){
         const error = new Error('Deck not found');
@@ -58,19 +58,56 @@ router.delete('/:id', async(req, res, next)=>{
         error.errors = { message: "No deck found with that id" };
         return next(error);
       }
+   
 })
 
-
-router.get('/', async (req, res, next) => {
-
+router.get('/', async (req, res) => {
     try {
-
+      const decks = await Deck.find()
+                                .populate("author", "_id")
+                                .sort({ createdAt: -1 });
+      return res.json(decks);
     }
     catch(err) {
-        next(err)
+      return res.json([]);
     }
+  })
 
-})
+  router.get('/user/:userId', async (req, res, next) => {
+    let user;
+    try {
+      user = await User.findById(req.params.userId);
+    } catch(err) {
+      const error = new Error('User not found');
+      error.statusCode = 404;
+      error.errors = { message: "No user found with that id" };
+      return next(error);
+    }
+    try {
+      const decks = await Deck.find({ author: user._id })
+                                .sort({ createdAt: -1 })
+                                .populate("author", "_id username");
+      return res.json(decks);
+    }
+    catch(err) {
+      return res.json([]);
+    }
+  })
+
+
+  router.get('/:id', async (req, res, next) => {
+    try {
+      const deck = await Deck.findById(req.params.id)
+                               .populate("author", "_id username");
+      return res.json(deck);
+    }
+    catch(err) {
+      const error = new Error('Tweet not found');
+      error.statusCode = 404;
+      error.errors = { message: "No tweet found with that id" };
+      return next(error);
+    }
+  })
 
 
 
