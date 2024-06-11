@@ -28,7 +28,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <AuthRoute component={Upload} />
+        element: <AuthRoute component={MainPage} />
       },
       {
         path: "login",
