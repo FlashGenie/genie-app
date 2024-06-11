@@ -13,10 +13,16 @@ const LoginModal = () => {
     const [password, setPassword] = useState("");
     // const [errors, setErrors] = useState([]);
     const errors = useSelector(state => state.errors.session);
+
+    const resetFields = () => {
+        setEmail('');
+        setPassword('');
+    };
     
 
     const onClose = () => {
         dispatch(closeLoginModal());
+        dispatch(clearSessionErrors())
     }
 
     useEffect(() => {
@@ -170,6 +176,7 @@ const LoginModal = () => {
             isOpen={isLoginOpen}
             title="Welcome back"
             onClose={onClose}
+            resetFields={resetFields}
             body={bodyContent}
         />
     )

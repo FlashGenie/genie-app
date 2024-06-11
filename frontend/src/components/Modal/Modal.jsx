@@ -7,6 +7,7 @@ const Modal = ({
 	title,
 	body,
 	disabled,
+    resetFields,
 }) => {
 	const [showModal, setShowModal] = useState(isOpen);
 
@@ -22,8 +23,11 @@ const Modal = ({
 		setShowModal(false);
 		setTimeout(() => {
 			onClose();
+            if (resetFields) {
+				resetFields();
+			}
 		}, 300);
-	}, [disabled, onClose]);
+	}, [disabled, onClose, resetFields]);
 
 	if(!isOpen) {
 		return null;
