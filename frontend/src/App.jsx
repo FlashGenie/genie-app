@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 
-import { AuthRoute } from './components/Routes/Routes';
+import { AuthRoute, ProtectedRoute } from './components/Routes/Routes';
 import NavBar from './components/NavBar/NavBar';
 import MainPage from './components/MainPage/MainPage';
 import LoginForm from './components/SessionForms/LoginForm';
@@ -10,6 +10,7 @@ import SignupForm from './components/SessionForms/SignupForm';
 import Footer from './components/Footer/Footer';
 import LoginModal from './components/Modal/LoginModal';
 import RegisterModal from './components/Modal/RegisterModal';
+import Dashboard from './components/Dashboard/Dashboard';
 
 import { getCurrentUser } from './store/session';
 
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
       {
         path: "signup",
         element: <AuthRoute component={SignupForm} />
+      },
+      {
+        path: "dashboard", // Protected route for Dashboard
+        element: <ProtectedRoute component={Dashboard} />
       }
     ]
   }
