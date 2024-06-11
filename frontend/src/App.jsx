@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
+import Upload from './components/Upload/Upload';
 
 import { AuthRoute } from './components/Routes/Routes';
 import NavBar from './components/NavBar/NavBar';
