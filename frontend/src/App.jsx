@@ -9,12 +9,16 @@ import MainPage from './components/MainPage/MainPage';
 import LoginForm from './components/SessionForms/LoginForm';
 import SignupForm from './components/SessionForms/SignupForm';
 import Footer from './components/Footer/Footer';
+import LoginModal from './components/Modal/LoginModal';
+import RegisterModal from './components/Modal/RegisterModal';
 
 import { getCurrentUser } from './store/session';
 
 const Layout = () => {
   return (
     <>
+      <RegisterModal/>
+      <LoginModal />
       <NavBar />
       <Outlet />
       <Footer />
