@@ -52,6 +52,7 @@ function NavBar () {
           </span>
         </div>
 
+        {!loggedIn && (
         <div className="flex-1 flex justify-center">
           <ul className="md:flex md:items-center space-x-8">
             <li className="mx-4 my-6 md:my-0">
@@ -65,6 +66,7 @@ function NavBar () {
             </li>
           </ul>
         </div>
+        )}
 
         <div className="flex items-center space-x-4">
           {getLinks()}
