@@ -45,13 +45,29 @@ router.post('/new', requireUser, validateDeckInput, async (req, res, next) => {
 
 })
 
+router.patch('/:id', async (req, res, next) => {
+  try {
+
+      const deckDetails = {
+          name: req.body.name,
+          category: req.body.category,
+          cards: req.body.cards
+      }
+
+      const deck = await Deck.findByIdAndUpdate(req.params.id, deckDetails, {new:true})
+      res.json(deck)
+  }
+  catch(err) {
+      next(err)
+  }
+})
+
 
 router.delete('/:id', async(req, res, next)=>{
     try{
         const deck = await Deck.findByIdAndDelete(req.params.id)
         res.json('deck:deleted')
         console.log(deck)
-        
        
     } 
     catch(err){

@@ -26,16 +26,50 @@ router.post('/new', validateCardInput, async (req, res, next) => {
 })
 
 
-router.get('/', async (req, res, next) => {
+router.get('/:id', async (req, res, next) => {
 
     try {
-
+        const card = await Card.findById(req.params.id)
+        res.json(card)
     }
     catch(err) {
         next(err)
     }
 
 })
+
+router.patch('/:id', async (req, res, next) => {
+    try {
+
+        const cardDetails = {
+            title: req.body.title,
+            body: req.body.body,
+            category: req.body.category
+        }
+
+        const card = await Card.findByIdAndUpdate(req.params.id, cardDetails, {new:true})
+        res.json(card)
+    }
+    catch(err) {
+        next(err)
+    }
+})
+
+router.delete('/:id', async(req, res, next)=>{
+    try{
+        const card = await Card.findByIdAndDelete(req.params.id)
+        res.json('card:deleted')
+        console.log(card)
+    } 
+    catch(err){
+        const error = new Error('Card not found');
+        error.statusCode = 404;
+        error.errors = { message: "No card found with that id" };
+        return next(error);
+      }
+   
+})
+
 
 
 
