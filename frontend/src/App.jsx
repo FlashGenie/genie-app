@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
+import FileUpload from './components/FileUpload/FileUpload';
 
 import { AuthRoute, ProtectedRoute } from './components/Routes/Routes';
 import NavBar from './components/NavBar/NavBar';
@@ -48,7 +49,11 @@ const router = createBrowserRouter([
       {
         path: "dashboard", // Protected route for Dashboard
         element: <ProtectedRoute component={Dashboard} />
-      }
+      },
+      {
+        path: "upload",
+        element: <AuthRoute component={FileUpload} />
+      } 
     ]
   }
 ]);
