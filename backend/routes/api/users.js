@@ -92,9 +92,12 @@ router.get('/current', restoreUser, async (req, res) => {
     res.cookie("CSRF-TOKEN", csrfToken);
   }
 
-  const userDecks = await Deck.find({author: req.user._id})
+   
+  
+  
 
   if (!req.user) return res.json(null);
+  const userDecks = await Deck.find({author: req.user._id})
   res.json({
     user: {_id: req.user._id,
     username: req.user.username,
