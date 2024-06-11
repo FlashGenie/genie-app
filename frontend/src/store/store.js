@@ -3,12 +3,14 @@ import { thunk } from 'redux-thunk';
 import session from './session';
 import errors from './errors';
 import modal from './modal'
+import decks from './decks';
 
 
 const rootReducer = combineReducers({
   session,
   errors,
-  modal
+  modal,
+  decks
 });
 
 let enhancer;
