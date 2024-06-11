@@ -72,7 +72,7 @@ router.post('/login', validateLoginInput, async (req, res, next) => {
     }
 
     const currentUser = await loginUser(user);
-    const userDecks = await Deck.find({author: currentUser._id})
+    const userDecks = await Deck.find({author: user._id})
     return res.json (
       {currentUser,
       userDecks}
@@ -82,7 +82,7 @@ router.post('/login', validateLoginInput, async (req, res, next) => {
   })(req, res, next);
 });
 
-router.get('/current', restoreUser, (req, res) => {
+router.get('/current', restoreUser, async (req, res) => {
 
   if (!isProduction) {
     // In development, allow React server to gain access to the CSRF token
@@ -92,11 +92,14 @@ router.get('/current', restoreUser, (req, res) => {
     res.cookie("CSRF-TOKEN", csrfToken);
   }
 
+  const userDecks = await Deck.find({author: req.user._id})
+
   if (!req.user) return res.json(null);
   res.json({
-    _id: req.user._id,
+    user: {_id: req.user._id,
     username: req.user.username,
-    email: req.user.email
+    email: req.user.email},
+    userDecks
   });
 });
 
