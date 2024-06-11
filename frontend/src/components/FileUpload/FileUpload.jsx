@@ -8,6 +8,20 @@ function FileUpload() {
   const handleFileChange = (event) => {
     setFile(event.target.files[0]);
   };
+  
+  const handleDrop = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    const droppedFile = event.dataTransfer.files[0];
+    if (droppedFile) {
+      setFile(droppedFile);
+    }
+  };
+
+  const handleDragOver = (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -42,7 +56,7 @@ function FileUpload() {
       <h1 className="text-2xl font-bold">Generate instant study materials</h1>
       <p className="text-lg my-4">Upload class notes, lecture slides, or readings</p>
       <form onSubmit={handleSubmit}>
-        <div className="border-2 border-solid border-gray-100 rounded-lg py-16 px-8">
+        <div className="border-2 border-solid border-gray-100 rounded-lg py-16 px-8" onDrop={handleDrop} onDragOver={handleDragOver}>
           <input
             type="file"
             onChange={handleFileChange}
