@@ -2,7 +2,9 @@ const express = require('express');
 const router = express.Router();
 const validateCardInput = require('../../validations/cards');
 const mongoose = require('mongoose');
+// const Deck = require('../../models/Deck');
 const Card = mongoose.model('Card');
+const Deck = mongoose.model('Deck');
 
 
 router.post('/new', validateCardInput, async (req, res, next) => {
@@ -57,7 +59,15 @@ router.patch('/:id', async (req, res, next) => {
 
 router.delete('/:id', async(req, res, next)=>{
     try{
+      
+        // db.decks.updateMany({ "cards.id": req.params.id },
+        // { $pull: { "cards": { "id": req.params.id } } })
+
         const card = await Card.findByIdAndDelete(req.params.id)
+        await Deck.updateMany({"cards._id":req.params.id},
+        { $pull: { "cards": { "_id": req.params.id } } }
+        )
+       
         res.json('card:deleted')
         console.log(card)
     } 
