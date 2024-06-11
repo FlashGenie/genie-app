@@ -45,7 +45,7 @@ function NavBar () {
     };
   
     return (
-      <nav className="p-4 bg-white shadow md:flex md:items-center md:justify-between">
+      <nav className="p-4 bg-white shadow md:flex md:items-center md:justify-between sticky top-0 z-50">
         <div className="flex justify-between items-center">
           <span className="text-3xl font-sans font-bold cursor-pointer">
             Genie.
@@ -58,10 +58,10 @@ function NavBar () {
               <a href="#" className="text-xl hover:text-slate-800 duration-500">Home</a>
             </li>
             <li className="mx-4 my-6 md:my-0">
-              <a href="#" className="text-xl hover:text-slate-800 duration-500">Product</a>
+              <a href="#product" className="text-xl hover:text-slate-800 duration-500">Product</a>
             </li>
             <li className="mx-4 my-6 md:my-0">
-              <a href="#" className="text-xl hover:text-slate-800 duration-500">About Us</a>
+              <a href="#conversion" className="text-xl hover:text-slate-800 duration-500">About Us</a>
             </li>
           </ul>
         </div>
