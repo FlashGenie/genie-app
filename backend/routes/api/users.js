@@ -3,6 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
+const Deck = mongoose.model('Deck');
 const passport = require('passport');
 const { loginUser, restoreUser } = require('../../config/passport');
 const { isProduction } = require('../../config/keys');
@@ -69,13 +70,19 @@ router.post('/login', validateLoginInput, async (req, res, next) => {
       err.errors = { email: "Invalid credentials" };
       return next(err);
     }
-    return res.json(await loginUser(user));
+
+    const currentUser = await loginUser(user);
+    const userDecks = await Deck.find({author: currentUser._id})
+    return res.json (
+      {currentUser,
+      userDecks}
+    )
+    // return res.json(await loginUser(user));
+  
   })(req, res, next);
 });
 
-
 router.get('/current', restoreUser, (req, res) => {
-
 
   if (!isProduction) {
     // In development, allow React server to gain access to the CSRF token
@@ -84,7 +91,6 @@ router.get('/current', restoreUser, (req, res) => {
     const csrfToken = req.csrfToken();
     res.cookie("CSRF-TOKEN", csrfToken);
   }
-
 
   if (!req.user) return res.json(null);
   res.json({
@@ -95,3 +101,5 @@ router.get('/current', restoreUser, (req, res) => {
 });
 
 module.exports = router;
+
+
