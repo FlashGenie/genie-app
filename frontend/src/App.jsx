@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
-import Upload from './components/Upload/Upload';
+import FileUpload from './components/FileUpload/FileUpload';
 
 import { AuthRoute } from './components/Routes/Routes';
 import NavBar from './components/NavBar/NavBar';
@@ -41,7 +41,11 @@ const router = createBrowserRouter([
       {
         path: "signup",
         element: <AuthRoute component={SignupForm} />
-      }
+      },
+      {
+        path: "upload",
+        element: <AuthRoute component={FileUpload} />
+      } 
     ]
   }
 ]);
