@@ -29,7 +29,6 @@ We will need to:
 The goal is to make a sleek and intuitive interface for users to quickly engage with. Pages will be self-explanatory with a minimal feel to avoid overwhelming users.
 
 ## WireFrames
-Landing Page
 ![Landing Page](https://github.com/FlashGenie/genie-app/blob/main/landing-page.png)
 
 ### Architecture
