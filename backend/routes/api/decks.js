@@ -9,7 +9,6 @@ const User = mongoose.model('User');
 
 
 router.post('/new', requireUser, validateDeckInput, async (req, res, next) => {
-    debugger;
     try {
         const newDeck = new Deck ({
             name: req.body.name,
@@ -18,9 +17,8 @@ router.post('/new', requireUser, validateDeckInput, async (req, res, next) => {
             cards: []
         })
 
-        debugger;
         const cardsArray = Object.values(req.body.cards)
-        debugger;
+
             const savedCards = await Promise.all(cardsArray.map(async(card)=>{
             const newCard = new Card({
                 title: card.title,
@@ -67,8 +65,6 @@ router.delete('/:id', async(req, res, next)=>{
     try{
         const deck = await Deck.findByIdAndDelete(req.params.id)
         res.json('deck:deleted')
-        console.log(deck)
-       
     } 
     catch(err){
         const error = new Error('Deck not found');
@@ -89,28 +85,28 @@ router.get('/', async (req, res) => {
     catch(err) {
       return res.json([]);
     }
-  })
+})
 
-  router.get('/user/:userId', async (req, res, next) => {
-    let user;
-    try {
-      user = await User.findById(req.params.userId);
-    } catch(err) {
-      const error = new Error('User not found');
-      error.statusCode = 404;
-      error.errors = { message: "No user found with that id" };
-      return next(error);
-    }
-    try {
-      const decks = await Deck.find({ author: user._id })
-                                .sort({ createdAt: -1 })
-                                .populate("author", "_id username");
-      return res.json(decks);
-    }
-    catch(err) {
-      return res.json([]);
-    }
-  })
+router.get('/user/:userId', async (req, res, next) => {
+  let user;
+  try {
+    user = await User.findById(req.params.userId);
+  } catch(err) {
+    const error = new Error('User not found');
+    error.statusCode = 404;
+    error.errors = { message: "No user found with that id" };
+    return next(error);
+  }
+  try {
+    const decks = await Deck.find({ author: user._id })
+                              .sort({ createdAt: -1 })
+                              .populate("author", "_id username");
+    return res.json(decks);
+  }
+  catch(err) {
+    return res.json([]);
+  }
+})
 
 
   router.get('/:id', async (req, res, next) => {
