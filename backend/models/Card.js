@@ -22,5 +22,10 @@ const Schema = mongoose.Schema;
     timestamps: true
 });
 
-module.exports = mongoose.model('Card', cardSchema);
-module.exports = cardSchema
+module.exports = {
+        model: mongoose.model('Card', cardSchema),
+        cardSchema: cardSchema
+}
+
+// mongoose.model('Card', cardSchema);
+// module.exports = cardSchema
