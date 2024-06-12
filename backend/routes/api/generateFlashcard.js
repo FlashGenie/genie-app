@@ -23,12 +23,14 @@ router.post('/', requireUser, async (req, res, next) => {
         });
 
         // Log the generated completion message for debugging
-        console.log(completion.choices[0].message);
+        // console.log(completion.choices[0].message);
 
         // Extract text content from the completion and parse it as JSON
         const flashcardText = completion.choices[0].message.content;
         const flashcardObject = JSON.parse(flashcardText.replace(/```json/, '').replace(/```/, '').trim());
 
+        console.log(flashcardObject);
+        
         // Respond with the parsed flashcard object as JSON
         return res.json({ flashcardObject });
     } catch (error) {

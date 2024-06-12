@@ -2,7 +2,6 @@ import { useState } from 'react';
 import { FiUpload } from 'react-icons/fi';
 import { uploadPDF, generateFlashcards, createDeck } from '../../store/genie';
 import { useDispatch } from 'react-redux';
-import { FiUpload } from 'react-icons/fi';
 import { FiLoader } from 'react-icons/fi';
 import { openGenerateDeckModal } from '../../store/modal';
 
@@ -41,24 +40,21 @@ function FileUpload() {
         const flashcards = await generateFlashcards(parsedText);
         const response = await createDeck('My Deck', 'Study', flashcards);
         
-        console.log(response)
-        const result = await response.json();
         setLoading(false);
 
         if (response) {
           //alert('File uploaded successfully!');
           dispatch(openGenerateDeckModal());
         } else {
-          alert('File upload failed: ' + result.message);
+          alert('File upload failed');
         }
       } catch (error) {
         console.error('Error uploading file:', error);
         alert('Error uploading file');
         setLoading(false);
       }
-    } catch (error) {
-      console.error('Error uploading file:', error);
-      alert('Error uploading file');
+    } else {
+      alert('Please select a file to upload.');
     }
   };
 
