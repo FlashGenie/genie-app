@@ -1,6 +1,7 @@
 import Hero from './Hero';
 import Product from './Product';
 import Conversion from './Conversion';
+import About from './About';
 
 function MainPage() {
     return(
@@ -8,6 +9,7 @@ function MainPage() {
             <Hero />
             <Product />
             <Conversion />
+            <About />
         </main>
     )
 }
