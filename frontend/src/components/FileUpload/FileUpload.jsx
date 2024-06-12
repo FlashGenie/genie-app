@@ -1,6 +1,7 @@
 import { useState } from 'react';
+import { FiUpload } from 'react-icons/fi';
+import { uploadPDF, generateFlashcards, createDeck } from '../../store/genie';
 import { useDispatch } from 'react-redux';
-import jwtFetch from '../../store/jwt';
 import { FiUpload } from 'react-icons/fi';
 import { FiLoader } from 'react-icons/fi';
 import { openGenerateDeckModal } from '../../store/modal';
@@ -32,21 +33,19 @@ function FileUpload() {
     event.preventDefault();
 
     if (file) {
-      const formData = new FormData();
-      formData.append('pdfFile', file);
-
       setLoading(true);
-
+      
       try {
-        const response = await jwtFetch('/api/upload', {
-          method: 'POST',
-          body: formData,
-        });
-
+        // Await the API utility function
+        const parsedText = await uploadPDF(file);
+        const flashcards = await generateFlashcards(parsedText);
+        const response = await createDeck('My Deck', 'Study', flashcards);
+        
+        console.log(response)
         const result = await response.json();
         setLoading(false);
 
-        if (response.ok) {
+        if (response) {
           //alert('File uploaded successfully!');
           dispatch(openGenerateDeckModal());
         } else {
@@ -57,8 +56,9 @@ function FileUpload() {
         alert('Error uploading file');
         setLoading(false);
       }
-    } else {
-      alert('Please select a file to upload.');
+    } catch (error) {
+      console.error('Error uploading file:', error);
+      alert('Error uploading file');
     }
   };
 

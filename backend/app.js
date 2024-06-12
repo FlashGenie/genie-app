@@ -14,12 +14,12 @@ require('./models/Deck')
 require('./config/passport');
 const passport = require('passport');
 
-
 const usersRouter = require('./routes/api/users');
 const cardsRouter = require('./routes/api/cards');
 const decksRouter = require('./routes/api/decks');
 const csrfRouter = require('./routes/api/csrf');
-const uploadrouter = require('./routes/api/upload');
+const uploadRouter = require('./routes/api/upload');
+const generateFlashcardRouter = require('./routes/api/generateFlashcard');
 
 const app = express();
 app.use(passport.initialize());
@@ -51,7 +51,8 @@ app.use('/api/users', usersRouter);
 app.use('/api/cards', cardsRouter);
 app.use('/api/decks', decksRouter);
 app.use('/api/csrf', csrfRouter);
-app.use('/api/upload', uploadrouter);
+app.use('/api/upload', uploadRouter);
+app.use('/api/generateFlashcard', generateFlashcardRouter);
 
 // Serve static React build files statically in production
 if (isProduction) {
