@@ -36,7 +36,7 @@ function NavBar () {
           <div className="links-auth flex items-center space-x-4">
             {/* Update the onClick handler to open the login modal */}
             <button onClick={handleOpenLoginModal} className="text-xl hover:text-slate-800 duration-500">Log in</button>
-            <Link onClick={handleOpenRegisterModal} className="bg-black text-white font-sans duration-500 px-5 hover:bg-slate-800 rounded">
+            <Link onClick={handleOpenRegisterModal} className="bg-black text-white font-medium duration-500 px-8 py-2.5 hover:bg-slate-800 rounded-lg">
               Get Started
             </Link>
           </div>

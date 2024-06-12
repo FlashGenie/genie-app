@@ -6,7 +6,6 @@ import FlashcardSet from './FlashcardSet';
 import Modal from '../Modal/Modal';
 
 function Dashboard() {
-  // const dispatch = useDispatch();
   const navigate = useNavigate();
   const flashcardSets = useSelector(state => Object.values(state.decks));
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -34,7 +33,6 @@ function Dashboard() {
   };
 
   const handleUseGemini = () => {
-    console.log('Use GEMINI');
     navigate('/upload');
     handleCloseModal();
   };
@@ -69,7 +67,7 @@ function Dashboard() {
               Create New Flash Card
             </button>
             <button className="bg-black text-white font-bold py-3 px-4 rounded-lg w-full hover:opacity-80 transition border-neutral-300 focus:border-black text-md mt-6 font-semibold border-2" onClick={handleUseGemini}>
-              Use GEMINI
+              Use GENIE
             </button>
           </div>
         }

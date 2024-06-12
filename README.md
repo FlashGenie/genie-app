@@ -1,8 +1,9 @@
 <p align="center">
-    <img width="800" src="https://github.com/FlashGenie/genie-app/blob/main/banner.png" alt="Genie logo">
+    <img width="900" src="https://github.com/FlashGenie/genie-app/blob/main/banner.png" alt="Genie logo">
 </p>
-<h1 align="center"> Genie </h1>
 
+# Genie
+[Live Site!](https://genie-7kp5.onrender.com/)
 ## Background and overview
 **Genie** is a study aid app that leverages AI to generate flashcards from user-uploaded notes. Users can create flashcard decks using AI, customize them to their liking, and search through existing decks created by other users.
 
@@ -28,7 +29,6 @@ We will need to:
 The goal is to make a sleek and intuitive interface for users to quickly engage with. Pages will be self-explanatory with a minimal feel to avoid overwhelming users.
 
 ## WireFrames
-Landing Page
 ![Landing Page](https://github.com/FlashGenie/genie-app/blob/main/landing-page.png)
 
 ### Architecture
