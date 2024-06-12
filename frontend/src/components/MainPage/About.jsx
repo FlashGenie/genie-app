@@ -16,7 +16,7 @@ function About() {
                     <AboutProfileBox
                         name={"Charles Racine"}
                         role={"Back-end"}
-                        imgLink={"./../../../public/profile-default-img.png"}
+                        imgLink={"profile-default-img.png"}
                         gitHubLink={"https://github.com/cracine79"}
                         linkedinLink={"https://www.linkedin.com/in/charlee-racine-50241a7b/"}
                     />
@@ -24,7 +24,7 @@ function About() {
                     <AboutProfileBox
                         name={"Edison Li"}
                         role={""}
-                        imgLink={"./../../../public/profile-default-img.png"}
+                        imgLink={"profile-default-img.png"}
                         gitHubLink={"https://github.com/edison4354"}
                         linkedinLink={"https://www.linkedin.com/in/edison-l-832242167/"}
                     />
@@ -32,7 +32,7 @@ function About() {
                     <AboutProfileBox
                         name={"Jaspreet Singh"}
                         role={"Front-end"}
-                        imgLink={"./../../../public/profile-default-img.png"}
+                        imgLink={"profile-default-img.png"}
                         gitHubLink={"https://github.com/jsingh0507"}
                         linkedinLink={"https://www.linkedin.com/in/rafael-campos-60471a2b2/"}
                     />
@@ -42,7 +42,7 @@ function About() {
                     <AboutProfileBox
                         name={"Rafael Campos"}
                         role={"Back-end"}
-                        imgLink={"./../../../public/profile-default-img.png"}
+                        imgLink={"profile-default-img.png"}
                         gitHubLink={"https://github.com/Rafa-Camp04"}
                         linkedinLink={"https://www.linkedin.com/in/rafael-campos-60471a2b2/"}
                     />
@@ -50,7 +50,7 @@ function About() {
                     <AboutProfileBox
                         name={"Dharani Yedavelly"}
                         role={"Front-end"}
-                        imgLink={"./../../../public/profile-default-img.png"}
+                        imgLink={"profile-default-img.png"}
                         gitHubLink={"https://github.com/dyedavelly"}
                         linkedinLink={"https://www.linkedin.com/in/dharaniy/"}
                     />          
