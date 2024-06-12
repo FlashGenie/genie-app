@@ -11,7 +11,7 @@ const DeckDetail = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [editedDeck, setEditedDeck] = useState(null);
   const [newCard, setNewCard] = useState({ title: '', body: '' });
-  const [showAddCard, setShowAddCard] = useState(false); // State to control showing the Add Card section
+  const [showAddCard, setShowAddCard] = useState(false);
 
   useEffect(() => {
     if (id) {
@@ -67,7 +67,6 @@ const DeckDetail = () => {
 
   const toggleAddCard = () => {
     setShowAddCard(!showAddCard);
-    // Reset new card fields when toggling
     if (!showAddCard) {
       setNewCard({ title: '', body: '' });
     }
@@ -97,7 +96,7 @@ const DeckDetail = () => {
           {isEditing && (
             <button
               onClick={handleDeleteClick}
-              className="text-sm bg-red-500 text-white py-1 px-3 rounded"
+              className="mr-25 text-sm bg-red-500 text-white py-1 px-3 rounded"
             >
               Delete
             </button>
@@ -149,39 +148,44 @@ const DeckDetail = () => {
             )}
           </div>
         ))}
-        <div className="flex justify-center">
-          <button
-            onClick={toggleAddCard}
-            className="text-sm bg-green-500 text-white py-1 px-3 rounded"
-          >
-            {showAddCard ? '-' : '+'}
-          </button>
-        </div>
-        {showAddCard && (
-          <div className="max-w-4xl rounded-xl overflow-hidden shadow-lg p-4 bg-white mb-4">
-            <input
-              type="text"
-              name="title"
-              value={newCard.title}
-              onChange={(e) => setNewCard({ ...newCard, title: e.target.value })}
-              placeholder="New card title"
-              className="text-gray-700 font-bold text-l mb-2 w-full"
-            />
-            <textarea
-              name="body"
-              value={newCard.body}
-              onChange={(e) => setNewCard({ ...newCard, body: e.target.value })}
-              placeholder="New card body"
-              className="text-gray-700 text-l w-full"
-            />
+        {isEditing && (
+          <>
+          <div className="flex justify-center">
             <button
-              onClick={handleAddCard}
-              className="text-sm bg-green-500 text-white py-1 px-3 rounded mt-2"
+              onClick={toggleAddCard}
+              className="text-sm bg-green-500 text-white py-1 px-3 rounded"
             >
-              Add Card
+              {showAddCard ? '-' : '+'}
             </button>
           </div>
+          {showAddCard && (
+            <div className="max-w-4xl rounded-xl overflow-hidden shadow-lg p-4 bg-white mb-4">
+              <input
+                type="text"
+                name="title"
+                value={newCard.title}
+                onChange={(e) => setNewCard({ ...newCard, title: e.target.value })}
+                placeholder="New card title"
+                className="text-gray-700 font-bold text-l mb-2 w-full"
+              />
+              <textarea
+                name="body"
+                value={newCard.body}
+                onChange={(e) => setNewCard({ ...newCard, body: e.target.value })}
+                placeholder="New card body"
+                className="text-gray-700 text-l w-full"
+              />
+              <button
+                onClick={handleAddCard}
+                className="text-sm bg-green-500 text-white py-1 px-3 rounded mt-2"
+              >
+                Add Card
+              </button>
+            </div>
+          )}
+          </>
         )}
+        
       </div>
     </div>
   );
