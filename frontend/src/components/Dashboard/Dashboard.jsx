@@ -29,7 +29,7 @@ function Dashboard() {
               key={set._id}
               title={set.name}
               termCount={set.cards.length}
-              username={set.author.username}
+              username={set.author ? set.author.username : 'Unknown'}
               onClick={() => handleFlashcardSetClick(set._id)}
             />
           ))}

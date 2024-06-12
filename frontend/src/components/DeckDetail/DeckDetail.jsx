@@ -22,11 +22,17 @@ const DeckDetail = () => {
     <div className="p-6 bg-gray-100">
       <div className="text-2xl font-bold mb-4">{deck.name}</div>
       <div className="text-gray-700 text-base mb-6">Category: {deck.category}</div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 gap-6">
         {deck.cards.map((card) => (
-          <div key={card._id} className="max-w-sm rounded overflow-hidden shadow-lg p-4 bg-white">
-            <div className="font-bold text-xl mb-2">{card.title}</div>
-            <div className="text-gray-700 text-base">{card.body}</div>
+          <div key={card._id} className="max-w-full rounded overflow-hidden shadow-lg p-4 bg-white mb-4">
+            <div className="grid grid-cols-2 gap-4">
+              <div className="col-span-1">
+                <div className="font-bold text-xl mb-2">{card.title}</div>
+              </div>
+              <div className="col-span-1">
+                <div className="text-gray-700 text-base">{card.body}</div>
+              </div>
+            </div>
           </div>
         ))}
       </div>
