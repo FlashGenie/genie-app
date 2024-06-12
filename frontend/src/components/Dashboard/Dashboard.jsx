@@ -1,14 +1,23 @@
 import Sidebar from './Sidebar'
 import FlashcardSet from './FlashcardSet';
-function Dashboard() {
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchDecks } from '../../store/decks';
 
-    const flashcardSets = [
-        { title: 'Biology 101', termCount: 50, username: 'user1' },
-        { title: 'History of Art', termCount: 30, username: 'user2' },
-        { title: 'Chemistry Basics', termCount: 20, username: 'user3' },
-        { title: 'Computer Science', termCount: 20, username: 'user4' },
-        { title: 'Haleluia', termCount: 100, username: 'user5' },
-    ];
+function Dashboard() {
+    const dispatch = useDispatch();
+    const decks = useSelector(state => state.decks);
+
+    useEffect(() => {
+        dispatch(fetchDecks());
+    }, [dispatch]);
+
+    const flashcardSets = Object.values(decks).map(deck => ({
+        title: deck.name,
+        termCount: deck.cards.length,
+        username: deck.author.username // Adjust based on your API response structure
+    }));
+
     return(
         // <Sidebar/>
         <div className="flex">

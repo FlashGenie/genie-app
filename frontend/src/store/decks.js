@@ -1,4 +1,4 @@
-// import jwtFetch from "./jwt";
+import jwtFetch from "./jwt";
 
 const RECEIVE_DECKS = "deck/RECEIVE_DECKS";
 
@@ -8,7 +8,17 @@ export const receiveDecks = decks => ({
     decks
 })
 
+export const fetchDecks = () => async dispatch => {
+  try {
+      const response = await jwtFetch('/api/decks'); // Replace with your API endpoint
+      const data = await response.json();
+      dispatch(receiveDecks(data));
+  } catch (error) {
+      console.error("Failed to fetch decks:", error);
+  }
+};
 
+window.fetchDecks = fetchDecks;
 
 export const decksReducer = (state = {}, action) => {
     switch(action.type) {
@@ -18,5 +28,6 @@ export const decksReducer = (state = {}, action) => {
         return state;
     }
 };
+
 
 export default decksReducer;
