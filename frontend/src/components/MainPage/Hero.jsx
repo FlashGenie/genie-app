@@ -15,7 +15,7 @@ function Hero() {
                     AI-Powered Flashcards<img src="../../public/flashcard.svg" className="w-40 px-1 inline relative -mt-8"/>from your notes, made effortless
                 </h1>
                 <p className="text-gray-600 pb-5 text-2xl font-light tracking-wider mb-4">Create, Study, Explore, and Share: A Community of Flashcards</p>
-                <button onClick={handleOpenRegisterModal} className="bg-black text-white font-medium text-lg px-8 py-2.5 rounded-lg">Get Started</button>
+                <button onClick={handleOpenRegisterModal} className="bg-black text-white font-medium text-lg px-8 py-2.5 rounded-lg hover:bg-slate-800">Get Started</button>
             </div>
             <div className='mb-20'>
                 <img src="../../../public/dashboard.jpg" className="w-full border rounded-xl drop-shadow-xl"/>
