@@ -1,11 +1,9 @@
 import { useState } from 'react';
-import jwtFetch from '../../store/jwt';
 import { FiUpload } from 'react-icons/fi';
+import { uploadPDF, generateFlashcards, createDeck } from '../../store/genie';
 
 function FileUpload() {
   const [file, setFile] = useState(null);
-  const [name, setName] = useState('');
-  const [category, setCategory] = useState('');
 
   const handleFileChange = (event) => {
     setFile(event.target.files[0]);
@@ -27,34 +25,21 @@ function FileUpload() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    const deckName = name || 'Default Deck Name';
-    const deckCategory = category || 'Default Category';
+    try {
+      // Await the API utility function
+      const parsedText = await uploadPDF(file);
+      const flashcards = await generateFlashcards(parsedText);
+      const deck = await createDeck('My Deck', 'Study', flashcards);
     
-    if (file) {
-      const formData = new FormData();
-      formData.append('pdfFile', file);
-      formData.append('name', deckName);
-      formData.append('category', deckCategory);
-
-      try {
-        const response = await jwtFetch('/api/upload', {
-          method: 'POST',
-          body: formData,
-        });
-
-        const result = await response.json();
-        if (response.ok) {
-          alert('File uploaded successfully!');
-        } else {
-          alert('File upload failed: ' + result.message);
-        }
-      } catch (error) {
-        console.error('Error uploading file:', error);
-        alert('Error uploading file');
+      console.log(deck);
+      if (deck) {
+        alert('File uploaded successfully!');
+      } else {
+        alert('File upload failed: Failed to parse text.');
       }
-    } else {
-      alert('Please select a file to upload.');
+    } catch (error) {
+      console.error('Error uploading file:', error);
+      alert('Error uploading file');
     }
   };
 
