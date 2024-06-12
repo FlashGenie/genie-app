@@ -1,17 +1,19 @@
-import { useState } from 'react';
-import { FiUpload } from 'react-icons/fi';
+import { useState, useRef } from 'react';
+import { FiUpload, FiLoader, FiXCircle } from 'react-icons/fi';
 import { uploadPDF, generateFlashcards, createDeck } from '../../store/genie';
 import { useDispatch } from 'react-redux';
-import { FiLoader } from 'react-icons/fi';
 import { openGenerateDeckModal } from '../../store/modal';
 
 function FileUpload() {
   const dispatch = useDispatch();
   const [file, setFile] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [localErrors, setLocalErrors] = useState([]);
+  const fileInputRef = useRef(null);
 
   const handleFileChange = (event) => {
     setFile(event.target.files[0]);
+    setLocalErrors([]);
   };
   
   const handleDrop = (event) => {
@@ -20,6 +22,7 @@ function FileUpload() {
     const droppedFile = event.dataTransfer.files[0];
     if (droppedFile) {
       setFile(droppedFile);
+      setLocalErrors([]); 
     }
   };
 
@@ -28,33 +31,40 @@ function FileUpload() {
     event.stopPropagation();
   };
 
+  const handleRemoveFile = () => {
+    setFile(null);
+    setLocalErrors([]);
+    if (fileInputRef.current) {
+      fileInputRef.current.value = null;
+    }
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (file) {
-      setLoading(true);
-      
-      try {
-        // Await the API utility function
-        const parsedText = await uploadPDF(file);
-        const flashcards = await generateFlashcards(parsedText);
-        const response = await createDeck('My Deck', 'Study', flashcards);
-        
-        setLoading(false);
+    if (!file) {
+      setLocalErrors(['Please select a file to upload.']);
+      return;
+    }
 
-        if (response) {
-          //alert('File uploaded successfully!');
-          dispatch(openGenerateDeckModal());
-        } else {
-          alert('File upload failed');
-        }
-      } catch (error) {
-        console.error('Error uploading file:', error);
-        alert('Error uploading file');
-        setLoading(false);
+    setLoading(true);
+    setLocalErrors([]); 
+
+    try {
+      const parsedText = await uploadPDF(file);
+      const flashcards = await generateFlashcards(parsedText);
+      const response = await createDeck('My Deck', 'Study', flashcards);
+      
+      setLoading(false);
+
+      if (response) {
+        dispatch(openGenerateDeckModal());
+      } else {
+        setLocalErrors(['File upload failed']);
       }
-    } else {
-      alert('Please select a file to upload.');
+    } catch (error) {
+      setLocalErrors(['Error uploading file']);
+      setLoading(false);
     }
   };
 
@@ -70,10 +80,20 @@ function FileUpload() {
             className="hidden"
             id="fileUpload"
             accept=".pdf"
+            ref={fileInputRef}
           />
           {file ? (
             <div className="flex flex-col items-center text-gray-600">
-              <p className="font-bold pt-4">File selected: {file.name}</p>
+              <div className="flex items-center">
+                <p className="font-bold pt-4">File selected: {file.name}</p>
+                <button
+                  type="button"
+                  onClick={handleRemoveFile}
+                  className="ml-2 pt-4 text-red-600 hover:text-red-800"
+                >
+                  <FiXCircle className="text-xl" />
+                </button>
+              </div>
               <p className="text-xs text-gray-500">Make sure your doc has at least 100 characters, but not more than 40,000</p>
             </div>
           ) : (
@@ -93,16 +113,26 @@ function FileUpload() {
             </label>
           )}
         </div>
+        {localErrors.length > 0 && (
+          <ul className="text-red-600 mt-2 flex flex-col items-center">
+            {localErrors.map((error, index) => (
+              <li key={index} className="font-semibold flex gap-2 items-center">
+                <FiXCircle />
+                {error}
+              </li>
+            ))}
+          </ul>
+        )}
         <div className="flex flex-col items-center">
           <button type="submit" className="bg-black text-white px-3 py-1 rounded-md my-4">
             {loading ? (
               <span className="flex items-center">
-              <FiLoader className="animate-spin mr-2" />
-              Generating...
-            </span>
-          ) : (
-            "Generate Flash Cards"
-          )}
+                <FiLoader className="animate-spin mr-2" />
+                Generating...
+              </span>
+            ) : (
+              "Generate Flash Cards"
+            )}
           </button>
         </div>
       </form>
@@ -111,3 +141,5 @@ function FileUpload() {
 }
 
 export default FileUpload;
+
+
