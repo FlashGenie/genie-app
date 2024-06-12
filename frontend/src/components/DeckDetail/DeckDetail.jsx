@@ -10,6 +10,8 @@ const DeckDetail = () => {
   const deck = useSelector(state => state.decks[id]);
   const [isEditing, setIsEditing] = useState(false);
   const [editedDeck, setEditedDeck] = useState(null);
+  const [newCard, setNewCard] = useState({ title: '', body: '' });
+  const [showAddCard, setShowAddCard] = useState(false); // State to control showing the Add Card section
 
   useEffect(() => {
     if (id) {
@@ -49,6 +51,28 @@ const DeckDetail = () => {
     });
   };
 
+  const handleCardChange = (index, e) => {
+    const { name, value } = e.target;
+    const newCards = [...editedDeck.cards];
+    newCards[index][name] = value;
+    setEditedDeck({ ...editedDeck, cards: newCards });
+  };
+
+  const handleAddCard = () => {
+    const newCards = [...editedDeck.cards, newCard];
+    setEditedDeck({ ...editedDeck, cards: newCards });
+    setNewCard({ title: '', body: '' });
+    setShowAddCard(false);
+  };
+
+  const toggleAddCard = () => {
+    setShowAddCard(!showAddCard);
+    // Reset new card fields when toggling
+    if (!showAddCard) {
+      setNewCard({ title: '', body: '' });
+    }
+  };
+
   return (
     <div className="p-6 bg-gray-100">
       <div className="flex justify-between items-center mb-4">
@@ -58,7 +82,7 @@ const DeckDetail = () => {
             name="name"
             value={editedDeck.name}
             onChange={handleChange}
-            className="text-2xl font-bold mb-4"
+            className="text-2xl font-bold mb-4 p-2 rounded-md shadow-lg"
           />
         ) : (
           <div className="text-2xl font-bold">{deck.name}</div>
@@ -87,7 +111,7 @@ const DeckDetail = () => {
             name="category"
             value={editedDeck.category}
             onChange={handleChange}
-            className="text-gray-700 text-base"
+            className="text-gray-700 text-base mb-4 p-2 rounded-md shadow-lg"
           />
         ) : (
           <div className="text-gray-700 text-base">Category: {deck.category}</div>
@@ -100,23 +124,15 @@ const DeckDetail = () => {
               <>
                 <input
                   type="text"
-                  name={`cards[${index}].title`}
+                  name="title"
                   value={editedDeck.cards[index].title}
-                  onChange={(e) => {
-                    const newCards = [...editedDeck.cards];
-                    newCards[index].title = e.target.value;
-                    setEditedDeck({ ...editedDeck, cards: newCards });
-                  }}
+                  onChange={(e) => handleCardChange(index, e)}
                   className="text-gray-700 font-bold text-l mb-2 w-full"
                 />
                 <textarea
-                  name={`cards[${index}].body`}
+                  name="body"
                   value={editedDeck.cards[index].body}
-                  onChange={(e) => {
-                    const newCards = [...editedDeck.cards];
-                    newCards[index].body = e.target.value;
-                    setEditedDeck({ ...editedDeck, cards: newCards });
-                  }}
+                  onChange={(e) => handleCardChange(index, e)}
                   className="text-gray-700 text-l w-full"
                 />
               </>
@@ -133,11 +149,42 @@ const DeckDetail = () => {
             )}
           </div>
         ))}
+        <div className="flex justify-center">
+          <button
+            onClick={toggleAddCard}
+            className="text-sm bg-green-500 text-white py-1 px-3 rounded"
+          >
+            {showAddCard ? '-' : '+'}
+          </button>
+        </div>
+        {showAddCard && (
+          <div className="max-w-4xl rounded-xl overflow-hidden shadow-lg p-4 bg-white mb-4">
+            <input
+              type="text"
+              name="title"
+              value={newCard.title}
+              onChange={(e) => setNewCard({ ...newCard, title: e.target.value })}
+              placeholder="New card title"
+              className="text-gray-700 font-bold text-l mb-2 w-full"
+            />
+            <textarea
+              name="body"
+              value={newCard.body}
+              onChange={(e) => setNewCard({ ...newCard, body: e.target.value })}
+              placeholder="New card body"
+              className="text-gray-700 text-l w-full"
+            />
+            <button
+              onClick={handleAddCard}
+              className="text-sm bg-green-500 text-white py-1 px-3 rounded mt-2"
+            >
+              Add Card
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );
 };
 
 export default DeckDetail;
-
-
