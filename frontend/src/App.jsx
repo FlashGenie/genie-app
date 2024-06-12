@@ -12,6 +12,7 @@ import Footer from './components/Footer/Footer';
 import LoginModal from './components/Modal/LoginModal';
 import RegisterModal from './components/Modal/RegisterModal';
 import Dashboard from './components/Dashboard/Dashboard';
+import DeckDetail from './components/DeckDetail/DeckDetail';
 
 import { useSelector } from 'react-redux';
 
@@ -53,7 +54,11 @@ const router = createBrowserRouter([
       {
         path: "upload",
         element: <AuthRoute component={FileUpload} />
-      } 
+      },
+      {
+        path: "decks/:id", // Add route for deck detail
+        element: <ProtectedRoute component={DeckDetail} />
+      }
     ]
   }
 ]);

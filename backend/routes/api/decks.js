@@ -82,7 +82,7 @@ router.delete('/:id', async(req, res, next)=>{
 router.get('/', async (req, res) => {
     try {
       const decks = await Deck.find()
-                                .populate("author", "_id")
+                                .populate("author", "_id username")
                                 .sort({ createdAt: -1 });
       return res.json(decks);
     }
@@ -120,9 +120,9 @@ router.get('/', async (req, res) => {
       return res.json(deck);
     }
     catch(err) {
-      const error = new Error('Tweet not found');
+      const error = new Error('Deck not found');
       error.statusCode = 404;
-      error.errors = { message: "No tweet found with that id" };
+      error.errors = { message: "No Deck found with that id" };
       return next(error);
     }
   })
