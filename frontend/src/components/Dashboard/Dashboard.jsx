@@ -35,8 +35,8 @@ function Dashboard() {
   };
 
   const handleUseGemini = () => {
-    // Handle using GEMINI
     console.log('Use GEMINI');
+    navigate('/upload');
     handleCloseModal();
   };
 

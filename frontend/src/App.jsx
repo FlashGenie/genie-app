@@ -53,7 +53,7 @@ const router = createBrowserRouter([
       },
       {
         path: "upload",
-        element: <AuthRoute component={FileUpload} />
+        element: <ProtectedRoute component={FileUpload} />
       },
       {
         path: "decks/:id", // Add route for deck detail
