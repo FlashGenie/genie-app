@@ -66,10 +66,10 @@ function Dashboard() {
         title="New Flash Card"
         body={
           <div>
-            <button className="bg-blue-500 text-white font-bold py-2 px-4 rounded mb-4 w-full" onClick={handleCreateNewFlashCard}>
+            <button className="bg-black text-white font-bold py-3 px-4 rounded-lg w-full hover:opacity-80 transition border-neutral-300 focus:border-black text-md font-semibold border-2" onClick={handleCreateNewFlashCard}>
               Create New Flash Card
             </button>
-            <button className="bg-green-500 text-white font-bold py-2 px-4 rounded w-full" onClick={handleUseGemini}>
+            <button className="bg-black text-white font-bold py-3 px-4 rounded-lg w-full hover:opacity-80 transition border-neutral-300 focus:border-black text-md mt-6 font-semibold border-2" onClick={handleUseGemini}>
               Use GEMINI
             </button>
           </div>
