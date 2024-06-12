@@ -13,14 +13,14 @@ function Product() {
 
                 {/* 1st item */}
                 <div className="flex flex-col items-center p-6 bg-white rounded-xl border shadow-xl h-full">
-                    <img className="w-48 py-6" src="./../../../public/step1.jpg"/>
+                    <img className="w-48 py-6" src="step1.jpg"/>
                     <h4 className="text-xl font-bold mb-1.5">Step 1. Upload</h4>
                     <p className="text-gray-600 text-center">Snap a photo, upload an image, or provide a PDF our AI will transform it into flashcards instantly!</p>
                 </div>
 
                 {/* 2nd item */}
                 <div className="flex flex-col items-center p-6 bg-white rounded-xl border shadow-xl">
-                    <img className="w-48 py-6" src="./../../../public/step1.jpg"/>
+                    <img className="w-48 py-6" src="step1.jpg"/>
                     <h4 className="text-xl font-bold mb-1.5">Step 2. Study</h4>
                     <p className="text-gray-600 text-center">Review your flashcards, customize them as needed, and start studying using the flashcard study mode.</p>
                 </div>
@@ -28,7 +28,7 @@ function Product() {
 
                 {/* 3rd item */}
                 <div className="flex flex-col items-center p-6 bg-white rounded-xl border shadow-xl">
-                    <img className="w-48 py-6" src="./../../../public/step1.jpg"/>
+                    <img className="w-48 py-6" src="step1.jpg"/>
                     <h4 className="text-xl font-bold mb-1.5">Step 3. Share</h4>
                     <p className="text-gray-600 text-center">Easily share your flashcards and explore flashcards shared by other users. Join a community of learners.</p>
                 </div>
