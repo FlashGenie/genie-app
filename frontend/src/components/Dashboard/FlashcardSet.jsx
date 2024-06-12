@@ -2,7 +2,7 @@ import { UserIcon } from '@heroicons/react/24/outline';
 
 const FlashcardSet = ({ title, termCount, username, onClick }) => {
   return (
-    <div onClick={onClick} className="max-w-sm rounded overflow-hidden shadow-lg p-4 bg-white cursor-pointer">
+    <div onClick={onClick} className="max-w-sm rounded-lg overflow-hidden shadow-lg p-4 bg-white cursor-pointer">
       <div className="font-bold text-xl mb-2">{title}</div>
       <div className="text-gray-700 text-base flex items-center space-x-2">
         <span>{termCount} terms</span>

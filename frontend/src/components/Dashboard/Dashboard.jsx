@@ -1,14 +1,16 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import FlashcardSet from './FlashcardSet';
 import { fetchDecks } from '../../store/decks';
+import Modal from '../Modal/Modal';
 
 function Dashboard() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const flashcardSets = useSelector(state => Object.values(state.decks));
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     dispatch(fetchDecks());
@@ -16,6 +18,26 @@ function Dashboard() {
 
   const handleFlashcardSetClick = (id) => {
     navigate(`/decks/${id}`);
+  };
+
+  const handleNewFlashCardClick = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleCreateNewFlashCard = () => {
+    // Handle the creation of a new flash card
+    console.log('Create New Flash Card');
+    handleCloseModal();
+  };
+
+  const handleUseGemini = () => {
+    // Handle using GEMINI
+    console.log('Use GEMINI');
+    handleCloseModal();
   };
 
   return (
@@ -33,8 +55,26 @@ function Dashboard() {
               onClick={() => handleFlashcardSetClick(set._id)}
             />
           ))}
+          <div onClick={handleNewFlashCardClick} className="max-w-sm rounded-lg overflow-hidden shadow-lg p-4 bg-white cursor-pointer flex items-center justify-center">
+            <div className="text-2xl font-bold text-gray-500">+ New Flash Card</div>
+          </div>
         </div>
       </div>
+      <Modal
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+        title="New Flash Card"
+        body={
+          <div>
+            <button className="bg-blue-500 text-white font-bold py-2 px-4 rounded mb-4 w-full" onClick={handleCreateNewFlashCard}>
+              Create New Flash Card
+            </button>
+            <button className="bg-green-500 text-white font-bold py-2 px-4 rounded w-full" onClick={handleUseGemini}>
+              Use GEMINI
+            </button>
+          </div>
+        }
+      />
     </div>
   );
 }
