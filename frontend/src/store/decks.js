@@ -3,6 +3,7 @@ import jwtFetch from "./jwt";
 const RECEIVE_DECKS = "deck/RECEIVE_DECKS";
 const RECEIVE_DECK = "deck/RECEIVE_DECK";
 const CLEAR_DECKS = "deck/CLEAR_DECKS";
+const DELETE_DECK = "deck/DELETE_DECK";
 
 // Actions
 export const receiveDecks = decks => ({
@@ -18,6 +19,11 @@ export const receiveDeck = deck => ({
 export const clearDecks = () => ({
   type: CLEAR_DECKS
 })
+
+export const deleteDeck = deckId => ({
+  type: DELETE_DECK,
+  deckId
+});
 
 export const fetchDecks = () => async dispatch => {
   try {
@@ -39,16 +45,62 @@ export const fetchDeck = (id) => async dispatch => {
   }
 };
 
-// window.fetchDecks = fetchDecks;
+export const createDeck = (deckData) => async dispatch => {
+  try {
+      const response = await jwtFetch('/api/decks/new', {
+          method: 'POST',
+          body: JSON.stringify(deckData)
+      });
+      const data = await response.json();
+      dispatch(receiveDeck(data));
+  } catch (error) {
+      console.error("Failed to create deck:", error);
+  }
+};
+
+export const editDeck = (id, deckData) => async dispatch => {
+  try {
+      const response = await jwtFetch(`/api/decks/${id}`, {
+          method: 'PATCH',
+          body: JSON.stringify(deckData)
+      });
+      const data = await response.json();
+      dispatch(receiveDeck(data));
+  } catch (error) {
+      console.error("Failed to update deck:", error);
+  }
+};
+
+export const removeDeck = (id) => async dispatch => {
+  try {
+      await jwtFetch(`/api/decks/${id}`, { method: 'DELETE' });
+      dispatch(deleteDeck(id));
+  } catch (error) {
+      console.error("Failed to delete deck:", error);
+  }
+};
+
+window.deckActions = {
+  fetchDecks,
+  fetchDeck,
+  createDeck,
+  editDeck,
+  removeDeck,
+  clearDecks
+};
 
 export const decksReducer = (state = {}, action) => {
+    const newState = { ...state };
     switch(action.type) {
       case RECEIVE_DECKS:
         return {...state, ...action.decks};
       case RECEIVE_DECK:
         return { ...state, [action.deck._id]: action.deck };
+      case DELETE_DECK:
+        delete newState[action.deckId];
+        return newState;
       case CLEAR_DECKS:
-        return {};
+          return {};
       default:
         return state;
     }

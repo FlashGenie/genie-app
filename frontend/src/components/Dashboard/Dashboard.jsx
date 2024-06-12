@@ -1,13 +1,12 @@
-import { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import FlashcardSet from './FlashcardSet';
-import { fetchDecks } from '../../store/decks';
 import Modal from '../Modal/Modal';
 
 function Dashboard() {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const navigate = useNavigate();
   const flashcardSets = useSelector(state => Object.values(state.decks));
   const [isModalOpen, setIsModalOpen] = useState(false);
