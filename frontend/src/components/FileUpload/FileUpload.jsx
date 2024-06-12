@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { FiUpload, FiLoader, FiXCircle } from 'react-icons/fi';
 import { uploadPDF, generateFlashcards, createDeck } from '../../store/genie';
 import { useDispatch } from 'react-redux';
@@ -9,6 +9,7 @@ function FileUpload() {
   const [file, setFile] = useState(null);
   const [loading, setLoading] = useState(false);
   const [localErrors, setLocalErrors] = useState([]);
+  const fileInputRef = useRef(null);
 
   const handleFileChange = (event) => {
     setFile(event.target.files[0]);
@@ -28,6 +29,14 @@ function FileUpload() {
   const handleDragOver = (event) => {
     event.preventDefault();
     event.stopPropagation();
+  };
+
+  const handleRemoveFile = () => {
+    setFile(null);
+    setLocalErrors([]);
+    if (fileInputRef.current) {
+      fileInputRef.current.value = null;
+    }
   };
 
   const handleSubmit = async (event) => {
@@ -71,10 +80,20 @@ function FileUpload() {
             className="hidden"
             id="fileUpload"
             accept=".pdf"
+            ref={fileInputRef}
           />
           {file ? (
             <div className="flex flex-col items-center text-gray-600">
-              <p className="font-bold pt-4">File selected: {file.name}</p>
+              <div className="flex items-center">
+                <p className="font-bold pt-4">File selected: {file.name}</p>
+                <button
+                  type="button"
+                  onClick={handleRemoveFile}
+                  className="ml-2 pt-4 text-red-600 hover:text-red-800"
+                >
+                  <FiXCircle className="text-xl" />
+                </button>
+              </div>
               <p className="text-xs text-gray-500">Make sure your doc has at least 100 characters, but not more than 40,000</p>
             </div>
           ) : (
