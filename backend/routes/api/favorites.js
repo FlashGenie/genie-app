@@ -29,7 +29,7 @@ router.get('/user/:userId', async (req, res, next) => {
     }
 })
 
-router.post('/new', requireUser, validateFavoriteInput, async (req, res, next) => {
+router.post('/new', validateFavoriteInput, requireUser,  async (req, res, next) => {
     try {
         const newFavorite = new Favorite ({
             owner: req.user._id,
