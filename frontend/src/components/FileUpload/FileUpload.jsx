@@ -13,7 +13,7 @@ function FileUpload() {
 
   const handleFileChange = (event) => {
     setFile(event.target.files[0]);
-    setLocalErrors([]); // Clear errors when a new file is selected
+    setLocalErrors([]);
   };
   
   const handleDrop = (event) => {
@@ -22,7 +22,7 @@ function FileUpload() {
     const droppedFile = event.dataTransfer.files[0];
     if (droppedFile) {
       setFile(droppedFile);
-      setLocalErrors([]); // Clear errors when a new file is dropped
+      setLocalErrors([]); 
     }
   };
 
@@ -48,7 +48,7 @@ function FileUpload() {
     }
 
     setLoading(true);
-    setLocalErrors([]); // Clear previous errors
+    setLocalErrors([]); 
 
     try {
       const parsedText = await uploadPDF(file);
