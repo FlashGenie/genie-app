@@ -1,9 +1,12 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import jwtFetch from '../../store/jwt';
 import { FiUpload } from 'react-icons/fi';
 import { FiLoader } from 'react-icons/fi';
+import { openGenerateDeckModal } from '../../store/modal';
 
 function FileUpload() {
+  const dispatch = useDispatch();
   const [file, setFile] = useState(null);
   const [loading, setLoading] = useState(false);
 
@@ -44,7 +47,8 @@ function FileUpload() {
         setLoading(false);
 
         if (response.ok) {
-          alert('File uploaded successfully!');
+          //alert('File uploaded successfully!');
+          dispatch(openGenerateDeckModal());
         } else {
           alert('File upload failed: ' + result.message);
         }
