@@ -2,6 +2,7 @@ import jwtFetch from "./jwt";
 
 const RECEIVE_DECKS = "deck/RECEIVE_DECKS";
 const RECEIVE_DECK = "deck/RECEIVE_DECK";
+const CLEAR_DECKS = "deck/CLEAR_DECKS";
 
 // Actions
 export const receiveDecks = decks => ({
@@ -13,6 +14,10 @@ export const receiveDeck = deck => ({
   type: RECEIVE_DECK,
   deck
 });
+
+export const clearDecks = () => ({
+  type: CLEAR_DECKS
+})
 
 export const fetchDecks = () => async dispatch => {
   try {
@@ -42,6 +47,8 @@ export const decksReducer = (state = {}, action) => {
         return {...state, ...action.decks};
       case RECEIVE_DECK:
         return { ...state, [action.deck._id]: action.deck };
+      case CLEAR_DECKS:
+        return {};
       default:
         return state;
     }

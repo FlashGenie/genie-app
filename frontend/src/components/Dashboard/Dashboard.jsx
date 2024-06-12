@@ -12,9 +12,9 @@ function Dashboard() {
   const flashcardSets = useSelector(state => Object.values(state.decks));
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  useEffect(() => {
-    dispatch(fetchDecks());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(fetchDecks());
+  // }, [dispatch]);
 
   const handleFlashcardSetClick = (id) => {
     navigate(`/decks/${id}`);

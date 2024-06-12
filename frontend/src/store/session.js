@@ -1,5 +1,6 @@
 import jwtFetch from './jwt';
 import { receiveDecks } from './decks';
+import { clearDecks } from './decks';
 
 const RECEIVE_CURRENT_USER = "session/RECEIVE_CURRENT_USER";
 const RECEIVE_SESSION_ERRORS = "session/RECEIVE_SESSION_ERRORS";
@@ -33,6 +34,7 @@ export const signup = user => startSession(user, 'api/users/register');
 export const login = user => startSession(user, 'api/users/login');
 export const logout = () => dispatch => {
     localStorage.removeItem('jwtToken');
+    dispatch(clearDecks());
     dispatch(logoutUser());
   };
 
@@ -45,7 +47,13 @@ const startSession = (userInfo, route) => async dispatch => {
     const { currentUser, userDecks } = await res.json();
     localStorage.setItem('jwtToken', currentUser.token);
     // debugger
-    dispatch(receiveDecks(userDecks))
+    const correctDecksId = {}
+
+    userDecks.forEach(deck => {
+      correctDecksId[deck._id] = deck
+    });
+
+    dispatch(receiveDecks(correctDecksId))
 
     return dispatch(receiveCurrentUser(currentUser.user));
   } catch(err) {
@@ -65,7 +73,13 @@ const initialState = {
 
     const res = await jwtFetch('/api/users/current');
     const results = await res.json();
-    dispatch(receiveDecks(results.userDecks))
+    const correctDecksId = {}
+
+    results.userDecks.forEach(deck => {
+      correctDecksId[deck._id] = deck
+    });
+
+    dispatch(receiveDecks(correctDecksId))
   
     return dispatch(receiveCurrentUser(results.user));
   };
