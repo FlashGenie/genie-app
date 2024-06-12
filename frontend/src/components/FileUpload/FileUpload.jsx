@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import jwtFetch from '../../store/jwt';
 import { FiUpload } from 'react-icons/fi';
+import { FiLoader } from 'react-icons/fi';
 
 function FileUpload() {
   const [file, setFile] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const handleFileChange = (event) => {
     setFile(event.target.files[0]);
@@ -30,6 +32,8 @@ function FileUpload() {
       const formData = new FormData();
       formData.append('pdfFile', file);
 
+      setLoading(true);
+
       try {
         const response = await jwtFetch('/api/upload', {
           method: 'POST',
@@ -37,6 +41,8 @@ function FileUpload() {
         });
 
         const result = await response.json();
+        setLoading(false);
+
         if (response.ok) {
           alert('File uploaded successfully!');
         } else {
@@ -45,6 +51,7 @@ function FileUpload() {
       } catch (error) {
         console.error('Error uploading file:', error);
         alert('Error uploading file');
+        setLoading(false);
       }
     } else {
       alert('Please select a file to upload.');
@@ -88,7 +95,14 @@ function FileUpload() {
         </div>
         <div className="flex flex-col items-center">
           <button type="submit" className="bg-black text-white px-3 py-1 rounded-md my-4">
-            Generate Flash Cards
+            {loading ? (
+              <span className="flex items-center">
+              <FiLoader className="animate-spin mr-2" />
+              Generating...
+            </span>
+          ) : (
+            "Generate Flash Cards"
+          )}
           </button>
         </div>
       </form>
