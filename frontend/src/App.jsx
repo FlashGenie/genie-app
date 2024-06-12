@@ -51,8 +51,8 @@ const router = createBrowserRouter([
         element: <ProtectedRoute component={Dashboard} />
       },
       {
-        path: "upload",
-        element: <AuthRoute component={FileUpload} />
+        path: "upload", 
+        element: <ProtectedRoute component={FileUpload} />
       } 
     ]
   }

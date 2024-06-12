@@ -4,6 +4,8 @@ import { FiUpload } from 'react-icons/fi';
 
 function FileUpload() {
   const [file, setFile] = useState(null);
+  const [name, setName] = useState('');
+  const [category, setCategory] = useState('');
 
   const handleFileChange = (event) => {
     setFile(event.target.files[0]);
@@ -26,9 +28,14 @@ function FileUpload() {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    const deckName = name || 'Default Deck Name';
+    const deckCategory = category || 'Default Category';
+    
     if (file) {
       const formData = new FormData();
       formData.append('pdfFile', file);
+      formData.append('name', deckName);
+      formData.append('category', deckCategory);
 
       try {
         const response = await jwtFetch('/api/upload', {
