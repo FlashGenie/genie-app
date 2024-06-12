@@ -8,6 +8,8 @@ const Modal = ({
 	body,
 	disabled,
     resetFields,
+	hideCloseButton = false,
+	hideBorder = false
 }) => {
 	const [showModal, setShowModal] = useState(isOpen);
 
@@ -93,29 +95,31 @@ const Modal = ({
 						>
                             {/* HEADER */}
 							<div
-								className="
-									flex
-									items-center
-									p-6
-									rounded-t
-									justify-center
-									relative
-                                    border-b-[1px]
-								"
+								className={`
+								flex
+								items-center
+								p-6
+								rounded-t
+								justify-center
+								relative
+								${hideBorder ? '' : 'border-b-[1px]'}
+							`}
 							>
-								<button
-									onClick={handleClose}
-									className="
-										p-1
-										border-0
-										hover:opacity-70
-										transition
-										absolute
-										left-9
-									"
-								>
+								{!hideCloseButton && (
+									<button
+										onClick={handleClose}
+										className="
+											p-1
+											border-0
+											hover:opacity-70
+											transition
+											absolute
+											left-9
+										"
+									>
 									<IoMdClose size={18}/>
 								</button>
+								)}
 								<div className="text-lg font-semibold">
 									{title}
 								</div>

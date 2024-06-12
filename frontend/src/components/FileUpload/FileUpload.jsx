@@ -1,9 +1,15 @@
 import { useState } from 'react';
 import { FiUpload } from 'react-icons/fi';
 import { uploadPDF, generateFlashcards, createDeck } from '../../store/genie';
+import { useDispatch } from 'react-redux';
+import { FiUpload } from 'react-icons/fi';
+import { FiLoader } from 'react-icons/fi';
+import { openGenerateDeckModal } from '../../store/modal';
 
 function FileUpload() {
+  const dispatch = useDispatch();
   const [file, setFile] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const handleFileChange = (event) => {
     setFile(event.target.files[0]);
@@ -25,17 +31,30 @@ function FileUpload() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    try {
-      // Await the API utility function
-      const parsedText = await uploadPDF(file);
-      const flashcards = await generateFlashcards(parsedText);
-      const deck = await createDeck('My Deck', 'Study', flashcards);
-    
-      console.log(deck);
-      if (deck) {
-        alert('File uploaded successfully!');
-      } else {
-        alert('File upload failed: Failed to parse text.');
+
+    if (file) {
+      setLoading(true);
+      
+      try {
+        // Await the API utility function
+        const parsedText = await uploadPDF(file);
+        const flashcards = await generateFlashcards(parsedText);
+        const response = await createDeck('My Deck', 'Study', flashcards);
+        
+        console.log(response)
+        const result = await response.json();
+        setLoading(false);
+
+        if (response) {
+          //alert('File uploaded successfully!');
+          dispatch(openGenerateDeckModal());
+        } else {
+          alert('File upload failed: ' + result.message);
+        }
+      } catch (error) {
+        console.error('Error uploading file:', error);
+        alert('Error uploading file');
+        setLoading(false);
       }
     } catch (error) {
       console.error('Error uploading file:', error);
@@ -80,7 +99,14 @@ function FileUpload() {
         </div>
         <div className="flex flex-col items-center">
           <button type="submit" className="bg-black text-white px-3 py-1 rounded-md my-4">
-            Generate Flash Cards
+            {loading ? (
+              <span className="flex items-center">
+              <FiLoader className="animate-spin mr-2" />
+              Generating...
+            </span>
+          ) : (
+            "Generate Flash Cards"
+          )}
           </button>
         </div>
       </form>

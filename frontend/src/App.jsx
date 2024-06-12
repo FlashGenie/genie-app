@@ -11,7 +11,9 @@ import SignupForm from './components/SessionForms/SignupForm';
 import Footer from './components/Footer/Footer';
 import LoginModal from './components/Modal/LoginModal';
 import RegisterModal from './components/Modal/RegisterModal';
+import GenerateDeckModal from './components/Modal/GenerateDeckModal';
 import Dashboard from './components/Dashboard/Dashboard';
+import DeckDetail from './components/DeckDetail/DeckDetail';
 
 import { useSelector } from 'react-redux';
 
@@ -23,6 +25,7 @@ const Layout = () => {
     <>
       <RegisterModal/>
       <LoginModal />
+      <GenerateDeckModal />
       <NavBar />
       <Outlet />
       {!loggedIn && <Footer />}
@@ -51,9 +54,13 @@ const router = createBrowserRouter([
         element: <ProtectedRoute component={Dashboard} />
       },
       {
-        path: "upload", 
+        path: "upload",
         element: <ProtectedRoute component={FileUpload} />
-      } 
+      },
+      {
+        path: "decks/:id", // Add route for deck detail
+        element: <ProtectedRoute component={DeckDetail} />
+      }
     ]
   }
 ]);
