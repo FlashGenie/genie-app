@@ -2,11 +2,11 @@
 
 function About() {
     return(
-        <section id="about-section" className="flex flex-col justify-between h-[740px] w-full pt-20">
+        <section id="about-section" className="flex flex-col justify-between h-[750px] w-full pt-20">
             <div className="flex flex-col justify-center items-center">
                 <h2 className="text-5xl font-medium mb-3 text-center">About Us</h2>
-                <p className="text-gray-600 pb-5 text-2xl font-light tracking-wider text-center mb-4 max-w-[600px]">
-                Lorem ipsum dolor sit amet. Non fugiat exercitationem et suscipit aspernatur vel voluptatem ducimus qui ipsum suscipit.
+                <p className="text-gray-600 pb-5 text-2xl font-light tracking-wider text-center mb-4 max-w-[700px]">
+                Lorem ipsum dolor sit amet. Non fugiat exercitationem et temporibus sequi eum magnam consequatur aut eius ratione.
                 </p>
             </div>
 
