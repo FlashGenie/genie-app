@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
-import { fetchDeck, editDeck, removeDeck, removeDeckCard } from '../../store/decks';
+import { editDeck, removeDeck, removeDeckCard } from '../../store/decks';
 import { PlusCircleIcon, TrashIcon } from '@heroicons/react/24/outline';
 import { IoMdClose } from 'react-icons/io';
+import ReviewDeck from './ReviewDeck';
 
 const DeckDetail = () => {
   const { id } = useParams();
@@ -36,9 +37,9 @@ const DeckDetail = () => {
   };
 
 
-  const handleReview = () => {
-      navigate('review');
-  };
+  // const handleReview = () => {
+  //     navigate('review');
+  // };
 
   const handleSaveClick = () => {
     const updatedDeck = {
@@ -115,24 +116,24 @@ const DeckDetail = () => {
           <div className="text-2xl font-bold">{deck.name}</div>
         )}
         <div className="flex space-x-2">
-          { !isEditing && 
+          {/* { !isEditing && 
             <button 
-                className="bg-black text-white py-1 px-3 rounded-lg hover:opacity-80 transition border-neutral-300 focus:border-black text-md font-semibold border-2"
+                className="bg-black text-white py-1 px-3 rounded-lg hover:opacity-80 transition border-neutral-300 focus:border-black text-md font-semibold border-2 fixed top-26 right-56"
                 onClick={handleReview}
             >
                 Review Deck
             </button>
-          }
+          } */}
           <button
             onClick={isEditing ? handleSaveClick : handleEditClick}
-            className="bg-black text-white py-1 px-3 rounded-lg hover:opacity-80 transition border-neutral-300 focus:border-black text-md font-semibold border-2 fixed top-26 right-10"
+            className="bg-black text-white py-1 px-3 rounded-lg hover:opacity-80 transition border-neutral-300 focus:border-black text-md font-semibold border-2 fixed top-26 right-20"
           >
             {isEditing ? 'Save' : 'Edit'}
           </button>
           {isEditing && (
             <button
               onClick={handleDeleteClick}
-              className="bg-black text-white py-1 px-3 rounded-lg hover:opacity-80 transition border-neutral-300 focus:border-black text-md font-semibold border-2 fixed top-26 right-28"
+              className="bg-black text-white py-1 px-3 rounded-lg hover:opacity-80 transition border-neutral-300 focus:border-black text-md font-semibold border-2 fixed top-26 right-40"
             >
               Delete
             </button>
@@ -166,6 +167,9 @@ const DeckDetail = () => {
           <div className="text-gray-700 text-base">Category: {deck.category}</div>
         )}
       </div>
+      {!isEditing && (
+      < ReviewDeck/>
+      )}
       <div className="grid grid-cols-1 gap-6">
         {editedDeck.cards.map((card, index) => (
           <div key={card._id} className="max-w-4xl rounded-xl overflow-hidden shadow-lg p-4 bg-white mb-4 relative">
