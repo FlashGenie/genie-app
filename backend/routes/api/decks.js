@@ -14,7 +14,10 @@ router.post('/new', requireUser, validateDeckInput, async (req, res, next) => {
             name: req.body.name,
             category: req.body.category,
             author: req.user._id,
-            cards: []
+            cards: [],
+            favoriteCount: 0,
+            genieCreated: req.body.genieCreated
+
         })
 
         const cardsArray = Object.values(req.body.cards)
