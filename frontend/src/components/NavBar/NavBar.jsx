@@ -45,7 +45,7 @@ function NavBar () {
     };
   
     return (
-      <nav className="p-4 bg-white shadow md:flex md:items-center md:justify-between sticky top-0 z-50">
+      <nav className="p-4 bg-white shadow md:flex md:items-center md:justify-between sticky top-0 z-20">
         <div className="flex justify-between items-center">
           <span className="text-3xl font-sans font-bold cursor-pointer">
             Genie.
