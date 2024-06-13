@@ -117,8 +117,8 @@ const Modal = ({
 											left-9
 										"
 									>
-									<IoMdClose size={18}/>
-								</button>
+										<IoMdClose size={18}/>
+									</button>
 								)}
 								<div className="text-lg font-semibold">
 									{title}

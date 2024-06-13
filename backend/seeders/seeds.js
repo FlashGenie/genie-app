@@ -49,11 +49,12 @@ users.push(techUser);
 const decks = [];
 const cards = [];
 
-const createDeckWithCards = async (user, deckName, category, terms) => {
+const createDeckWithCards = async (user, deckName, category, terms, genieCreated) => {
   const deck =  new Deck({
     name: deckName,
     category,
-    author: user.id
+    author: user.id,
+    genieCreated
   });
 
   for (const term of terms) {
@@ -304,18 +305,18 @@ const nodeJsTerms = [
 ];
 
 // Create decks and cards
- createDeckWithCards(newUser, 'Microeconomics', 'Social Science', microeconomicsTerms);
- createDeckWithCards(newUser, 'Macroeconomics', 'Social Science', macroeconomicsTerms);
- createDeckWithCards(newUser, 'Accounting', 'Social Science', accountingTerms);
- createDeckWithCards(newUser, 'Marketing', 'Social Science', marketingTerms);
- createDeckWithCards(scienceUser, 'Physics', 'Science', physicsTerms);
- createDeckWithCards(scienceUser, 'Biology', 'Science', biologyTerms);
- createDeckWithCards(scienceUser, 'Chemistry', 'Science', chemistryTerms);
- createDeckWithCards(languageUser, 'Languages', 'Language', languageTerms);
- createDeckWithCards(techUser, 'JavaScript', 'Technology', javascriptTerms);
- createDeckWithCards(techUser, 'HTML & CSS', 'Technology', htmlCssTerms);
- createDeckWithCards(techUser, 'React', 'Technology', reactTerms);
- createDeckWithCards(techUser, 'Node.js', 'Technology', nodeJsTerms);
+ createDeckWithCards(newUser, 'Microeconomics', 'Social Science', microeconomicsTerms, false);
+ createDeckWithCards(newUser, 'Macroeconomics', 'Social Science', macroeconomicsTerms, false);
+ createDeckWithCards(newUser, 'Accounting', 'Social Science', accountingTerms, true);
+ createDeckWithCards(newUser, 'Marketing', 'Social Science', marketingTerms, true);
+ createDeckWithCards(scienceUser, 'Physics', 'Science', physicsTerms, true);
+ createDeckWithCards(scienceUser, 'Biology', 'Science', biologyTerms, true);
+ createDeckWithCards(scienceUser, 'Chemistry', 'Science', chemistryTerms, true);
+ createDeckWithCards(languageUser, 'Languages', 'Language', languageTerms, true);
+ createDeckWithCards(techUser, 'JavaScript', 'Technology', javascriptTerms, false);
+ createDeckWithCards(techUser, 'HTML & CSS', 'Technology', htmlCssTerms, false);
+ createDeckWithCards(techUser, 'React', 'Technology', reactTerms, true);
+ createDeckWithCards(techUser, 'Node.js', 'Technology', nodeJsTerms, true);
 
 
 // const newDeck1 = new Deck({

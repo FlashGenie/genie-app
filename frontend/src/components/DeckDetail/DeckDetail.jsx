@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
 import { fetchDeck, editDeck, removeDeck, removeDeckCard } from '../../store/decks';
 import { PlusCircleIcon, TrashIcon } from '@heroicons/react/24/outline';
+import { IoMdClose } from 'react-icons/io';
 
 const DeckDetail = () => {
   const { id } = useParams();
@@ -32,6 +33,11 @@ const DeckDetail = () => {
 
   const handleEditClick = () => {
     setIsEditing(true);
+  };
+
+
+  const handleReview = () => {
+      navigate('review');
   };
 
   const handleSaveClick = () => {
@@ -88,6 +94,9 @@ const DeckDetail = () => {
       ...editedDeck,
       cards: editedDeck.cards.filter(card => card._id !== cardId),
     });
+    
+  const handleClose = () => {
+    navigate('/dashboard');
   };
 
   return (
@@ -105,6 +114,14 @@ const DeckDetail = () => {
           <div className="text-2xl font-bold">{deck.name}</div>
         )}
         <div className="flex space-x-2">
+          { !isEditing && 
+            <button 
+                className="bg-black text-white py-1 px-3 rounded-lg hover:opacity-80 transition border-neutral-300 focus:border-black text-md font-semibold border-2"
+                onClick={handleReview}
+            >
+                Review Deck
+            </button>
+          }
           <button
             onClick={isEditing ? handleSaveClick : handleEditClick}
             className="bg-black text-white py-1 px-3 rounded-lg hover:opacity-80 transition border-neutral-300 focus:border-black text-md font-semibold border-2 fixed top-26 right-10"
@@ -119,6 +136,20 @@ const DeckDetail = () => {
               Delete
             </button>
           )}
+          <button
+            onClick={handleClose}
+            className="
+                p-2
+                border
+                border-black
+                rounded-3xl
+                bg-gray-200
+                hover:opacity-50
+                transition
+            "
+          >
+            <IoMdClose size={18}/>
+          </button>
         </div>
       </div>
       <div className="mb-6">

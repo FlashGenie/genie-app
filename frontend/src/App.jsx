@@ -15,6 +15,7 @@ import GenerateDeckModal from './components/Modal/GenerateDeckModal';
 import Dashboard from './components/Dashboard/Dashboard';
 import DeckDetail from './components/DeckDetail/DeckDetail';
 import NewDeck from './components/NewDeck/NewDeck';
+import ReviewDeck from './components/DeckDetail/ReviewDeck';
 
 import { useSelector } from 'react-redux';
 
@@ -61,6 +62,10 @@ const router = createBrowserRouter([
       {
         path: "decks/:id", // Add route for deck detail
         element: <ProtectedRoute component={DeckDetail} />
+      },
+      {
+        path: "/decks/:id/review",
+        element: <ProtectedRoute component={ReviewDeck} />
       },
       {
         path: "/decks/new",
