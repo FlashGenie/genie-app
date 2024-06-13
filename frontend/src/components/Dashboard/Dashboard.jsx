@@ -18,7 +18,6 @@ function Dashboard() {
   })
   
   const [isModalOpen, setIsModalOpen] = useState(false);
-  debugger;
 
   const handleFlashcardSetClick = (id) => {
     navigate(`/decks/${id}`);

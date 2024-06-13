@@ -15,6 +15,8 @@ import GenerateDeckModal from './components/Modal/GenerateDeckModal';
 import Dashboard from './components/Dashboard/Dashboard';
 import DeckDetail from './components/DeckDetail/DeckDetail';
 import Favorites from './components/Favorites/Favorites';
+import NewDeck from './components/NewDeck/NewDeck';
+import ReviewDeck from './components/DeckDetail/ReviewDeck';
 
 import { useSelector } from 'react-redux';
 
