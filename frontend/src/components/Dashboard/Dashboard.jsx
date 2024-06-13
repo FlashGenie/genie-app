@@ -57,7 +57,7 @@ function Dashboard() {
               key={set._id}
               title={set.name}
               termCount={set.cards.length}
-              username={set.author ? set.author.username : 'Unknown'}
+              username={set.authorName ? set.authorName: 'Unknown'}
               //this fav button below if is true the heart will show up on the flash card if is false not
               // fav={true}   
               onClick={() => handleFlashcardSetClick(set._id)}

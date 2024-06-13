@@ -55,7 +55,8 @@ const createDeckWithCards = async (user, deckName, category, terms, genieCreated
     name: deckName,
     category,
     author: user.id,
-    genieCreated
+    genieCreated,
+    authorName: user.username
   });
 
   for (const term of terms) {
