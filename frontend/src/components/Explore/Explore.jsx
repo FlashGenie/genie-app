@@ -1,42 +1,36 @@
 import Sidebar from '../Dashboard/Sidebar';
-import {useEffect} from 'react';
+import {useEffect, useState} from 'react';
 import { useDispatch,useSelector } from 'react-redux';
 import {fetchDecks} from  '../../store/decks';
 import FlashcardSet from '../Dashboard/FlashcardSet';
+import Modal from '../Modal/Modal'
+import { useNavigate } from 'react-router-dom';
+
 function Explore() {
+    const navigate = useNavigate();
     const dispatch = useDispatch();
+    const [isModalOpen, setIsModalOpen] = useState(false);
  
     useEffect(()=>{
         dispatch(fetchDecks())
     },[dispatch]
       )
     const allDecks = useSelector(state=>Object.values(state.decks))
+
+   
+      const handleFlashcardSetClick = (id) => {
+        navigate(`/decks/${id}`);
+      };
    
     let recentDecksSort = allDecks.sort((a,b)=>{    
         return new Date(b.createdAt) - new Date(a.createdAt)
     })
     const recentDecks = recentDecksSort.slice(0,8)
-    debugger;
-    console.log(recentDecksSort)
-    console.log(allDecks)
     allDecks.reverse();
     let popularDecksSort =  allDecks.sort((a,b)=>{
         return b.favoriteCount - a.favoriteCount
     })
-    console.log(popularDecksSort)
     const popularDecks = popularDecksSort.slice(0,8)
-
-
-
-    
-
-
-    // useEffect(()=>{
-    //      dispatch(fetchDecks());
-       
-    //     recentDecks = allDecks.slice(0,2)
-        
-    // },[dispatch])
 
     return(
         <div className = "flex">
@@ -72,8 +66,7 @@ function Explore() {
                     />
                 ))}
                 </div>
-               
-               
+              
             </div>
         </div>
     )
