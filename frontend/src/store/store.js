@@ -4,13 +4,15 @@ import session from './session';
 import errors from './errors';
 import modal from './modal'
 import decks from './decks';
+import favorites from './favorites';
 
 
 const rootReducer = combineReducers({
   session,
   errors,
   modal,
-  decks
+  decks,
+  favorites
 });
 
 let enhancer;

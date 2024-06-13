@@ -22,7 +22,22 @@ router.get('/user/:userId', async (req, res, next) => {
       const favorites = await Favorite.find({ owner: user._id })
                                 .sort({ createdAt: -1 })
                                 .populate("owner", "_id username");
-      return res.json(favorites);
+
+      /// find the decks that match with the decks ids
+      const decks = await Promise.all(favorites.map(async (favorite) => {
+        return await Deck.findById(favorite.deck);
+      }));
+
+      /// converting decks array into an object
+      let favoriteDecks = {}
+      decks.forEach((deck) => {
+        if (deck) {
+          favoriteDecks[deck._id] = deck
+        }
+      })
+
+      /// return only the favorite decks
+      return res.json(favoriteDecks);
     }
     catch(err) {
       return res.json([]);

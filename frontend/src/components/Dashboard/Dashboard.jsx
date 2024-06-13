@@ -10,10 +10,6 @@ function Dashboard() {
   const flashcardSets = useSelector(state => Object.values(state.decks));
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // useEffect(() => {
-  //   dispatch(fetchDecks());
-  // }, [dispatch]);
-
   const handleFlashcardSetClick = (id) => {
     navigate(`/decks/${id}`);
   };
@@ -50,7 +46,7 @@ function Dashboard() {
               termCount={set.cards.length}
               username={set.author ? set.author.username : 'Unknown'}
               //this fav button below if is true the heart will show up on the flash card if is false not
-              // fav={true}   
+              initialFav={false}   
               onClick={() => handleFlashcardSetClick(set._id)}
             />
           ))}

@@ -14,6 +14,7 @@ import RegisterModal from './components/Modal/RegisterModal';
 import GenerateDeckModal from './components/Modal/GenerateDeckModal';
 import Dashboard from './components/Dashboard/Dashboard';
 import DeckDetail from './components/DeckDetail/DeckDetail';
+import Favorites from './components/Favorites/Favorites';
 
 import { useSelector } from 'react-redux';
 
@@ -60,6 +61,10 @@ const router = createBrowserRouter([
       {
         path: "decks/:id", // Add route for deck detail
         element: <ProtectedRoute component={DeckDetail} />
+      },
+      {
+        path: "favorites",
+        element: <ProtectedRoute component={Favorites} />
       }
     ]
   }
