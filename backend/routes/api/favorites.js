@@ -30,7 +30,7 @@ router.get('/user/:userId', async (req, res, next) => {
 
       /// converting decks array into an object
       let favoriteDecks = {}
-      decks.forEach((deck) => {
+      decks.forEach( async (deck) => {
         if (deck) {
           favoriteDecks[deck._id] = deck
         }
@@ -52,17 +52,19 @@ router.post('/new', validateFavoriteInput, requireUser,  async (req, res, next) 
         })
 
         let favorite = await newFavorite.save()
-        return res.json(favorite)
-    }
-    catch(err) {
+
+        const deck = Deck.findById(req.body.deckId)
+        return res.json(deck)
+
+    } catch(err) {
         next(err)
     }
 })
 
 router.delete('/:id', async (req, res, next) => {
     try {
-        const favorite = await Favorite.findByIdAndDelete(req.params.id)
-        res.json('favorite: deleted')
+        const favorite = await Favorite.find({deck: req.params.id})
+        res.json(favorite)
     }
     catch(err){
         const error = new Error('Favorite not found');

@@ -1,34 +1,34 @@
 import { useState } from 'react';
-// import { useLocation } from 'react-router-dom';
 import { UserIcon, HeartIcon as HeartOutline } from '@heroicons/react/24/outline';
 import { HeartIcon as HeartSolid } from '@heroicons/react/24/solid';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import * as favoritesActions from '../../store/favorites.js';
 
-const FlashcardSet = ({ key, title, termCount, username, onClick, initialFav }) => {
-  // const location = useLocation();
+const FlashcardSet = ({ deckId, title, termCount, username, onClick, initialFav }) => {
   const [fav, setFav] = useState(initialFav);
   const dispatch = useDispatch();
+  const allFavorites = useSelector(state => Object.values(state.favorites));
+  let favoriteId
 
-  const flashcardSets = useSelector(state => Object.values(state.decks));
-  let deckData;
 
-  if (flashcardSets.length === 0) {
-    return
-  }
-
-  flashcardSets.map((set) => {
-    if (set._id === key) {
-      deckData = set
-    } else {
-      console.error("no deck found");
-    }
-  })
-
-  const toggleFav = (e) => {
+  const toggleFavTrue = (e) => {
     e.stopPropagation();
-    dispatch(favoritesActions.createFavorite(deckData))
-    setFav(!fav);
+    const deckData = { deckId: deckId }
+    dispatch(favoritesActions.createFavorite(deckData));
+    setFav(true);
+  };
+
+  const toggleFavFalse = (e) => {
+    e.stopPropagation();
+
+    allFavorites.forEach((favorite) => {
+      if (favorite._id === deckId) {
+        favoriteId = favorite._id
+      }
+    })
+
+    dispatch(favoritesActions.removeFavorite(favoriteId))
+    setFav(false);
   };
 
   return (
@@ -36,9 +36,9 @@ const FlashcardSet = ({ key, title, termCount, username, onClick, initialFav }) 
       {/* {location.pathname === '/explore' && (    //this line make sure that the heart is only visible in the /explore page */}
         <div className="absolute top-2 right-2">
           {fav ? (
-            <HeartSolid className="h-6 w-6 text-red-500" onClick={toggleFav} />    //this checks is the prop passed from the parent class is true then the heart will be red
+            <HeartSolid className="h-6 w-6 text-red-500" onClick={toggleFavFalse} />    //this checks is the prop passed from the parent class is true then the heart will be red
           ) : (
-            <HeartOutline className="h-6 w-6 text-gray-500" onClick={toggleFav} />  //else will be hert with empty inside
+            <HeartOutline className="h-6 w-6 text-gray-500" onClick={toggleFavTrue} />  //else will be hert with empty inside
           )}
         </div>
       {/* )} */}

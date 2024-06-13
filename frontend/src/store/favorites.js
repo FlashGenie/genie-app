@@ -39,6 +39,7 @@ export const createFavorite = (favoriteData) => async dispatch => {
           method: 'POST',
           body: JSON.stringify(favoriteData)
       });
+
       const data = await response.json();
       dispatch(addFavorite(data));
   } catch (error) {
@@ -48,7 +49,9 @@ export const createFavorite = (favoriteData) => async dispatch => {
 
 export const removeFavorite = (id) => async dispatch => {
   try {
-      await jwtFetch(`/api/favorites/${id}`, { method: 'DELETE' });
+      const res = await jwtFetch(`/api/favorites/${id}`, { method: 'DELETE' });
+      const test = await res.json();
+      
       dispatch(deleteFavorite(id));
   } catch (error) {
       console.error("Failed to delete favorite:", error);

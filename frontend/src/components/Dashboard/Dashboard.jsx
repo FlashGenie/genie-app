@@ -1,23 +1,39 @@
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import FlashcardSet from './FlashcardSet';
 import Modal from '../Modal/Modal';
+import * as favoritesActions from '../../store/favorites.js';
 
 function Dashboard() {
   const navigate = useNavigate();
   const allFlashcardSets = useSelector(state => Object.values(state.decks));
+  const allFavorites = useSelector(state => Object.values(state.favorites));
   const currentUser = useSelector(state => state.session.user)
+  const dispatch = useDispatch();
   const flashcardSets = []
   
+  useEffect(() => {
+    dispatch(favoritesActions.fetchFavorites(currentUser._id))
+}, [dispatch, currentUser._id]);
+
   allFlashcardSets.forEach((deck)=>{
     if(deck.author === currentUser._id){
       flashcardSets.push(deck)
     }
-  })
+  });
   
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleFav = (deck) => {
+    allFavorites.forEach((favorite) => {
+      if (favorite._id === deck._id) {
+        return true
+      } 
+    })
+    return false
+  }
 
   const handleFlashcardSetClick = (id) => {
     navigate(`/decks/${id}`);
@@ -50,11 +66,12 @@ function Dashboard() {
           {flashcardSets.map((set) => (
             <FlashcardSet
               key={set._id}
+              deckId={set._id}
               title={set.name}
               termCount={set.cards.length}
               username={set.author ? set.author.username : 'Unknown'}
               //this fav button below if is true the heart will show up on the flash card if is false not
-              initialFav={false}   
+              initialFav={handleFav(set)}   
               onClick={() => handleFlashcardSetClick(set._id)}
             />
           ))}
