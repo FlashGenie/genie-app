@@ -63,6 +63,14 @@ const router = createBrowserRouter([
         element: <ProtectedRoute component={DeckDetail} />
       },
       {
+        path: "/decks/:id/review",
+        element: <ProtectedRoute component={ReviewDeck} />
+      },
+      {
+        path: "/decks/new",
+        element: <ProtectedRoute component={NewDeck} />
+      },
+      {
         path: "favorites",
         element: <ProtectedRoute component={Favorites} />
       }

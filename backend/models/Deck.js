@@ -20,6 +20,9 @@ const deckSchema = new Schema ({
     },
     favoriteCount: {
         type: Number
+    },
+    genieCreated: {
+        type: Boolean
     }
 }, {
     timestamps: true

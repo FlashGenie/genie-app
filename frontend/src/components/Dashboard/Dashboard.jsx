@@ -7,8 +7,18 @@ import Modal from '../Modal/Modal';
 
 function Dashboard() {
   const navigate = useNavigate();
-  const flashcardSets = useSelector(state => Object.values(state.decks));
+  const allFlashcardSets = useSelector(state => Object.values(state.decks));
+  const currentUser = useSelector(state => state.session.user)
+  const flashcardSets = []
+  
+  allFlashcardSets.forEach((deck)=>{
+    if(deck.author === currentUser._id){
+      flashcardSets.push(deck)
+    }
+  })
+  
   const [isModalOpen, setIsModalOpen] = useState(false);
+  debugger;
 
   const handleFlashcardSetClick = (id) => {
     navigate(`/decks/${id}`);
@@ -23,8 +33,7 @@ function Dashboard() {
   };
 
   const handleCreateNewFlashCard = () => {
-    // Handle the creation of a new flash card
-    console.log('Create New Flash Card');
+    navigate('/decks/new');
     handleCloseModal();
   };
 
