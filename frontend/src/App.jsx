@@ -17,7 +17,7 @@ import DeckDetail from './components/DeckDetail/DeckDetail';
 import NewDeck from './components/NewDeck/NewDeck';
 import ReviewDeck from './components/DeckDetail/ReviewDeck';
 import Explore from './components/Explore/Explore';
-
+import Sidebar from './components/Dashboard/Sidebar';
 import { useSelector } from 'react-redux';
 
 import { getCurrentUser } from './store/session';
@@ -30,7 +30,10 @@ const Layout = () => {
       <LoginModal />
       <GenerateDeckModal />
       <NavBar />
-      <Outlet />
+      <div className='flex w-full'>
+        {loggedIn && <Sidebar />}
+        <Outlet/>
+      </div>
       {!loggedIn && <Footer />}
     </>
   );

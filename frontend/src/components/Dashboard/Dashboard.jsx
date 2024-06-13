@@ -46,8 +46,7 @@ function Dashboard() {
   };
 
   return (
-    <div className="flex">
-      <Sidebar />
+    <div className="flex w-full">
       <div className="flex-grow p-6 bg-gray-100">
         <div className="text-2xl font-bold mb-4">Dashboard</div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">

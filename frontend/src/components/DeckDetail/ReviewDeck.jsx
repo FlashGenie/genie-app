@@ -45,7 +45,7 @@ const ReviewDeck = () => {
     const cardHeight = location.pathname === `/decks/${id}/review` ? 'h-[580px]' : 'h-[428px]';
 
     return (
-        <div className='flex flex-col justify-center items-center bg-gray-100'>
+        <div className='flex flex-col justify-center items-center bg-gray-100 w-full'>
             <div className={`flex flex-col w-2/3 justify-start items-center mt-10 mb-20 `}>
                 <div className={`bg-white ${cardWidth} ${cardHeight} border rounded-xl shadow-sm flex justify-center items-center px-8 py-6`} onClick={toggleCardBody}>
                     {isCardBodyVisible ? (

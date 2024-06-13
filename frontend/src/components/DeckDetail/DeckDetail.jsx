@@ -102,7 +102,7 @@ const DeckDetail = () => {
   };
 
   return (
-    <div className="p-6 bg-gray-100">
+    <div className="p-6 bg-gray-100 w-full">
       <div className="flex justify-between items-center mb-4">
         {isEditing ? (
           <input
