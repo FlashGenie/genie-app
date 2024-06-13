@@ -94,6 +94,7 @@ const DeckDetail = () => {
       ...editedDeck,
       cards: editedDeck.cards.filter(card => card._id !== cardId),
     });
+  }
     
   const handleClose = () => {
     navigate('/dashboard');
