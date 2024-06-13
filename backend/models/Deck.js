@@ -23,6 +23,10 @@ const deckSchema = new Schema ({
     },
     genieCreated: {
         type: Boolean
+    },
+    authorName: {
+        type: String,
+        required: true
     }
 }, {
     timestamps: true
