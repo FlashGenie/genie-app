@@ -16,7 +16,8 @@ router.post('/new', requireUser, validateDeckInput, async (req, res, next) => {
             author: req.user._id,
             cards: [],
             favoriteCount: 0,
-            genieCreated: req.body.genieCreated
+            genieCreated: req.body.genieCreated,
+            authorName: req.user.username
 
         })
 
@@ -81,7 +82,7 @@ router.delete('/:id', async(req, res, next)=>{
 router.get('/', async (req, res) => {
     try {
       const decks = await Deck.find()
-                                .populate("author", "_id username")
+                                .populate()
                                 .sort({ createdAt: -1 });
       return res.json(decks);
     }
@@ -103,7 +104,7 @@ router.get('/user/:userId', async (req, res, next) => {
   try {
     const decks = await Deck.find({ author: user._id })
                               .sort({ createdAt: -1 })
-                              .populate("author", "_id username");
+                              .populate();
     return res.json(decks);
   }
   catch(err) {
@@ -115,7 +116,7 @@ router.get('/user/:userId', async (req, res, next) => {
   router.get('/:id', async (req, res, next) => {
     try {
       const deck = await Deck.findById(req.params.id)
-                               .populate("author", "_id username");
+                               .populate();
       return res.json(deck);
     }
     catch(err) {
