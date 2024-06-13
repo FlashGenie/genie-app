@@ -24,6 +24,7 @@ function Dashboard() {
   // }, [dispatch]);
 
   const handleFlashcardSetClick = (id) => {
+    console.log(id)
     navigate(`/decks/${id}`);
   };
 
