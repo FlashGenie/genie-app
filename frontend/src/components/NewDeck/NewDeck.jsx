@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { createDeck } from '../../store/decks';
+import { PlusCircleIcon, TrashIcon } from '@heroicons/react/24/outline'
 
 const NewDeck = () => {
   const [deckName, setDeckName] = useState('');
@@ -43,7 +44,7 @@ const NewDeck = () => {
         <h2 className="text-2xl font-bold">Create New Deck</h2>
         <button
           type="submit"
-          className="bg-blue-500 text-white py-2 px-4 rounded"
+          className="bg-black text-white py-2 px-4 rounded-lg hover:opacity-80 transition border-neutral-300 focus:border-black text-md font-semibold border-2"
           onClick={handleSubmit}
         >
           Create Deck
@@ -73,14 +74,8 @@ const NewDeck = () => {
         <h3 className="text-xl font-bold mb-2">Cards</h3>
         {cards.map((card, index) => (
           <div key={index} className="relative mb-4 p-4 border rounded bg-white">
-            <button
-              type="button"
-              onClick={() => handleRemoveCard(index)}
-              className="absolute top-2 right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center"
-            >
-              &times;
-            </button>
-            <div className="mb-2">
+            <TrashIcon className="cursor-pointer absolute top-3 right-4 h-6 w-6 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300" onClick={() => handleRemoveCard(index)}/>
+            <div className="mb-2 mt-3">
               <label className="block text-gray-700">Title</label>
               <input
                 type="text"
@@ -103,13 +98,9 @@ const NewDeck = () => {
             </div>
           </div>
         ))}
-        <button
-          type="button"
-          onClick={handleAddCard}
-          className="bg-green-500 text-white py-1 px-3 rounded mb-4"
-        >
-          Add Card
-        </button>
+        <div className="flex justify-center">
+          <PlusCircleIcon className="cursor-pointer h-9 w-9 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300" onClick={handleAddCard}/>
+        </div>
       </form>
     </div>
   );
