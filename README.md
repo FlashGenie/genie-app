@@ -2,7 +2,7 @@
     <img width="900" src="https://github.com/FlashGenie/genie-app/blob/main/banner.png" alt="Genie logo">
 </p>
 
-# Genie
+# Genie: The Best AI-Powered Flashcard Generator
 [Live Site!](https://genie-7kp5.onrender.com/)
 ## Background and overview
 **Genie** is a study aid app that leverages AI to generate flashcards from user-uploaded notes. Users can create flashcard decks using AI, customize them to their liking, and search through existing decks created by other users.
