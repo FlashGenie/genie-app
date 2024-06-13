@@ -27,8 +27,7 @@ function Dashboard() {
   };
 
   const handleCreateNewFlashCard = () => {
-    // Handle the creation of a new flash card
-    console.log('Create New Flash Card');
+    navigate('/decks/new');
     handleCloseModal();
   };
 

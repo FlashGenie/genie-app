@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
 import { fetchDeck, editDeck, removeDeck } from '../../store/decks';
+import { PlusCircleIcon, TrashIcon } from '@heroicons/react/24/outline';
 
 const DeckDetail = () => {
   const { id } = useParams();
@@ -10,8 +11,7 @@ const DeckDetail = () => {
   const deck = useSelector(state => state.decks[id]);
   const [isEditing, setIsEditing] = useState(false);
   const [editedDeck, setEditedDeck] = useState(null);
-  const [newCard, setNewCard] = useState({ title: '', body: '' });
-  const [showAddCard, setShowAddCard] = useState(false);
+  const [newCards, setNewCards] = useState([]);
 
   useEffect(() => {
     if (id) {
@@ -25,7 +25,7 @@ const DeckDetail = () => {
     }
   }, [deck]);
 
-  if (!deck) {
+  if (!deck || !editedDeck) {
     return <div>Loading...</div>;
   }
 
@@ -34,8 +34,13 @@ const DeckDetail = () => {
   };
 
   const handleSaveClick = () => {
-    dispatch(editDeck(id, editedDeck));
+    const updatedDeck = {
+      ...editedDeck,
+      cards: [...editedDeck.cards, ...newCards],
+    };
+    dispatch(editDeck(id, updatedDeck));
     setIsEditing(false);
+    setNewCards([]);
   };
 
   const handleDeleteClick = () => {
@@ -58,18 +63,20 @@ const DeckDetail = () => {
     setEditedDeck({ ...editedDeck, cards: newCards });
   };
 
-  const handleAddCard = () => {
-    const newCards = [...editedDeck.cards, newCard];
-    setEditedDeck({ ...editedDeck, cards: newCards });
-    setNewCard({ title: '', body: '' });
-    setShowAddCard(false);
+  const handleNewCardChange = (index, e) => {
+    const { name, value } = e.target;
+    const newCardsCopy = [...newCards];
+    newCardsCopy[index][name] = value;
+    setNewCards(newCardsCopy);
   };
 
-  const toggleAddCard = () => {
-    setShowAddCard(!showAddCard);
-    if (!showAddCard) {
-      setNewCard({ title: '', body: '' });
-    }
+  const handleAddNewCard = () => {
+    setNewCards([...newCards, { title: '', body: '' }]);
+  };
+
+  const handleRemoveNewCard = (index) => {
+    const updatedNewCards = newCards.filter((_, i) => i !== index);
+    setNewCards(updatedNewCards);
   };
 
   return (
@@ -89,14 +96,14 @@ const DeckDetail = () => {
         <div className="flex space-x-2">
           <button
             onClick={isEditing ? handleSaveClick : handleEditClick}
-            className="text-sm bg-blue-500 text-white py-1 px-3 rounded"
+            className="bg-black text-white py-1 px-3 rounded-lg hover:opacity-80 transition border-neutral-300 focus:border-black text-md font-semibold border-2"
           >
             {isEditing ? 'Save' : 'Edit'}
           </button>
           {isEditing && (
             <button
               onClick={handleDeleteClick}
-              className="mr-25 text-sm bg-red-500 text-white py-1 px-3 rounded"
+              className="bg-black text-white py-1 px-3 rounded-lg hover:opacity-80 transition border-neutral-300 focus:border-black text-md font-semibold border-2"
             >
               Delete
             </button>
@@ -117,8 +124,8 @@ const DeckDetail = () => {
         )}
       </div>
       <div className="grid grid-cols-1 gap-6">
-        {deck.cards.map((card, index) => (
-          <div key={card._id} className="max-w-4xl rounded-xl overflow-hidden shadow-lg p-4 bg-white mb-4">
+        {editedDeck.cards.map((card, index) => (
+          <div key={card._id} className="max-w-4xl rounded-xl overflow-hidden shadow-lg p-4 bg-white mb-4 relative">
             {isEditing ? (
               <>
                 <input
@@ -148,47 +155,41 @@ const DeckDetail = () => {
             )}
           </div>
         ))}
-        {isEditing && (
-          <>
-          <div className="flex justify-center">
-            <button
-              onClick={toggleAddCard}
-              className="text-sm bg-green-500 text-white py-1 px-3 rounded"
-            >
-              {showAddCard ? '-' : '+'}
-            </button>
+        {newCards.map((card, index) => (
+          <div key={index} className="max-w-4xl rounded-xl overflow-hidden shadow-lg p-4 bg-white mb-4 relative">
+            <TrashIcon
+              className="cursor-pointer absolute top-3 right-4 h-6 w-6 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300"
+              onClick={() => handleRemoveNewCard(index)}
+            />
+            <input
+              type="text"
+              name="title"
+              value={card.title}
+              onChange={(e) => handleNewCardChange(index, e)}
+              className="text-gray-700 font-bold text-l mb-2 w-full"
+              placeholder="New card title"
+            />
+            <textarea
+              name="body"
+              value={card.body}
+              onChange={(e) => handleNewCardChange(index, e)}
+              className="text-gray-700 text-l w-full"
+              placeholder="New card body"
+            />
           </div>
-          {showAddCard && (
-            <div className="max-w-4xl rounded-xl overflow-hidden shadow-lg p-4 bg-white mb-4">
-              <input
-                type="text"
-                name="title"
-                value={newCard.title}
-                onChange={(e) => setNewCard({ ...newCard, title: e.target.value })}
-                placeholder="New card title"
-                className="text-gray-700 font-bold text-l mb-2 w-full"
-              />
-              <textarea
-                name="body"
-                value={newCard.body}
-                onChange={(e) => setNewCard({ ...newCard, body: e.target.value })}
-                placeholder="New card body"
-                className="text-gray-700 text-l w-full"
-              />
-              <button
-                onClick={handleAddCard}
-                className="text-sm bg-green-500 text-white py-1 px-3 rounded mt-2"
-              >
-                Add Card
-              </button>
-            </div>
-          )}
-          </>
+        ))}
+        {isEditing && (
+          <div className="flex justify-center">
+            <PlusCircleIcon
+              className="cursor-pointer h-9 w-9 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300"
+              onClick={handleAddNewCard}
+            />
+          </div>
         )}
-        
       </div>
     </div>
   );
 };
 
 export default DeckDetail;
+
