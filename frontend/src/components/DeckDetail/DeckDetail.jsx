@@ -15,11 +15,11 @@ const DeckDetail = () => {
   const [newCards, setNewCards] = useState([]);
   const [cardsToDelete, setCardsToDelete] = useState([]);
 
-  useEffect(() => {
-    if (id) {
-      dispatch(fetchDeck(id));
-    }
-  }, [dispatch, id]);
+  // useEffect(() => {
+  //   if (id) {
+  //     dispatch(fetchDeck(id));
+  //   }
+  // }, [dispatch, id]);
 
   useEffect(() => {
     if (deck) {
