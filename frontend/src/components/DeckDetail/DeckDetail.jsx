@@ -107,14 +107,14 @@ const DeckDetail = () => {
         <div className="flex space-x-2">
           <button
             onClick={isEditing ? handleSaveClick : handleEditClick}
-            className="bg-black text-white py-1 px-3 rounded-lg hover:opacity-80 transition border-neutral-300 focus:border-black text-md font-semibold border-2"
+            className="bg-black text-white py-1 px-3 rounded-lg hover:opacity-80 transition border-neutral-300 focus:border-black text-md font-semibold border-2 fixed top-26 right-10"
           >
             {isEditing ? 'Save' : 'Edit'}
           </button>
           {isEditing && (
             <button
               onClick={handleDeleteClick}
-              className="bg-black text-white py-1 px-3 rounded-lg hover:opacity-80 transition border-neutral-300 focus:border-black text-md font-semibold border-2"
+              className="bg-black text-white py-1 px-3 rounded-lg hover:opacity-80 transition border-neutral-300 focus:border-black text-md font-semibold border-2 fixed top-26 right-28"
             >
               Delete
             </button>
