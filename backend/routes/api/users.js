@@ -52,7 +52,8 @@ router.post('/register', validateRegisterInput, async (req, res, next) => {
       try {
         newUser.hashedPassword = hashedPassword;
         const user = await newUser.save();
-        return res.json(await loginUser(user));
+        const loggedInUser = await loginUser(user);
+        return res.json({currentUser: loggedInUser, userDecks: []});
       }
       catch(err) {
         next(err);
