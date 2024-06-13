@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
-import { fetchDeck, editDeck, removeDeck } from '../../store/decks';
+import { fetchDeck, editDeck, removeDeck, removeDeckCard } from '../../store/decks';
 import { PlusCircleIcon, TrashIcon } from '@heroicons/react/24/outline';
 
 const DeckDetail = () => {
@@ -12,6 +12,7 @@ const DeckDetail = () => {
   const [isEditing, setIsEditing] = useState(false);
   const [editedDeck, setEditedDeck] = useState(null);
   const [newCards, setNewCards] = useState([]);
+  const [cardsToDelete, setCardsToDelete] = useState([]);
 
   useEffect(() => {
     if (id) {
@@ -36,11 +37,13 @@ const DeckDetail = () => {
   const handleSaveClick = () => {
     const updatedDeck = {
       ...editedDeck,
-      cards: [...editedDeck.cards, ...newCards],
+      cards: editedDeck.cards.filter(card => !cardsToDelete.includes(card._id)).concat(newCards),
     };
     dispatch(editDeck(id, updatedDeck));
+    cardsToDelete.forEach(cardId => dispatch(removeDeckCard(id, cardId)));
     setIsEditing(false);
     setNewCards([]);
+    setCardsToDelete([]);
   };
 
   const handleDeleteClick = () => {
@@ -77,6 +80,14 @@ const DeckDetail = () => {
   const handleRemoveNewCard = (index) => {
     const updatedNewCards = newCards.filter((_, i) => i !== index);
     setNewCards(updatedNewCards);
+  };
+
+  const handleCardDeleteClick = (cardId) => {
+    setCardsToDelete([...cardsToDelete, cardId]);
+    setEditedDeck({
+      ...editedDeck,
+      cards: editedDeck.cards.filter(card => card._id !== cardId),
+    });
   };
 
   return (
@@ -126,6 +137,12 @@ const DeckDetail = () => {
       <div className="grid grid-cols-1 gap-6">
         {editedDeck.cards.map((card, index) => (
           <div key={card._id} className="max-w-4xl rounded-xl overflow-hidden shadow-lg p-4 bg-white mb-4 relative">
+            {isEditing && (
+              <TrashIcon
+                className="cursor-pointer absolute top-3 right-4 h-6 w-6 transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300"
+                onClick={() => handleCardDeleteClick(card._id)}
+              />
+            )}
             {isEditing ? (
               <>
                 <input
@@ -192,4 +209,3 @@ const DeckDetail = () => {
 };
 
 export default DeckDetail;
-
