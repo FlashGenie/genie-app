@@ -32,7 +32,8 @@ const NewDeck = () => {
     const newDeck = {
       name: deckName,
       category,
-      cards
+      cards,
+      genieCreated: false
     };
     dispatch(createDeck(newDeck));
     navigate('/dashboard');

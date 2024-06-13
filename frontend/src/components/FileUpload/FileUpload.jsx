@@ -62,7 +62,8 @@ function FileUpload() {
       const deckData = {
         name: 'My Deck', 
         category: 'Study', 
-        cards: flashcards
+        cards: flashcards,
+        genieCreated: true
       };
 
       const response = dispatch(createDeck(deckData));
