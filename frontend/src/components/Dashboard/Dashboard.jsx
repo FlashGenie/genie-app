@@ -17,7 +17,6 @@ function Dashboard() {
     }
   })
   const [isModalOpen, setIsModalOpen] = useState(false);
-  debugger;
 
   // useEffect(() => {
   //   dispatch(fetchDecks());
