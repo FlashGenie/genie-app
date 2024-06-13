@@ -6,6 +6,7 @@ const cardModule = require('../models/Card')
 const Card = cardModule.model
 const Deck = require('../models/Deck')
 const User = require('../models/User');
+const Favorite = require('../models/Favorite')
 
 // Create four users
 const users = [];
@@ -317,6 +318,43 @@ const nodeJsTerms = [
  createDeckWithCards(techUser, 'HTML & CSS', 'Technology', htmlCssTerms, false);
  createDeckWithCards(techUser, 'React', 'Technology', reactTerms, true);
  createDeckWithCards(techUser, 'Node.js', 'Technology', nodeJsTerms, true);
+
+const favorites = [];
+const fav1 = new Favorite({
+  owner: newUser.id,
+  deck: decks[5]._id
+})
+
+favorites.push(fav1)
+
+
+const fav2 = new Favorite({
+  owner: newUser.id,
+  deck: decks[6]._id
+})
+
+favorites.push(fav2)
+
+const fav3 = new Favorite({
+  owner: newUser.id,
+  deck: decks[7]._id
+})
+
+favorites.push(fav3)
+
+const fav4 = new Favorite({
+  owner: newUser.id,
+  deck: decks[8]._id
+})
+
+favorites.push(fav4)
+
+const fav5 = new Favorite({
+  owner: newUser.id,
+  deck: decks[9]._id
+})
+
+favorites.push(fav5)
 
 
 // const newDeck1 = new Deck({
@@ -644,9 +682,11 @@ const insertSeeds = () => {
   User.collection.drop()
     .then(()=>Card.collection.drop())
     .then(()=>Deck.collection.drop())
+    .then(()=>Favorite.collection.drop())
     .then(() => User.insertMany(users))
     .then(()=>Card.insertMany(cards))
     .then(()=>Deck.insertMany(decks))
+    .then(()=>Favorite.insertMany(favorites))
     .then(() => {
       console.log("Done!");
       mongoose.disconnect();
