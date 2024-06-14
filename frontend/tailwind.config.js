@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       minHeight: {
-        'screen-minus-80': 'calc(100vh - 83px)',
+        'screen-minus-80': 'calc(100vh - 74px)',
       },
       keyframes: {
         updown: {
