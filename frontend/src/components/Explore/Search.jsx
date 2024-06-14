@@ -52,6 +52,7 @@ function Search(){
                 {results.map((set) => (
                     <FlashcardSet
                     key={set._id}
+                    deckId={set._id}
                     title={set.name}
                     termCount={set.cards.length}
                     username={set.authorName ? set.authorName: 'Unknown'}
