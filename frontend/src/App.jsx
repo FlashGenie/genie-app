@@ -18,6 +18,7 @@ import NewDeck from './components/NewDeck/NewDeck';
 import ReviewDeck from './components/DeckDetail/ReviewDeck';
 import Explore from './components/Explore/Explore';
 import Search from './components/Explore/Search';
+import Sidebar from './components/Dashboard/Sidebar';
 
 import { useSelector } from 'react-redux';
 
@@ -31,7 +32,10 @@ const Layout = () => {
       <LoginModal />
       <GenerateDeckModal />
       <NavBar />
-      <Outlet />
+      <div className='flex w-full'>
+        {loggedIn && <Sidebar />}
+        <Outlet/>
+      </div>
       {!loggedIn && <Footer />}
     </>
   );
