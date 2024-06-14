@@ -36,7 +36,6 @@ export const fetchDecks = () => async dispatch => {
   try {
       const response = await jwtFetch('/api/decks'); // Replace with your API endpoint
       const data = await response.json();
-      debugger;
       const correctDecksId = {};
       data.forEach(deck => {
         correctDecksId[deck._id] = deck

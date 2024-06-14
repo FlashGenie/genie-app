@@ -1,26 +1,44 @@
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import FlashcardSet from './FlashcardSet';
 import Modal from '../Modal/Modal';
+import * as favoritesActions from '../../store/favorites.js';
 
 function Dashboard() {
   const navigate = useNavigate();
   const allFlashcardSets = useSelector(state => Object.values(state.decks));
+  const allFavorites = useSelector(state => Object.values(state.favorites));
   const currentUser = useSelector(state => state.session.user)
+  const dispatch = useDispatch();
   const flashcardSets = []
   
+  useEffect(() => {
+    dispatch(favoritesActions.fetchFavorites(currentUser._id))
+}, [dispatch, currentUser._id]);
+
   allFlashcardSets.forEach((deck)=>{
     if(deck.author === currentUser._id){
       flashcardSets.push(deck)
     }
-  })
+  });
+  
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // useEffect(() => {
-  //   dispatch(fetchDecks());
-  // }, [dispatch]);
+  const handleFav = (deckId) => {
+    const array = []
+
+    allFavorites.forEach((favorite) => {
+      array.push(favorite.deck)
+    })
+
+    if (array.includes(deckId)) {
+      return true
+    } else {
+      return false
+    }
+  };
 
   const handleFlashcardSetClick = (id) => {
     console.log(id)
@@ -53,12 +71,13 @@ function Dashboard() {
           {flashcardSets.map((set) => (
             <FlashcardSet
               key={set._id}
+              deckId={set._id}
               title={set.name}
               termCount={set.cards.length}
               username={set.authorName ? set.authorName: 'Unknown'}
               genieCreated={set.genieCreated}
               //this fav button below if is true the heart will show up on the flash card if is false not
-              // fav={true}   
+              initialFav={handleFav(set._id)}   
               onClick={() => handleFlashcardSetClick(set._id)}
             />
           ))}

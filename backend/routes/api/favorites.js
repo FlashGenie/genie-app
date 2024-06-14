@@ -21,7 +21,8 @@ router.get('/user/:userId', async (req, res, next) => {
     try {
       const favorites = await Favorite.find({ owner: user._id })
                                 .sort({ createdAt: -1 })
-                                .populate("owner", "_id username");
+                                .populate();
+
       return res.json(favorites);
     }
     catch(err) {
@@ -37,16 +38,18 @@ router.post('/new', validateFavoriteInput, requireUser,  async (req, res, next) 
         })
 
         let favorite = await newFavorite.save()
-        return res.json(favorite)
-    }
-    catch(err) {
+
+        const deck = Deck.findById(req.body.deckId)
+        return res.json(deck)
+
+    } catch(err) {
         next(err)
     }
 })
 
 router.delete('/:id', async (req, res, next) => {
     try {
-        const favorite = await Favorite.findByIdAndDelete(req.params.id)
+        const favorite = await Favorite.findByIdAndDelete({_id: req.params.id})
         res.json('favorite: deleted')
     }
     catch(err){
