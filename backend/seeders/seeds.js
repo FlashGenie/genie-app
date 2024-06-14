@@ -44,6 +44,20 @@ const techUser = new User({
 });
 users.push(techUser);
 
+const historyBuff = new User({
+  username: 'history-buff',
+  email: 'history-buff@appacademy.io',
+  hashedPassword: bcrypt.hashSync('password', 10)
+});
+users.push(historyBuff);
+
+
+const humanitiesGuy = new User({
+  username: 'humanities-guy',
+  email: 'humanities-guy@appacademy.io',
+  hashedPassword: bcrypt.hashSync('password', 10)
+});
+users.push(humanitiesGuy);
 
 //create Decks and Cards
 
@@ -306,19 +320,242 @@ const nodeJsTerms = [
   { title: 'Package.json', body: 'A file that contains metadata about a Node.js project and its dependencies.' }
 ];
 
+
+const WWITerms = [
+  // WWI Terms
+  { title: 'Archduke Franz Ferdinand', body: 'The assassination of Archduke Franz Ferdinand of Austria-Hungary in 1914 triggered the start of World War I.' },
+  { title: 'Trench Warfare', body: 'A type of combat in which opposing troops fight from trenches facing each other, leading to a stalemate on the Western Front.' },
+  { title: 'Treaty of Versailles', body: 'The peace treaty that ended World War I, imposing heavy reparations and territorial losses on Germany.' },
+  { title: 'Allies', body: 'The alliance of Great Britain, France, and Russia, and later joined by the United States and others, during World War I.' },
+  { title: 'Central Powers', body: 'The alliance of Germany, Austria-Hungary, the Ottoman Empire, and Bulgaria during World War I.' },
+  { title: 'Lusitania', body: 'A British ocean liner torpedoed and sunk by a German U-boat in 1915, contributing to the US entering World War I.' },
+  { title: 'League of Nations', body: 'An international organization established after World War I to promote peace and cooperation among nations.' },
+  { title: 'Woodrow Wilson', body: 'The President of the United States during World War I, who proposed the Fourteen Points and played a key role in the Treaty of Versailles negotiations.' },
+  { title: 'Militarism', body: 'The belief or desire of a government or people that a country should maintain a strong military capability and be prepared to use it aggressively to defend or promote national interests.' },
+  { title: 'Nationalism', body: 'A strong feeling of pride in and devotion to one\'s country, often accompanied by a belief that it is superior to others.' },
+  { title: 'Assassination of Archduke Franz Ferdinand', body: 'The event that sparked the beginning of World War I, when the Archduke of Austria-Hungary and his wife were assassinated in Sarajevo on June 28, 1914.' },
+  { title: 'War Guilt Clause', body: 'A clause in the Treaty of Versailles by which Germany acknowledged that it alone was responsible for World War I.' },
+  { title: 'No Man\'s Land', body: 'The area between the trenches of opposing forces on the Western Front during World War I, often devastated by artillery bombardments and difficult to cross.' },
+  { title: 'Great War', body: 'An alternative name for World War I, coined before the occurrence of World War II.' },
+  { title: 'Schlieffen Plan', body: 'The German military plan developed before World War I that aimed to quickly defeat France in the west and then move east to face Russia.' }
+];
+
+const WWIITerms = [
+  // WWII Terms
+  { title: 'Blitzkrieg', body: 'A method of warfare where the attacker uses rapid and overwhelming force, including air raids and fast-moving ground troops, to quickly defeat the enemy.' },
+  { title: 'Holocaust', body: 'The genocide during World War II in which Nazi Germany, aided by collaborators, systematically murdered six million Jews and millions of others.' },
+  { title: 'D-Day', body: 'The Allied invasion of Normandy on June 6, 1944, which was a turning point in World War II leading to the liberation of Western Europe from Nazi control.' },
+  { title: 'Adolf Hitler', body: 'The dictator of Nazi Germany during World War II, responsible for orchestrating the Holocaust and leading his country into war against the Allied powers.' },
+  { title: 'Pearl Harbor', body: 'The surprise military strike by the Imperial Japanese Navy Air Service against the United States naval base at Pearl Harbor, Hawaii, on December 7, 1941, which led to the United States\' entry into World War II.' },
+  { title: 'Axis Powers', body: 'The alliance of Germany, Italy, and Japan during World War II.' },
+  { title: 'Allied Powers', body: 'The alliance of Great Britain, the United States, the Soviet Union, and other nations during World War II.' },
+  { title: 'Nazi Party', body: 'The political party led by Adolf Hitler that ruled Germany from 1933 to 1945 and was responsible for the Holocaust and other atrocities during World War II.' },
+  { title: 'The Final Solution', body: 'The Nazi plan for the genocide of Jews during World War II.' },
+  { title: 'Atomic Bomb', body: 'A bomb that derives its destructive power from nuclear reactions and was used by the United States against Japan in 1945, leading to the end of World War II.' },
+  { title: 'The Battle of Stalingrad', body: 'A major battle of World War II in which Nazi Germany and its allies fought the Soviet Union for control of the city of Stalingrad (now Volgograd) in Southern Russia.' },
+  { title: 'The Manhattan Project', body: 'The research and development project during World War II that produced the first nuclear weapons, leading to the bombings of Hiroshima and Nagasaki.' },
+  { title: 'V-E Day', body: 'Victory in Europe Day, May 8, 1945, the date when the Allies formally accepted the unconditional surrender of Nazi Germany, ending World War II in Europe.' },
+  { title: 'V-J Day', body: 'Victory over Japan Day, August 15, 1945, the date when the Allied forces claimed victory over Japan, effectively ending World War II.' },
+  { title: 'Winston Churchill', body: 'The Prime Minister of the United Kingdom during most of World War II, who led Britain to victory against Nazi Germany.' }
+];
+
+const romanEmpireTerms = [
+  // Roman Empire Terms
+  { title: 'Julius Caesar', body: 'A Roman general and statesman who played a critical role in the events leading to the demise of the Roman Republic and the rise of the Roman Empire.' },
+  { title: 'Pax Romana', body: 'A period of relative peace and stability across the Roman Empire lasting from 27 BC to AD 180.' },
+  { title: 'Augustus', body: 'The first Roman emperor, who established the Pax Romana and significantly expanded the Roman Empire.' },
+  { title: 'Colosseum', body: 'An ancient amphitheater in Rome, known for its gladiatorial contests and other public spectacles.' },
+  { title: 'Roman Senate', body: 'The advisory body of the Roman Republic and Empire, composed of appointed representatives from Rome\'s various social classes.' },
+  { title: 'Roman Republic', body: 'The period of ancient Roman civilization before the establishment of the Roman Empire, characterized by a republican form of government.' },
+  { title: 'Julius Caesar', body: 'A Roman general and statesman who played a critical role in the events leading to the demise of the Roman Republic and the rise of the Roman Empire.' },
+  { title: 'Pax Romana', body: 'A period of relative peace and stability across the Roman Empire lasting from 27 BC to AD 180.' },
+  { title: 'Augustus', body: 'The first Roman emperor, who established the Pax Romana and significantly expanded the Roman Empire.' },
+  { title: 'Colosseum', body: 'An ancient amphitheater in Rome, known for its gladiatorial contests and other public spectacles.' },
+  { title: 'Roman Senate', body: 'The advisory body of the Roman Republic and Empire, composed of appointed representatives from Rome\'s various social classes.' },
+  { title: 'Roman Republic', body: 'The period of ancient Roman civilization before the establishment of the Roman Empire, characterized by a republican form of government.' }
+];
+
+const greekEmpireTerms = [
+  // Greek Empire Terms
+  { title: 'Alexander the Great', body: 'King of Macedonia who conquered an empire that stretched from the Balkans to modern-day Pakistan.' },
+  { title: 'Peloponnesian War', body: 'A protracted conflict between Athens and Sparta, along with their respective allies, that lasted from 431 to 404 BC.' },
+  { title: 'Socrates', body: 'A classical Greek philosopher credited as one of the founders of Western philosophy, known for his contributions to ethics and the Socratic method.' },
+  { title: 'Aristotle', body: 'A Greek philosopher and scientist who was Plato\'s student and the tutor of Alexander the Great.' },
+  { title: 'Ancient Greece', body: 'The period in Greek history lasting from the Archaic period of the 8th to 6th centuries BC to the end of antiquity (c. 600 AD).' },
+  { title: 'City-State (Polis)', body: 'An independent city, often consisting of a city and its surrounding territory, functioning as an autonomous political unit in ancient Greece.' },
+  { title: 'Athenian Democracy', body: 'A system of direct democracy practiced in ancient Athens, in which decision-making power rested with the assembly of all eligible citizens.' },
+  { title: 'Greek Philosophy', body: 'The philosophical activities and inquiries of the Greek civilizations, spanning from the 6th century BC to the end of antiquity (c. 600 AD).' },
+  { title: 'Greek Gods and Goddesses', body: 'The deities and divine figures of ancient Greek mythology, including Zeus, Hera, Athena, Apollo, and many others.' },
+  { title: 'Pericles', body: 'An influential Athenian statesman, orator, and general during the Golden Age of Athens, known for his promotion of democracy and the Athenian Empire.' },
+  { title: 'Sparta', body: 'A prominent city-state in ancient Greece, known for its military prowess and its emphasis on austerity, discipline, and a strong military ethos.' },
+  { title: 'Ancient Greek Art and Architecture', body: 'The artistic and architectural achievements of ancient Greek civilization, including sculpture, pottery, and iconic architectural styles such as the Doric, Ionic, and Corinthian orders.' },
+  { title: 'Battle of Marathon', body: 'A pivotal battle in the Greco-Persian Wars, fought between the citizens of Athens and the Persian Empire in 490 BC, resulting in a decisive Athenian victory.' },
+  { title: 'Olympic Games', body: 'A series of athletic competitions held in ancient Greece, primarily in Olympia, in honor of the gods and as part of a festival celebrating Greek culture and religion.' }
+];
+
+const egyptianHistoryTerms = [
+  // Egyptian History Terms
+  { title: 'Pharaoh', body: 'The common title of the monarchs of ancient Egypt from the First Dynasty (c. 3150 BCE) until the annexation of Egypt by the Roman Empire in 30 BCE.' },
+  { title: 'Pyramids of Giza', body: 'A complex of ancient monuments in Egypt, including three pyramid complexes and the Great Sphinx, built during the Fourth Dynasty.' },
+  { title: 'Nile River', body: 'The longest river in the world, flowing through northeastern Africa, and a significant factor in the development of ancient Egyptian civilization.' },
+  { title: 'Hieroglyphics', body: 'A system of writing using symbols or pictures, used in ancient Egypt.' },
+  { title: 'King Tutankhamun', body: 'An Egyptian pharaoh of the 18th dynasty, during the New Kingdom of Egyptian history, known for his intact tomb, discovered in the Valley of the Kings.' },
+  { title: 'Rosetta Stone', body: 'An ancient stone slab inscribed with a decree issued at Memphis, Egypt, in 196 BC, written in three scripts: hieroglyphic, demotic, and Greek, providing the key to deciphering ancient Egyptian hieroglyphs.' },
+  { title: 'The Great Sphinx', body: 'A large statue of a reclining sphinx, a mythical creature with the body of a lion and the head of a human, located near the pyramids of Giza in Egypt.' },
+  { title: 'Old Kingdom', body: 'The period in ancient Egyptian history, spanning from the 27th century BC to the 22nd century BC, known for the construction of the Great Pyramids.' },
+  { title: 'New Kingdom', body: 'The period in ancient Egyptian history, spanning from the 16th century BC to the 11th century BC, known for its military expansion and the construction of grand temples and monuments.' },
+  { title: 'Valley of the Kings', body: 'A valley in Egypt where, for a period of nearly 500 years from the 16th to 11th century BC, tombs were constructed for the Pharaohs and powerful nobles of the New Kingdom.' },
+  { title: 'Hatshepsut', body: 'One of the most successful pharaohs of ancient Egypt, ruling as regent for her stepson, Thutmose III, and later as pharaoh herself during the 18th dynasty.' },
+  { title: 'The Book of the Dead', body: 'A collection of ancient Egyptian funerary texts, intended to guide the deceased through the afterlife and ensure a safe passage to the realm of the dead.' },
+  { title: 'Hyksos', body: 'A people of mixed origins who infiltrated Egypt and ended the Thirteenth Dynasty, initiating the Second Intermediate Period.' },
+  { title: 'The Nile Delta', body: 'The delta formed in Northern Egypt where the Nile River spreads out and drains into the Mediterranean Sea.' },
+  { title: 'Heliopolis', body: 'An ancient city located in the northeastern part of present-day Cairo, Egypt, known for its significance in ancient Egyptian religious and intellectual life.' }
+];
+
+const earlyAmericanHistoryTerms = [
+  // Early American History Terms
+  { title: 'Declaration of Independence', body: 'The document declaring the thirteen American colonies\' independence from British rule, adopted on July 4, 1776.' },
+  { title: 'Boston Tea Party', body: 'A political protest by the Sons of Liberty in Boston, on December 16, 1773, against the British government and the East India Company, in which they destroyed an entire shipment of tea.' },
+  { title: 'American Revolution', body: 'The colonial revolt that took place between 1765 and 1783, leading to the independence of the thirteen American colonies from British rule.' },
+  { title: 'Constitution of the United States', body: 'The supreme law of the United States, drafted in 1787, which established the framework of the federal government, the separation of powers, and the rights of citizens.' },
+  { title: 'George Washington', body: 'The first President of the United States, serving from 1789 to 1797, and the Commander-in-Chief of the Continental Army during the American Revolutionary War.' },
+  { title: 'Thomas Jefferson', body: 'One of the Founding Fathers of the United States, the principal author of the Declaration of Independence, and the third President of the United States, serving from 1801 to 1809.' },
+  { title: 'American Civil War', body: 'A civil war fought in the United States between 1861 and 1865, primarily over issues of slavery and states\' rights, resulting in the abolition of slavery and the preservation of the Union.' },
+  { title: 'Abraham Lincoln', body: 'The 16th President of the United States, serving from 1861 until his assassination in 1865, who led the country through the Civil War and played a crucial role in the abolition of slavery.' },
+  { title: 'The Louisiana Purchase', body: 'The acquisition of the Louisiana Territory by the United States from France in 1803, nearly doubling the size of the country.' },
+  { title: 'Lewis and Clark Expedition', body: 'An expedition led by Meriwether Lewis and William Clark from May 1804 to September 1806, to explore the territory acquired in the Louisiana Purchase and to find a route to the Pacific Ocean.' },
+  { title: 'The War of 1812', body: 'A conflict fought between the United States and the United Kingdom from June 1812 to February 1815, primarily over trade restrictions, impressment, and British support for Native American tribes.' },
+  { title: 'Manifest Destiny', body: 'The 19th-century belief that the United States was destined to expand across the North American continent, from the Atlantic Ocean to the Pacific Ocean.' },
+  { title: 'Trail of Tears', body: 'The forced relocation and movement of Native American nations from their ancestral homelands in the Southeastern United States to Indian Territory (present-day Oklahoma) in the 1830s, following the Indian Removal Act of 1830.' },
+  { title: 'Emancipation Proclamation', body: 'A presidential proclamation issued by Abraham Lincoln on January 1, 1863, that declared all enslaved people in Confederate-held territory to be forever free.' },
+  { title: 'American Revolutionary War', body: 'The war between Great Britain and its thirteen colonies in America, which lasted from 1775 to 1783, resulting in the independence of the colonies and the formation of the United States of America.' }
+];
+
+
+const psychologyTerms = [
+   // Psychology Terms
+   { title: 'Psychology', body: 'The scientific study of the human mind and behavior.' },
+   { title: 'Sigmund Freud', body: 'An Austrian neurologist and the founder of psychoanalysis, who proposed the theory of the unconscious mind and the Oedipus complex.' },
+   { title: 'Classical Conditioning', body: 'A learning process that occurs through associations between an environmental stimulus and a naturally occurring stimulus.' },
+   { title: 'Operant Conditioning', body: 'A method of learning that occurs through rewards and punishments for behavior.' },
+   { title: 'B.F. Skinner', body: 'An American psychologist known for his work in behaviorism and his development of the operant conditioning chamber, often called the "Skinner Box".' },
+   { title: 'Cognitive Psychology', body: 'The branch of psychology that focuses on mental processes such as "attention, language use, memory, perception, problem-solving, creativity, and thinking."' },
+   { title: 'Abraham Maslow', body: 'An American psychologist best known for creating Maslow\'s hierarchy of needs, a theory of psychological health predicated on fulfilling innate human needs in priority, culminating in self-actualization.' },
+   { title: 'Stanley Milgram', body: 'An American social psychologist known for his controversial experiments on obedience conducted in the 1960s during his professorship at Yale University.' },
+   { title: 'Developmental Psychology', body: 'The scientific study of how and why human beings change over the course of their life.' },
+   { title: 'Cognitive Dissonance', body: 'The mental discomfort (psychological stress) experienced by a person who holds two or more contradictory beliefs, values, or attitudes.' },
+   { title: 'Erik Erikson', body: 'A German-American developmental psychologist and psychoanalyst known for his theory on psychosocial development of human beings.' },
+   { title: 'Biopsychosocial Model', body: 'A model that suggests that biological, psychological, and social factors all play a significant role in human functioning in the context of disease or illness.' },
+   { title: 'Social Psychology', body: 'The scientific study of how people\'s thoughts, feelings, and behaviors are influenced by the actual, imagined, or implied presence of others.' },
+   { title: 'Nature vs. Nurture', body: 'A longstanding debate in psychology concerning the relative importance of an individual\'s innate qualities (nature) versus personal experiences (nurture) in determining individual differences in physical and behavioral traits.' },
+   { title: 'Self-Actualization', body: 'The realization or fulfillment of one\'s talents and potentialities, especially considered as a drive or need present in everyone.' },
+
+]
+
+
+const anthropologyTerms = [
+  { title: 'Anthropology', body: 'The scientific study of human beings and their ancestors through time and space and in relation to physical character, environmental and social relations, and culture.' },
+  { title: 'Cultural Anthropology', body: 'The branch of anthropology that focuses on the study of cultural variation among humans.' },
+  { title: 'Archaeology', body: 'The study of human history and prehistory through the excavation of sites and the analysis of artifacts and other physical remains.' },
+  { title: 'Biological Anthropology', body: 'The branch of anthropology that studies the physical development of the human species.' },
+  { title: 'Linguistic Anthropology', body: 'The branch of anthropology that studies language and its relation to culture.' },
+  { title: 'Cultural Relativism', body: 'The principle that an individual human\'s beliefs and activities should be understood by others in terms of that individual\'s own culture.' },
+  { title: 'Ethnography', body: 'The scientific description of the customs of individual peoples and cultures.' },
+  { title: 'Ethnology', body: 'The study and analysis of different cultures from a comparative or historical point of view, utilizing ethnographic accounts and developing anthropological theories.' },
+]
+
+const sociologyTerms = [
+  { title: 'Sociology', body: 'The study of society, patterns of social relationships, social interaction, and culture.' },
+  { title: 'Social Structure', body: 'The patterned social arrangements in society that are both emergent from and determinant of the actions and interactions of the individuals.' },
+  { title: 'Socialization', body: 'The lifelong process through which individuals learn the norms, values, and behaviors of a given society.' },
+  { title: 'Social Institution', body: 'A system of behavioral and relationship patterns that are densely interwoven and enduring, and function across an entire society.' },
+  { title: 'Social Stratification', body: 'The hierarchical arrangement of individuals or groups within a society based on various factors such as socioeconomic status, race, and gender.' },
+  { title: 'Culture', body: 'The shared beliefs, values, customs, behaviors, and artifacts that members of a society use to cope with their world and with one another.' },
+  { title: 'Social Identity', body: 'The way individuals define themselves in terms of their group memberships.' },
+  { title: 'Social Norms', body: 'The unwritten rules or expectations for behavior within a particular society or social group.' },
+  { title: 'Social Control', body: 'The mechanisms, strategies, and procedures that social groups use to maintain order and conformity within a society.' },
+  { title: 'Social Change', body: 'The transformation over time of the institutions and culture of a society.' },
+  { title: 'Deviance', body: 'Behavior that violates social norms, including both formal and informal rules of society.' },
+  { title: 'Social Conflict', body: 'The struggle for power and resources within a society.' },
+  { title: 'Social Mobility', body: 'The movement of individuals or groups within the hierarchical system of social classes.' },
+  { title: 'Social Constructionism', body: 'The theory that reality is socially constructed and that meaning is created through social interaction.' },
+  { title: 'Social Theory', body: 'A set of interrelated ideas that provide a systematic explanation of the social world, including the relationships between individuals and society.' },
+  { title: 'Gender Roles', body: 'The socially constructed roles, behaviors, activities, and attributes that a particular society considers appropriate for men and women.' },
+  { title: 'Race and Ethnicity', body: 'Categories used to classify humans based on physical characteristics and cultural heritage, often leading to social stratification and inequality.' },
+  { title: 'Socialization', body: 'The process by which individuals learn and internalize the values, beliefs, and norms of their culture.' },
+  { title: 'Social Order', body: 'The arrangement of practices and behaviors on which societys members base their daily lives.' },
+  { title: 'Social Cohesion', body: 'The willingness of members of a society to cooperate with each other in order to survive and prosper.' }
+];
+
+const geographyTerms = [
+  { title: 'Geography', body: 'The study of the Earth\'s landscapes, environments, and the relationships between people and their environments.' },
+  { title: 'Physical Geography', body: 'The branch of geography dealing with natural features and processes.' },
+  { title: 'Human Geography', body: 'The branch of geography dealing with the spatial aspects of human existence.' },
+  { title: 'Cartography', body: 'The study and practice of making maps.' },
+  { title: 'GIS (Geographic Information System)', body: 'A system designed to capture, store, manipulate, analyze, manage, and present spatial or geographic data.' },
+  { title: 'Topography', body: 'The arrangement of the natural and artificial physical features of an area.' },
+  { title: 'Climate', body: 'The long-term patterns of temperature, humidity, wind, and precipitation in an area.' },
+  { title: 'Biogeography', body: 'The branch of geography that studies the distribution of plants and animals across the Earth\'s surface.' },
+  { title: 'Cultural Geography', body: 'The study of cultural products and norms and their variations across and relations to spaces and places.' },
+  { title: 'Urban Geography', body: 'The study of cities, their geographical distribution, economic functions, and relationships with the environment.' },
+  { title: 'Physical Landscape', body: 'The natural environment of a region, including its topography, vegetation, and climate.' },
+  { title: 'Human Landscape', body: 'The human-modified environment of a region, including its settlements, infrastructure, and cultural features.' },
+  { title: 'Geomorphology', body: 'The study of the origin and evolution of the topographic and bathymetric features of the Earth\'s surface.' },
+  { title: 'Biome', body: 'A large naturally occurring community of flora and fauna occupying a major habitat.' },
+  { title: 'Hydrology', body: 'The study of the movement, distribution, and quality of water on Earth.' },
+  { title: 'Population Geography', body: 'The study of the distribution, composition, and growth of populations.' },
+  { title: 'Economic Geography', body: 'The study of the spatial distribution of economic activities and their impacts on regions.' },
+  { title: 'Political Geography', body: 'The study of the spatial distribution of political processes and their impacts on regions.' },
+  { title: 'Environmental Geography', body: 'The study of the spatial aspects of interactions between humans and the natural world.' },
+  { title: 'Remote Sensing', body: 'The scanning of the Earth by satellite or high-flying aircraft in order to obtain information about it.' }
+];
+
+const politicalScienceTerms = [
+  { title: 'Political Science', body: 'The systematic study of government, politics, and political behavior.' },
+  { title: 'Democracy', body: 'A system of government in which power is vested in the people, who rule either directly or through freely elected representatives.' },
+  { title: 'Republic', body: 'A form of government in which the country is considered a "public matter", not the private concern or property of the rulers.' },
+  { title: 'Monarchy', body: 'A form of government in which a single person, the monarch, holds supreme authority in governance.' },
+  { title: 'Oligarchy', body: 'A form of government in which power is vested in a small group of individuals, often distinguished by wealth, family, or military power.' },
+  { title: 'Totalitarianism', body: 'A system of government that is centralized and dictatorial and requires complete subservience to the state.' },
+  { title: 'Authoritarianism', body: 'A system of government characterized by strong central power and limited political freedoms.' },
+  { title: 'Federalism', body: 'A system of government in which power is divided between a central authority and constituent political units.' },
+  { title: 'Separation of Powers', body: 'The division of governmental responsibilities into distinct branches to limit any one branch from exercising the core functions of another.' },
+  { title: 'Checks and Balances', body: 'A system that allows each branch of government to limit the powers of the other branches in order to prevent abuse of power.' },
+  { title: 'Constitution', body: 'A body of fundamental principles or established precedents according to which a state or other organization is acknowledged to be governed.' },
+  { title: 'Political Party', body: 'An organized group of people who have the same ideology, or who otherwise have the same political positions, and who field candidates for elections, in an attempt to get them elected and thereby implement the party\'s agenda.' },
+  { title: 'Lobbying', body: 'The act of attempting to influence decisions made by officials in the government, most often legislators or members of regulatory agencies.' },
+  { title: 'Interest Group', body: 'An organized group of individuals or organizations that tries to influence the policies or decisions of government in a particular field.' },
+  { title: 'Public Policy', body: 'The principled guide to action taken by the administrative executive branches of the state with regard to a class of issues in a manner consistent with law and institutional customs.' }
+];
+
+
+
+
 // Create decks and cards
  createDeckWithCards(newUser, 'Microeconomics', 'Social Science', microeconomicsTerms, false);
  createDeckWithCards(newUser, 'Macroeconomics', 'Social Science', macroeconomicsTerms, false);
+ createDeckWithCards(historyBuff, 'World War I', 'History', WWITerms, false);
+ createDeckWithCards(humanitiesGuy, 'Geography', 'Social Science',geographyTerms, true);
+ createDeckWithCards(newUser, 'Early American History', 'History',earlyAmericanHistoryTerms, false);
  createDeckWithCards(newUser, 'Accounting', 'Social Science', accountingTerms, true);
  createDeckWithCards(newUser, 'Marketing', 'Social Science', marketingTerms, true);
+ createDeckWithCards(historyBuff, 'World War II', 'History', WWIITerms, false);
  createDeckWithCards(scienceUser, 'Physics', 'Science', physicsTerms, true);
+ createDeckWithCards(humanitiesGuy, 'Political Science', 'Social Science',politicalScienceTerms, false);
  createDeckWithCards(scienceUser, 'Biology', 'Science', biologyTerms, true);
+ createDeckWithCards(humanitiesGuy, 'Sociology', 'Social Science',sociologyTerms, false);
  createDeckWithCards(scienceUser, 'Chemistry', 'Science', chemistryTerms, true);
  createDeckWithCards(languageUser, 'Languages', 'Language', languageTerms, true);
+ createDeckWithCards(historyBuff, 'Roman Empire', 'History', romanEmpireTerms, false);
+ createDeckWithCards(historyBuff, 'Egyptian Empire', 'History', egyptianHistoryTerms, false);
  createDeckWithCards(techUser, 'JavaScript', 'Technology', javascriptTerms, false);
- createDeckWithCards(techUser, 'HTML & CSS', 'Technology', htmlCssTerms, false);
+ createDeckWithCards(techUser, 'HTML & CSS', 'Technology', htmlCssTerms, true);
  createDeckWithCards(techUser, 'React', 'Technology', reactTerms, true);
+ createDeckWithCards(historyBuff, 'Greek Empire', 'History', greekEmpireTerms, false);
  createDeckWithCards(techUser, 'Node.js', 'Technology', nodeJsTerms, true);
+ createDeckWithCards(humanitiesGuy, 'Psychology', 'Social Science',psychologyTerms, true);
+ createDeckWithCards(humanitiesGuy, 'Anthropology', 'Social Science',anthropologyTerms, false);
+
 
 const favorites = [];
 const fav1 = new Favorite({
