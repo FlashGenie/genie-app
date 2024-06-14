@@ -53,6 +53,10 @@ const RegisterModal = () => {
         return dispatch(sessionActions.signup({ email, username, password }))
     };
 
+    const handleDemoLogin = () => {
+        return dispatch(sessionActions.login({ email: 'demo-user@appacademy.io', password: 'starwars' }));
+    };
+
     const bodyContent = (
         <div className="flex flex-col gap-4">
             <div className="text-2xl font-bold center">
@@ -290,6 +294,17 @@ const RegisterModal = () => {
                     Agree and Continue 
                 </button>
             </form>
+            <button 
+                onClick={handleDemoLogin}
+                className='
+                    mt-2
+                    text-blue-500
+                    hover:text-blue-700
+                    transition
+                '
+            >
+                Log in as Demo User
+            </button>
         </div>
     )
 
