@@ -5,6 +5,7 @@ import { editDeck, removeDeck, removeDeckCard } from '../../store/decks';
 import { PlusCircleIcon, TrashIcon } from '@heroicons/react/24/outline';
 import { IoMdClose } from 'react-icons/io';
 import ReviewDeck from './ReviewDeck';
+import ScrollTopButton from './ScrollTopButton';
 
 const DeckDetail = () => {
   const { id } = useParams();
@@ -81,8 +82,17 @@ const DeckDetail = () => {
     setNewCards(newCardsCopy);
   };
 
+  // const handleAddNewCard = () => {
+  //   setNewCards([...newCards, { title: '', body: '' }]);
+  // };
   const handleAddNewCard = () => {
     setNewCards([...newCards, { title: '', body: '' }]);
+    setTimeout(() => {
+      window.scrollTo({
+        top: document.documentElement.scrollHeight,
+        behavior: 'smooth'
+      });
+    }, 0);
   };
 
   const handleRemoveNewCard = (index) => {
@@ -235,6 +245,7 @@ const DeckDetail = () => {
           </div>
         )}
       </div>
+      < ScrollTopButton/>
     </div>
   );
 };
