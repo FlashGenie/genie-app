@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {
+      minHeight: {
+        'screen-minus-80': 'calc(100vh - 83px)',
+      },
       keyframes: {
         updown: {
           '0%, 100%': { transform: 'translateY(0)' },

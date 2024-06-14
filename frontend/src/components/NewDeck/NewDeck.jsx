@@ -40,7 +40,7 @@ const NewDeck = () => {
   };
 
   return (
-    <div className="p-6 bg-gray-100">
+    <div className="p-6 bg-gray-100 w-full min-h-screen-minus-80">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-2xl font-bold">Create New Deck</h2>
         <button

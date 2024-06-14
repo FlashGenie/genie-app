@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 function Sidebar() {
     return (
-        <Card className="h-[calc(100vh-2rem)] w-full max-w-[15rem] p-4 shadow-xl shadow-blue-gray-900/5 md:max-w-[13rem]">
+        <Card className="sticky top-20 max-h-96 w-full max-w-[15rem] p-4 md:max-w-[13rem]">
           <div className="mb-3 p-3 ml-1">
             <Typography variant="h5" color="blue-gray">
               Discover

@@ -83,11 +83,11 @@ function FileUpload() {
   };
 
   return (
-    <div className="p-8 font-sans flex flex-col items-center">
+    <div className="p-12 font-sans flex flex-col items-center bg-gray-100 w-full min-h-screen-minus-80">
       <h1 className="text-2xl font-bold">Generate instant study materials</h1>
       <p className="text-lg my-4">Upload class notes, lecture slides, or readings</p>
       <form onSubmit={handleSubmit}>
-        <div className="border-2 border-solid border-gray-100 rounded-lg py-16 px-8" onDrop={handleDrop} onDragOver={handleDragOver}>
+        <div className="border border-dashed border-gray-400 rounded-lg py-16 px-8" onDrop={handleDrop} onDragOver={handleDragOver}>
           <input
             type="file"
             onChange={handleFileChange}
