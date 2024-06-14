@@ -160,7 +160,7 @@ Organize and review your flashcards in decks.
 - Quiz
 - Trending/Rating
 
-## Group Members and Work Breakdown
+## Work Breakdown
 **Charlie, Rafael, Jaspreet, Dharani, Edison**
 
 ### Day 1 (June 10th)
