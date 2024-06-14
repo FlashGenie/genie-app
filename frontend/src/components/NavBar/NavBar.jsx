@@ -62,7 +62,7 @@ function NavBar () {
               <a href="#product" className="text-xl hover:text-slate-800 duration-500">Product</a>
             </li>
             <li className="mx-4 my-6 md:my-0">
-              <a href="#conversion" className="text-xl hover:text-slate-800 duration-500">About Us</a>
+              <a href="#about-section" className="text-xl hover:text-slate-800 duration-500">About Us</a>
             </li>
           </ul>
         </div>
