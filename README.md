@@ -201,3 +201,7 @@ Organize and review your flashcards in decks.
 - [Jaspreet Singh]()
 - [Rafael Campos](https://www.linkedin.com/in/rafael-campos-60471a2b2/)
 - [Dharani Yedavelly](https://www.linkedin.com/in/dharaniy/)
+
+<p align="center">
+  <img src="https://capsule-render.vercel.app/api?type=waving&color=gradient&height=60&section=footer"/>
+</p>
