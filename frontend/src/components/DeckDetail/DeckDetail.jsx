@@ -99,7 +99,7 @@ const DeckDetail = () => {
   }
     
   const handleClose = () => {
-    navigate('/dashboard');
+    navigate(-2, { replace: true });
   };
 
   return (
