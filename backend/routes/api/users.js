@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
 const Deck = mongoose.model('Deck');
+const Favorite = mongoose.model('Favorite');
 const passport = require('passport');
 const { loginUser, restoreUser } = require('../../config/passport');
 const { isProduction } = require('../../config/keys');
@@ -74,9 +75,13 @@ router.post('/login', validateLoginInput, async (req, res, next) => {
 
     const currentUser = await loginUser(user);
     const userDecks = await Deck.find({author: user._id})
+    const favorites = await Favorite.find({ owner: user._id })
+    .sort({ createdAt: -1 })
+    .populate();
     return res.json (
       {currentUser,
-      userDecks}
+      userDecks,
+      favorites}
     )
     // return res.json(await loginUser(user));
   
@@ -95,19 +100,24 @@ router.get('/current', restoreUser, async (req, res) => {
 
 
   let userDecks = []
+  let favorites = []
 
   if (!req.user) {
    
     return res.json(null)
   }else{
    userDecks = await Deck.find({author: req.user._id})
+  favorites = await Favorite.find({ owner: req.user._id })
+   .sort({ createdAt: -1 })
+   .populate();
   };
 
   res.json({
     user: {_id: req.user._id,
     username: req.user.username,
     email: req.user.email},
-    userDecks
+    userDecks,
+    favorites
   });
 });
 

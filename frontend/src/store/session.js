@@ -1,6 +1,7 @@
 import jwtFetch from './jwt';
 import { receiveDecks } from './decks';
 import { clearDecks } from './decks';
+import {getFavorites } from './favorites'
 
 const RECEIVE_CURRENT_USER = "session/RECEIVE_CURRENT_USER";
 const RECEIVE_SESSION_ERRORS = "session/RECEIVE_SESSION_ERRORS";
@@ -43,17 +44,23 @@ const startSession = (userInfo, route) => async dispatch => {
       method: "POST",
       body: JSON.stringify(userInfo)
     });
-    const { currentUser, userDecks } = await res.json();
+    const { currentUser, userDecks, favorites } = await res.json();
     localStorage.setItem('jwtToken', currentUser.token);
     // debugger
     const correctDecksId = {}
+    const correctFavoritesId = {}
 
     userDecks.forEach(deck => {
       correctDecksId[deck._id] = deck
     });
+    favorites.forEach(favorite=>{
+      correctFavoritesId[favorite._id] = favorite
+    })
+    
 
     dispatch(receiveDecks(correctDecksId))
-
+    dispatch(getFavorites(correctFavoritesId))
+    debugger;
     return dispatch(receiveCurrentUser(currentUser.user));
   } catch(err) {
     const res = await err.json();
@@ -73,12 +80,18 @@ const initialState = {
     const res = await jwtFetch('/api/users/current');
     const results = await res.json();
     const correctDecksId = {}
+    const correctFavoritesId={}
 
     results.userDecks.forEach(deck => {
       correctDecksId[deck._id] = deck
     });
 
+    results.favorites.forEach(favorite=>{
+      correctFavoritesId[favorite._id] = favorite
+    })
+
     dispatch(receiveDecks(correctDecksId))
+    dispatch(getFavorites(correctFavoritesId))
   
     return dispatch(receiveCurrentUser(results.user));
   };
