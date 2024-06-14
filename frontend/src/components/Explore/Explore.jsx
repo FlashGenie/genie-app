@@ -5,11 +5,13 @@ import {fetchDecks} from  '../../store/decks';
 import FlashcardSet from '../Dashboard/FlashcardSet';
 import Modal from '../Modal/Modal'
 import { useNavigate } from 'react-router-dom';
+import SearchBar from './SearchBar'
 
 function Explore() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [isModalOpen, setIsModalOpen] = useState(false);
+   
  
     useEffect(()=>{
         dispatch(fetchDecks())
@@ -31,11 +33,15 @@ function Explore() {
         return b.favoriteCount - a.favoriteCount
     })
     const popularDecks = popularDecksSort.slice(0,8)
+    debugger;
+
+
 
     return(
         <div className = "flex w-full">
             <div className="flex-grow p-6 bg-gray-100">
-                <div className="text-3xl font-bold mb-8">Explore</div>
+                <div className="text-3xl font-bold mb-4">Explore</div>
+                <SearchBar />
                 <div className="text-2xl font-bold mb-4">New and Notable</div>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
                 {recentDecks.map((set) => (

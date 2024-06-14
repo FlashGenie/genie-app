@@ -17,7 +17,9 @@ import DeckDetail from './components/DeckDetail/DeckDetail';
 import NewDeck from './components/NewDeck/NewDeck';
 import ReviewDeck from './components/DeckDetail/ReviewDeck';
 import Explore from './components/Explore/Explore';
+import Search from './components/Explore/Search';
 import Sidebar from './components/Dashboard/Sidebar';
+
 import { useSelector } from 'react-redux';
 
 import { getCurrentUser } from './store/session';
@@ -78,6 +80,10 @@ const router = createBrowserRouter([
       {
         path:"/explore",
         element: <ProtectedRoute component={Explore} />
+      }, 
+      {
+        path:"/search",
+        element: <ProtectedRoute component={Search} />
       }
     ]
   }
