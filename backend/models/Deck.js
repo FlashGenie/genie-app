@@ -19,10 +19,15 @@ const deckSchema = new Schema ({
         ref: 'User'
     },
     favoriteCount: {
-        type: Number
+        type: Number,
+        default: 0
     },
     genieCreated: {
         type: Boolean
+    },
+    authorName: {
+        type: String,
+      
     }
 }, {
     timestamps: true

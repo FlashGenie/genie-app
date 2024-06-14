@@ -41,6 +41,7 @@ function Dashboard() {
   };
 
   const handleFlashcardSetClick = (id) => {
+    console.log(id)
     navigate(`/decks/${id}`);
   };
 
@@ -63,8 +64,7 @@ function Dashboard() {
   };
 
   return (
-    <div className="flex">
-      <Sidebar />
+    <div className="flex w-full min-h-screen-minus-80">
       <div className="flex-grow p-6 bg-gray-100">
         <div className="text-2xl font-bold mb-4">Dashboard</div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -74,14 +74,17 @@ function Dashboard() {
               deckId={set._id}
               title={set.name}
               termCount={set.cards.length}
-              username={set.author ? set.author.username : 'Unknown'}
+              username={set.authorName ? set.authorName: 'Unknown'}
+              genieCreated={set.genieCreated}
               //this fav button below if is true the heart will show up on the flash card if is false not
               initialFav={handleFav(set._id)}   
               onClick={() => handleFlashcardSetClick(set._id)}
             />
           ))}
-          <div onClick={handleNewFlashCardClick} className="max-w-sm rounded-lg overflow-hidden shadow-lg p-4 bg-white cursor-pointer flex items-center justify-center">
-            <div className="text-2xl font-bold text-gray-500">+ New Flash Card</div>
+          <div onClick={handleNewFlashCardClick}  className="p-[1px] bg-gradient-to-r from-slate-400 to-slate-400 relative max-w-sm rounded-[13px] overflow-hidden shadow-sm cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 hover:shadow-lg">
+            <div onClick={handleNewFlashCardClick} className="h-full w-full relative rounded-xl overflow-hidden shadow-lg p-4 bg-white flex items-center justify-center cursor-pointer">
+              <div className="text-2xl font-bold text-gray-500">+ New Deck</div>
+            </div>
           </div>
         </div>
       </div>

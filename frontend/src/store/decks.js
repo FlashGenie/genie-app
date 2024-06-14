@@ -4,6 +4,7 @@ const RECEIVE_DECKS = "deck/RECEIVE_DECKS";
 const RECEIVE_DECK = "deck/RECEIVE_DECK";
 const CLEAR_DECKS = "deck/CLEAR_DECKS";
 const DELETE_DECK = "deck/DELETE_DECK";
+const DELETE_DECK_CARD = "deck/DELETE_DECK_CARD"
 
 // Actions
 export const receiveDecks = decks => ({
@@ -25,11 +26,16 @@ export const deleteDeck = deckId => ({
   deckId
 });
 
+export const deleteDeckCard = (deckId, cardId) => ({
+  type: DELETE_DECK_CARD,
+  deckId,
+  cardId
+})
+
 export const fetchDecks = () => async dispatch => {
   try {
       const response = await jwtFetch('/api/decks'); // Replace with your API endpoint
       const data = await response.json();
-
       const correctDecksId = {};
       data.forEach(deck => {
         correctDecksId[deck._id] = deck
@@ -50,6 +56,18 @@ export const fetchDeck = (id) => async dispatch => {
       console.error("Failed to fetch deck:", error);
   }
 };
+
+export const searchDecks = (searchTerm) => async dispatch => {
+  try {
+    debugger;
+    const response = await jwtFetch(`/api/decks/search/${searchTerm}`)
+    const data = await response.json();
+    debugger;
+    return data;
+  } catch (error){
+    console.error("Failed to find any decks:", error)
+  }
+}
 
 export const createDeck = (deckData) => async dispatch => {
   try {
@@ -86,13 +104,23 @@ export const removeDeck = (id) => async dispatch => {
   }
 };
 
+export const removeDeckCard = (deckId, cardId) => async dispatch => {
+  try {
+    await jwtFetch(`/api/cards/${cardId}`, {method: 'DELETE'});
+    dispatch(deleteDeckCard(deckId, cardId));
+  } catch (error) {
+    console.error("Failed to delete card:", error);
+  }
+}
+
 window.deckActions = {
   fetchDecks,
   fetchDeck,
   createDeck,
   editDeck,
   removeDeck,
-  clearDecks
+  clearDecks,
+  removeDeckCard
 };
 
 export const decksReducer = (state = {}, action) => {
@@ -104,6 +132,9 @@ export const decksReducer = (state = {}, action) => {
         return { ...state, [action.deck._id]: action.deck };
       case DELETE_DECK:
         delete newState[action.deckId];
+        return newState;
+      case DELETE_DECK_CARD:
+        newState[action.deckId].cards = newState[action.deckId].cards.filter(card => card._id != action.cardId);
         return newState;
       case CLEAR_DECKS:
           return {};
