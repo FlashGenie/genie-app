@@ -8,12 +8,12 @@ import { useNavigate } from 'react-router-dom';
 import SearchBar from './SearchBar'
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'; // Import left and right icons
 
-
 function Explore() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [showChevrons, setShowChevrons] = useState(false);
+    const allFavorites = useSelector(state => Object.values(state.favorites));
     
     const scrollRef = useRef(null);
 
@@ -36,6 +36,20 @@ function Explore() {
    
       const handleFlashcardSetClick = (id) => {
         navigate(`/decks/${id}`);
+      };
+
+      const handleFav = (deckId) => {
+        const array = []
+    
+        allFavorites.forEach((favorite) => {
+          array.push(favorite.deck)
+        })
+    
+        if (array.includes(deckId)) {
+          return true
+        } else {
+          return false
+        }
       };
    
     let recentDecksSort = allDecks.sort((a,b)=>{    
@@ -70,6 +84,7 @@ function Explore() {
                                 termCount={set.cards.length}
                                 username={set.authorName ? set.authorName : 'Unknown'}
                                 genieCreated={set.genieCreated}
+                                initialFav={handleFav(set._id)}   
                                 onClick={() => handleFlashcardSetClick(set._id)}
                             />
 
@@ -109,6 +124,7 @@ function Explore() {
                     title={set.name}
                     termCount={set.cards.length}
                     username={set.authorName ? set.authorName: 'Unknown'}
+                    initialFav={handleFav(set._id)}   
                     genieCreated={set.genieCreated}
                     //this fav button below if is true the heart will show up on the flash card if is false not
                     // fav={true}   
@@ -123,5 +139,6 @@ function Explore() {
 }
 
 export default Explore;
+
 
 

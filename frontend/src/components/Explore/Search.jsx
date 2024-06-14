@@ -1,7 +1,7 @@
 import { useLocation, useNavigate } from 'react-router-dom'
 import {useState, useEffect} from 'react'
 import { searchDecks } from '../../store/decks';
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import SearchBar from './SearchBar'
 import Sidebar from '../Dashboard/Sidebar';
 import FlashcardSet from '../Dashboard/FlashcardSet';
@@ -12,6 +12,7 @@ function Search(){
     const searchTerm = location.state.searchTerm
     const [results, setResults] = useState([]);
     const navigate = useNavigate();
+    const allFavorites = useSelector(state => Object.values(state.favorites));
 
     useEffect(() => {
         const fetchResults = async () => {
@@ -36,6 +37,20 @@ function Search(){
         navigate(`/decks/${id}`);
       };
 
+      const handleFav = (deckId) => {
+        const array = []
+    
+        allFavorites.forEach((favorite) => {
+          array.push(favorite.deck)
+        })
+    
+        if (array.includes(deckId)) {
+          return true
+        } else {
+          return false
+        }
+      };
+
     let resCountIntro
     
     if (results.length === 1){
@@ -57,6 +72,7 @@ function Search(){
                     termCount={set.cards.length}
                     username={set.authorName ? set.authorName: 'Unknown'}
                     genieCreated={set.genieCreated}
+                    initialFav={handleFav(set._id)}   
                     //this fav button below if is true the heart will show up on the flash card if is false not
                     // fav={true}   
                     onClick={() => handleFlashcardSetClick(set._id)}
