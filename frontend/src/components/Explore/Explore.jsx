@@ -64,6 +64,8 @@ function Explore() {
                         <div className="flex-shrink-0 w-full sm:w-1/2 md:w-1/3 lg:w-1/4 px-1" key={set._id}>
                             <div className="hover:scale-110 p-4">
                             <FlashcardSet
+                                key={set._id}
+                                deckId={set._id}
                                 title={set.name}
                                 termCount={set.cards.length}
                                 username={set.authorName ? set.authorName : 'Unknown'}
@@ -103,6 +105,7 @@ function Explore() {
                 {popularDecks.map((set) => (
                     <FlashcardSet
                     key={set._id}
+                    deckId={set._id}
                     title={set.name}
                     termCount={set.cards.length}
                     username={set.authorName ? set.authorName: 'Unknown'}
