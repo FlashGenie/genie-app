@@ -50,6 +50,7 @@ function Explore() {
                     title={set.name}
                     termCount={set.cards.length}
                     username={set.authorName ? set.authorName: 'Unknown'}
+                    genieCreated={set.genieCreated}
                     //this fav button below if is true the heart will show up on the flash card if is false not
                     // fav={true}   
                     onClick={() => handleFlashcardSetClick(set._id)}
@@ -65,6 +66,7 @@ function Explore() {
                     title={set.name}
                     termCount={set.cards.length}
                     username={set.authorName ? set.authorName: 'Unknown'}
+                    genieCreated={set.genieCreated}
                     //this fav button below if is true the heart will show up on the flash card if is false not
                     // fav={true}   
                     onClick={() => handleFlashcardSetClick(set._id)}
