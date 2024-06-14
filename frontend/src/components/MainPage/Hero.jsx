@@ -18,7 +18,7 @@ function Hero() {
                 <button onClick={handleOpenRegisterModal} className="bg-black text-white font-medium text-lg px-8 py-2.5 rounded-lg hover:bg-slate-800">Get Started</button>
             </div>
             <div className='mb-20'>
-                <img src="dashboard.jpg" className="w-full border rounded-xl drop-shadow-xl"/>
+                <img src="dashboard.png" className="w-full border rounded-xl drop-shadow-xl"/>
             </div>
         </section>
     )
