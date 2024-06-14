@@ -195,6 +195,7 @@ Organize and review your flashcards in decks.
 - TBD
 
 ## Group Members
+Thanks to these wonderful people who have contributed to this project:
 
 - [Edison Li](https://www.linkedin.com/in/edison-l-832242167/)
 - [Charles Racine](https://www.linkedin.com/in/charlee-racine-50241a7b/)
