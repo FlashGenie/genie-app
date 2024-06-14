@@ -3,7 +3,7 @@ import jwtFetch from "./jwt";
 const GET_FAVORITES = "deck/GET_FAVORITES";
 const CREATE_FAVORITE = "deck/CREATE_FAVORITE";
 const DELETE_FAVORITE = "deck/DELETE_FAVORITE";
-
+const CLEAR_FAVORITES = "deck/CLEAR_FAVORITES";
 
 //////
 export const getFavorites = favorites => ({
@@ -21,6 +21,9 @@ export const deleteFavorite = favoriteId => ({
     favoriteId
 })
 
+export const clearFavorites = () => ({
+  type: CLEAR_FAVORITES
+})
 
 ///////
 export const fetchFavorites = (userId) => async dispatch => {
@@ -76,6 +79,8 @@ export const favoritesReducer = (state = {}, action) => {
       case DELETE_FAVORITE:
         delete newState[action.favoriteId];
         return newState;
+      case CLEAR_FAVORITES:
+        return {};
       default:
         return state;
     }

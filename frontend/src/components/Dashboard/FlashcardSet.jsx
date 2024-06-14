@@ -73,12 +73,13 @@ const FlashcardSet = ({ deckId, title, termCount, username, onClick, initialFav,
       }
     >
       <div onClick={onClick} className="relative rounded-xl overflow-hidden shadow-lg p-4 bg-white cursor-pointer">
-          <div className="absolute top-2 right-2">
+          <div className="flex flex-col items-center absolute top-2 right-2">
             {fav ? (
               <HeartSolid className="h-6 w-6 text-red-500" onClick={toggleFavFalse} />    //this checks is the prop passed from the parent class is true then the heart will be red
             ) : (
               <HeartOutline className="h-6 w-6 text-gray-500" onClick={toggleFavTrue} />  //else will be hert with empty inside
             )}
+            <span className='absolute mt-[20px] text-gray-500 text-[11px] font-bold' >{deck.favoriteCount}</span>
           </div>
         <div className="font-bold text-xl mb-2">{title}</div>
         <div className="text-gray-700 text-base flex items-center space-x-2">

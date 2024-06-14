@@ -11,6 +11,7 @@ function Dashboard() {
   const allFavorites = useSelector(state => Object.values(state.favorites));
   const currentUser = useSelector(state => state.session.user)
   const dispatch = useDispatch();
+  const [fav, setFav] = useState(false)
   const flashcardSets = []
   
   useEffect(() => {
