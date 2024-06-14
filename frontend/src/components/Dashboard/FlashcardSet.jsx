@@ -15,7 +15,16 @@ const FlashcardSet = ({ title, termCount, username, onClick, initialFav, genieCr
   const hoverEffect = "transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 hover:shadow-lg";
 
   return (
-    <div onClick={onClick} className={genieCreated ? `p-[1px] bg-gradient-to-r from-[#FDAB1A] via-[#F63973] to-[#38B1EF] relative max-w-sm rounded-xl overflow-hidden shadow-sm cursor-pointer ${hoverEffect}` : `p-[1px] bg-gradient-to-r from-slate-400 to-slate-400 relative max-w-sm rounded-xl overflow-hidden shadow-sm cursor-pointer ${hoverEffect}`}>
+    <div 
+      onClick={onClick} 
+      className={
+        genieCreated 
+          ? `p-[1px] bg-gradient-to-r from-[#FDAB1A] via-[#F63973] to-[#38B1EF] 
+          relative max-w-sm rounded-[13px] overflow-hidden shadow-sm cursor-pointer ${hoverEffect}` 
+          : `p-[1px] bg-gradient-to-r from-slate-400 to-slate-400 relative 
+          max-w-sm rounded-[13px] overflow-hidden shadow-sm cursor-pointer ${hoverEffect}`
+      }
+    >
       <div onClick={onClick} className="relative rounded-xl overflow-hidden shadow-lg p-4 bg-white cursor-pointer">
         {location.pathname === '/explore' && (    //this line make sure that the heart is only visible in the /explore page
           <div className="absolute top-2 right-2">
@@ -35,7 +44,10 @@ const FlashcardSet = ({ title, termCount, username, onClick, initialFav, genieCr
           <span className="text-gray-500 text-sm">{username}</span>
         </div>
         {genieCreated && (
-          <div className='flex justify-center items-center absolute right-3 bottom-4 px-2 rounded-lg' style={{background: 'linear-gradient(90deg, rgba(253, 171, 26, 0.1), rgba(246, 57, 115, 0.1), rgba(227, 139, 250, 0.1), rgba(56, 177, 239, 0.1))' }}>
+          <div 
+            className='flex justify-center items-center absolute right-3 bottom-4 px-2 rounded-lg' 
+            style={{background: 'linear-gradient(90deg, rgba(253, 171, 26, 0.1), rgba(246, 57, 115, 0.1), rgba(227, 139, 250, 0.1), rgba(56, 177, 239, 0.1))'}}
+          >
             <p className='text-xs px-1 text-gray-500'>Made with </p>
             <img src="logoGray.svg" alt="genie" className="w-6 h-6"/>
           </div>
