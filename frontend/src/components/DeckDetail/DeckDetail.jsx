@@ -5,6 +5,7 @@ import { editDeck, removeDeck, removeDeckCard } from '../../store/decks';
 import { PlusCircleIcon, TrashIcon } from '@heroicons/react/24/outline';
 import { IoMdClose } from 'react-icons/io';
 import ReviewDeck from './ReviewDeck';
+import ScrollTopButton from './ScrollTopButton';
 
 const DeckDetail = () => {
   const { id } = useParams();
@@ -15,6 +16,7 @@ const DeckDetail = () => {
   const [editedDeck, setEditedDeck] = useState(null);
   const [newCards, setNewCards] = useState([]);
   const [cardsToDelete, setCardsToDelete] = useState([]);
+  const currentUser = useSelector(state => state.session.user)
 
   // useEffect(() => {
   //   if (id) {
@@ -80,8 +82,17 @@ const DeckDetail = () => {
     setNewCards(newCardsCopy);
   };
 
+  // const handleAddNewCard = () => {
+  //   setNewCards([...newCards, { title: '', body: '' }]);
+  // };
   const handleAddNewCard = () => {
     setNewCards([...newCards, { title: '', body: '' }]);
+    setTimeout(() => {
+      window.scrollTo({
+        top: document.documentElement.scrollHeight,
+        behavior: 'smooth'
+      });
+    }, 0);
   };
 
   const handleRemoveNewCard = (index) => {
@@ -98,7 +109,7 @@ const DeckDetail = () => {
   }
     
   const handleClose = () => {
-    navigate('/dashboard');
+    navigate(-2, { replace: true });
   };
 
   return (
@@ -116,20 +127,14 @@ const DeckDetail = () => {
           <div className="text-2xl font-bold">{deck.name}</div>
         )}
         <div className="flex space-x-2">
-          {/* { !isEditing && 
-            <button 
-                className="bg-black text-white py-1 px-3 rounded-lg hover:opacity-80 transition border-neutral-300 focus:border-black text-md font-semibold border-2 fixed top-26 right-56"
-                onClick={handleReview}
+          {currentUser._id === deck.author && (
+            <button
+              onClick={isEditing ? handleSaveClick : handleEditClick}
+              className="bg-black text-white py-1 px-3 rounded-lg hover:opacity-80 transition border-neutral-300 focus:border-black text-md font-semibold border-2 fixed top-26 right-20"
             >
-                Review Deck
+              {isEditing ? 'Save' : 'Edit'}
             </button>
-          } */}
-          <button
-            onClick={isEditing ? handleSaveClick : handleEditClick}
-            className="bg-black text-white py-1 px-3 rounded-lg hover:opacity-80 transition border-neutral-300 focus:border-black text-md font-semibold border-2 fixed top-26 right-20"
-          >
-            {isEditing ? 'Save' : 'Edit'}
-          </button>
+          )}
           {isEditing && (
             <button
               onClick={handleDeleteClick}
@@ -240,6 +245,7 @@ const DeckDetail = () => {
           </div>
         )}
       </div>
+      < ScrollTopButton/>
     </div>
   );
 };
