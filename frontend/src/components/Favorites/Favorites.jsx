@@ -11,7 +11,7 @@ function Favorites() {
   const currentUser = useSelector(state => state.session.user);
   const decks = useSelector(state => state.decks);
   const favoritesObj = useSelector(state => state.favorites);
-  const [array, setArray] = useState()
+  const [array, setArray] = useState([])
 
   useEffect(() => {
       dispatch(favoritesActions.fetchFavorites(currentUser._id))
@@ -54,7 +54,7 @@ function Favorites() {
               deckId={set._id}
               title={set.name}
               termCount={set.cards.length}
-              username={set.author ? set.author.username : 'Unknown'}
+              username={set.authorName ? set.authorName: 'Unknown'}
               initialFav={true}
               onClick={() => handleFlashcardSetClick(set._id)}
             />

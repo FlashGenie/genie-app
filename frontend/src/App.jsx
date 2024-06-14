@@ -1,6 +1,7 @@
+import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider, Outlet, useLocation } from 'react-router-dom';
 import FileUpload from './components/FileUpload/FileUpload';
 
 import { AuthRoute, ProtectedRoute } from './components/Routes/Routes';
@@ -27,6 +28,7 @@ import { getCurrentUser } from './store/session';
 
 const Layout = () => {
   const loggedIn = useSelector(state => !!state.session.user);
+  const location = useLocation();
   return (
     <>
       <RegisterModal/>
@@ -35,7 +37,16 @@ const Layout = () => {
       <NavBar />
       <div className='flex w-full'>
         {loggedIn && <Sidebar />}
-        <Outlet/>
+        <motion.div
+          key={location.pathname}
+          initial={{ opacity: 0 }}
+          animate={{opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5 }}
+          className="flex-grow"
+        >
+          <Outlet/>
+        </motion.div>
       </div>
       {!loggedIn && <Footer />}
     </>

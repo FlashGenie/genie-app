@@ -1,11 +1,13 @@
 import jwtFetch from './jwt';
 import { receiveDecks } from './decks';
 import { clearDecks } from './decks';
-import {getFavorites } from './favorites'
+
+import {getFavorites, clearFavorites } from './favorites'
+
 
 const RECEIVE_CURRENT_USER = "session/RECEIVE_CURRENT_USER";
 const RECEIVE_SESSION_ERRORS = "session/RECEIVE_SESSION_ERRORS";
-const CLEAR_SESSION_ERRORS = "session/CLEAR_SESSION_ERRORS";
+const CLEAR_SESSION_ERRORS = "session/CLEAR_SESSION_ERRORS"
 export const RECEIVE_USER_LOGOUT = "session/RECEIVE_USER_LOGOUT";
 
 // Dispatch receiveCurrentUser when a user logs in.
@@ -35,6 +37,7 @@ export const login = user => startSession(user, 'api/users/login');
 export const logout = () => dispatch => {
     localStorage.removeItem('jwtToken');
     dispatch(clearDecks());
+    dispatch(clearFavorites());
     dispatch(logoutUser());
   };
 
