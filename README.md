@@ -161,7 +161,6 @@ Organize and review your flashcards in decks.
 - Trending/Rating
 
 ## Work Breakdown
-**Charlie, Rafael, Jaspreet, Dharani, Edison**
 
 ### Day 1 (June 10th)
 - Build skeleton react site, landing page, login/signup modal - **Jaspreet, Dharani, Edison**
