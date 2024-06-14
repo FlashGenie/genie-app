@@ -29,7 +29,13 @@ export const fetchDecks = () => async dispatch => {
   try {
       const response = await jwtFetch('/api/decks'); // Replace with your API endpoint
       const data = await response.json();
-      dispatch(receiveDecks(data));
+
+      const correctDecksId = {};
+      data.forEach(deck => {
+        correctDecksId[deck._id] = deck
+      });
+
+      dispatch(receiveDecks(correctDecksId));
   } catch (error) {
       console.error("Failed to fetch decks:", error);
   }

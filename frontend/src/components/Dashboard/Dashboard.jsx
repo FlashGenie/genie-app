@@ -26,14 +26,19 @@ function Dashboard() {
   
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const handleFav = (deck) => {
+  const handleFav = (deckId) => {
+    const array = []
+
     allFavorites.forEach((favorite) => {
-      if (favorite._id === deck._id) {
-        return true
-      } 
+      array.push(favorite.deck)
     })
-    return false
-  }
+
+    if (array.includes(deckId)) {
+      return true
+    } else {
+      return false
+    }
+  };
 
   const handleFlashcardSetClick = (id) => {
     navigate(`/decks/${id}`);
@@ -71,7 +76,7 @@ function Dashboard() {
               termCount={set.cards.length}
               username={set.author ? set.author.username : 'Unknown'}
               //this fav button below if is true the heart will show up on the flash card if is false not
-              initialFav={handleFav(set)}   
+              initialFav={handleFav(set._id)}   
               onClick={() => handleFlashcardSetClick(set._id)}
             />
           ))}

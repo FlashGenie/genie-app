@@ -1,25 +1,35 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom';
 import Sidebar from '../Dashboard/Sidebar';
 import FlashcardSet from '../Dashboard/FlashcardSet';
 import * as favoritesActions from '../../store/favorites.js';
+import * as decksActions from '../../store/decks.js';
 
 function Favorites() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const currentUser = useSelector(state => state.session.user)
-  const favoriteDecks = useSelector(state => Object.values(state.favorites));
+  const currentUser = useSelector(state => state.session.user);
+  const decks = useSelector(state => state.decks);
+  const favoritesObj = useSelector(state => state.favorites);
+  const [array, setArray] = useState()
 
   useEffect(() => {
-      dispatch(favoritesActions.fetchFavorites(currentUser._id));
-  }, [dispatch, currentUser]);
+      dispatch(favoritesActions.fetchFavorites(currentUser._id))
+      dispatch(decksActions.fetchDecks())
+
+  }, [dispatch]);
+
+  useEffect(() => {
+    const favoriteDecks = Object.values(favoritesObj).map(favorite => decks[favorite.deck]).filter(Boolean);
+    setArray(favoriteDecks);
+  }, [favoritesObj, decks]);
 
   const handleFlashcardSetClick = (id) => {
     navigate(`/decks/${id}`);
   };
 
-  if (favoriteDecks.length === 0) {
+  if (!array || array.length === 0) {
     return(
       <div className="flex">
         <Sidebar />
@@ -41,11 +51,10 @@ function Favorites() {
       <div className="flex-grow p-6 bg-gray-100">
         <div className="text-2xl font-bold mb-4">Favorites</div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-          {favoriteDecks.map((set) => (
+          {array.map((set) => (
             <FlashcardSet
               key={set._id}
               deckId={set._id}
-              
               title={set.name}
               termCount={set.cards.length}
               username={set.author ? set.author.username : 'Unknown'}

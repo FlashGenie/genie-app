@@ -3,18 +3,43 @@ import { UserIcon, HeartIcon as HeartOutline } from '@heroicons/react/24/outline
 import { HeartIcon as HeartSolid } from '@heroicons/react/24/solid';
 import { useSelector, useDispatch } from 'react-redux';
 import * as favoritesActions from '../../store/favorites.js';
+import * as decksActions from '../../store/decks.js';
+
 
 const FlashcardSet = ({ deckId, title, termCount, username, onClick, initialFav }) => {
   const [fav, setFav] = useState(initialFav);
   const dispatch = useDispatch();
   const allFavorites = useSelector(state => Object.values(state.favorites));
+  const allDecks = useSelector(state => Object.values(state.decks));
   let favoriteId
+  let deck
 
+  allDecks.forEach((set) => {
+    if (set._id === deckId) {
+      deck = set
+    }
+  })
 
   const toggleFavTrue = (e) => {
     e.stopPropagation();
-    const deckData = { deckId: deckId }
-    dispatch(favoritesActions.createFavorite(deckData));
+
+    let favorited = false
+
+    allFavorites.forEach((favorite) => {
+      if (favorite.deck === deckId) {
+        favorited = true
+      }
+    })
+
+    if (favorited === true) {
+      return null
+    }
+
+    deck.favoriteCount += 1
+    dispatch(decksActions.editDeck(deck._id, deck))
+
+    const data = { deckId: deckId }
+    dispatch(favoritesActions.createFavorite(data));
     setFav(true);
   };
 
@@ -22,10 +47,13 @@ const FlashcardSet = ({ deckId, title, termCount, username, onClick, initialFav 
     e.stopPropagation();
 
     allFavorites.forEach((favorite) => {
-      if (favorite._id === deckId) {
+      if (favorite.deck === deckId) {
         favoriteId = favorite._id
       }
     })
+
+    deck.favoriteCount -= 1
+    dispatch(decksActions.editDeck(deck._id, deck))
 
     dispatch(favoritesActions.removeFavorite(favoriteId))
     setFav(false);

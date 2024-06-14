@@ -27,7 +27,13 @@ export const fetchFavorites = (userId) => async dispatch => {
   try {
       const response = await jwtFetch(`/api/favorites/user/${userId}`); // Replace with your API endpoint
       const data = await response.json();
-      dispatch(getFavorites(data));
+
+      const correctFavoritesId = {};
+      data.forEach(favorite => {
+        correctFavoritesId[favorite._id] = favorite
+      });
+
+      dispatch(getFavorites(correctFavoritesId));
   } catch (error) {
       console.error("Failed to fetch favorites:", error);
   }
@@ -50,7 +56,7 @@ export const createFavorite = (favoriteData) => async dispatch => {
 export const removeFavorite = (id) => async dispatch => {
   try {
       const res = await jwtFetch(`/api/favorites/${id}`, { method: 'DELETE' });
-      const test = await res.json();
+      res.json();
       
       dispatch(deleteFavorite(id));
   } catch (error) {

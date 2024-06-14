@@ -21,23 +21,9 @@ router.get('/user/:userId', async (req, res, next) => {
     try {
       const favorites = await Favorite.find({ owner: user._id })
                                 .sort({ createdAt: -1 })
-                                .populate("owner", "_id username");
+                                .populate();
 
-      /// find the decks that match with the decks ids
-      const decks = await Promise.all(favorites.map(async (favorite) => {
-        return await Deck.findById(favorite.deck);
-      }));
-
-      /// converting decks array into an object
-      let favoriteDecks = {}
-      decks.forEach( async (deck) => {
-        if (deck) {
-          favoriteDecks[deck._id] = deck
-        }
-      })
-
-      /// return only the favorite decks
-      return res.json(favoriteDecks);
+      return res.json(favorites);
     }
     catch(err) {
       return res.json([]);
@@ -63,8 +49,8 @@ router.post('/new', validateFavoriteInput, requireUser,  async (req, res, next) 
 
 router.delete('/:id', async (req, res, next) => {
     try {
-        const favorite = await Favorite.find({deck: req.params.id})
-        res.json(favorite)
+        const favorite = await Favorite.findByIdAndDelete({_id: req.params.id})
+        res.json('favorite: deleted')
     }
     catch(err){
         const error = new Error('Favorite not found');
