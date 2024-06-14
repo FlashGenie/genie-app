@@ -38,7 +38,7 @@ function Explore() {
 
     return(
         <div className = "flex w-full">
-            <div className="flex-grow p-6 bg-gray-100">
+            <div className="flex-grow p-6 bg-gray-100 min-h-screen-minus-80">
                 <div className="text-3xl font-bold mb-4">Explore</div>
                 <SearchBar />
                 <div className="text-2xl font-bold mb-4">New and Notable</div>
