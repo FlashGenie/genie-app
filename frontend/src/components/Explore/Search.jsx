@@ -44,8 +44,7 @@ function Search(){
          resCountIntro = `There are ${results.length} results`
     }
     return(
-        <div className = "flex">
-            <Sidebar />
+  
             <div className="flex-grow p-6 bg-gray-100">
                 <SearchBar />
                 <div className="text-3xl font-bold mb-4">{resCountIntro} for search term: {searchTerm} </div>
@@ -56,6 +55,7 @@ function Search(){
                     title={set.name}
                     termCount={set.cards.length}
                     username={set.authorName ? set.authorName: 'Unknown'}
+                    genieCreated={set.genieCreated}
                     //this fav button below if is true the heart will show up on the flash card if is false not
                     // fav={true}   
                     onClick={() => handleFlashcardSetClick(set._id)}
@@ -67,7 +67,7 @@ function Search(){
 
             </div>
             
-        </div>
+
      
     )
 }
