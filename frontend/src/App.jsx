@@ -14,6 +14,7 @@ import RegisterModal from './components/Modal/RegisterModal';
 import GenerateDeckModal from './components/Modal/GenerateDeckModal';
 import Dashboard from './components/Dashboard/Dashboard';
 import DeckDetail from './components/DeckDetail/DeckDetail';
+import Favorites from './components/Favorites/Favorites';
 import NewDeck from './components/NewDeck/NewDeck';
 import ReviewDeck from './components/DeckDetail/ReviewDeck';
 import Explore from './components/Explore/Explore';
@@ -76,6 +77,10 @@ const router = createBrowserRouter([
       {
         path: "/decks/new",
         element: <ProtectedRoute component={NewDeck} />
+      },
+      {
+        path: "favorites",
+        element: <ProtectedRoute component={Favorites} />
       },
       {
         path:"/explore",

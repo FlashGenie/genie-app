@@ -53,6 +53,7 @@ router.patch('/:id', async (req, res, next) => {
       const deckDetails = {
           name: req.body.name,
           category: req.body.category,
+          favoriteCount: req.body.favoriteCount,
           cards: req.body.cards
       }
 

@@ -59,10 +59,6 @@ router.patch('/:id', async (req, res, next) => {
 
 router.delete('/:id', async(req, res, next)=>{
     try{
-      
-        // db.decks.updateMany({ "cards.id": req.params.id },
-        // { $pull: { "cards": { "id": req.params.id } } })
-
         const card = await Card.findByIdAndDelete(req.params.id)
         
         //deletes the card entirly from the database.
@@ -71,7 +67,6 @@ router.delete('/:id', async(req, res, next)=>{
         )
        
         res.json('card:deleted')
-        console.log(card)
     } 
     catch(err){
         const error = new Error('Card not found');
