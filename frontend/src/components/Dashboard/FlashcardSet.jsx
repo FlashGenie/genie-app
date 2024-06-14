@@ -39,6 +39,7 @@ const FlashcardSet = ({ deckId, title, termCount, username, onClick, initialFav,
     dispatch(decksActions.editDeck(deck._id, deck))
 
     const data = { deckId: deckId }
+
     dispatch(favoritesActions.createFavorite(data));
     setFav(true);
   };

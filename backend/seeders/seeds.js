@@ -557,42 +557,42 @@ const politicalScienceTerms = [
  createDeckWithCards(humanitiesGuy, 'Anthropology', 'Social Science',anthropologyTerms, false);
 
 
-const favorites = [];
-const fav1 = new Favorite({
-  owner: newUser.id,
-  deck: decks[5]._id
-})
+// const favorites = [];
+// const fav1 = new Favorite({
+//   owner: newUser.id,
+//   deck: decks[5]._id
+// })
 
-favorites.push(fav1)
+// favorites.push(fav1)
 
 
-const fav2 = new Favorite({
-  owner: newUser.id,
-  deck: decks[6]._id
-})
+// const fav2 = new Favorite({
+//   owner: newUser.id,
+//   deck: decks[6]._id
+// })
 
-favorites.push(fav2)
+// favorites.push(fav2)
 
-const fav3 = new Favorite({
-  owner: newUser.id,
-  deck: decks[7]._id
-})
+// const fav3 = new Favorite({
+//   owner: newUser.id,
+//   deck: decks[7]._id
+// })
 
-favorites.push(fav3)
+// favorites.push(fav3)
 
-const fav4 = new Favorite({
-  owner: newUser.id,
-  deck: decks[8]._id
-})
+// const fav4 = new Favorite({
+//   owner: newUser.id,
+//   deck: decks[8]._id
+// })
 
-favorites.push(fav4)
+// favorites.push(fav4)
 
-const fav5 = new Favorite({
-  owner: newUser.id,
-  deck: decks[9]._id
-})
+// const fav5 = new Favorite({
+//   owner: newUser.id,
+//   deck: decks[9]._id
+// })
 
-favorites.push(fav5)
+// favorites.push(fav5)
 
 
 // const newDeck1 = new Deck({
@@ -924,7 +924,7 @@ const insertSeeds = () => {
     .then(() => User.insertMany(users))
     .then(()=>Card.insertMany(cards))
     .then(()=>Deck.insertMany(decks))
-    .then(()=>Favorite.insertMany(favorites))
+    // .then(()=>Favorite.insertMany(favorites))
     .then(() => {
       console.log("Done!");
       mongoose.disconnect();
