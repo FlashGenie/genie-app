@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, Link } from 'react-router-dom';
-import Sidebar from '../Dashboard/Sidebar';
 import FlashcardSet from '../Dashboard/FlashcardSet';
 import * as favoritesActions from '../../store/favorites.js';
 import * as decksActions from '../../store/decks.js';
@@ -18,7 +17,7 @@ function Favorites() {
       dispatch(favoritesActions.fetchFavorites(currentUser._id))
       dispatch(decksActions.fetchDecks())
 
-  }, [dispatch]);
+  }, [dispatch, currentUser._id]);
 
   useEffect(() => {
     const favoriteDecks = Object.values(favoritesObj).map(favorite => decks[favorite.deck]).filter(Boolean);
@@ -32,7 +31,6 @@ function Favorites() {
   if (!array || array.length === 0) {
     return(
       <div className="flex">
-        <Sidebar />
         <div className="flex-grow p-6 bg-gray-100">
           <div className="text-2xl font-bold mb-4">Favorites</div>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
@@ -47,7 +45,6 @@ function Favorites() {
 
   return (
     <div className="flex">
-      <Sidebar />
       <div className="flex-grow p-6 bg-gray-100">
         <div className="text-2xl font-bold mb-4">Favorites</div>
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">

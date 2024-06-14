@@ -7,7 +7,6 @@ import * as decksActions from '../../store/decks.js';
 
 
 const FlashcardSet = ({ deckId, title, termCount, username, onClick, initialFav, genieCreated}) => {
-  const location = useLocation();
   const [fav, setFav] = useState(initialFav);
   const dispatch = useDispatch();
   const allFavorites = useSelector(state => Object.values(state.favorites));

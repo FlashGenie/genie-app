@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import Sidebar from './Sidebar';
 import FlashcardSet from './FlashcardSet';
 import Modal from '../Modal/Modal';
 import * as favoritesActions from '../../store/favorites.js';

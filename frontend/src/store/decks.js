@@ -59,10 +59,8 @@ export const fetchDeck = (id) => async dispatch => {
 
 export const searchDecks = (searchTerm) => async dispatch => {
   try {
-    debugger;
     const response = await jwtFetch(`/api/decks/search/${searchTerm}`)
     const data = await response.json();
-    debugger;
     return data;
   } catch (error){
     console.error("Failed to find any decks:", error)
