@@ -130,12 +130,15 @@ router.get('/user/:userId', async (req, res, next) => {
   router.get('/search/:searchTerm', async(req, res, next)=>{
     try{
       const searchTerm = req.params.searchTerm;
+        const deck = await Deck.findById()
       const condition = {$or: [{category: new RegExp("^" + searchTerm, "i")}, {name: new RegExp("^" + searchTerm, "i")}]}
       // const results1 = await Deck.find({ category: searchTerm });
       // const results2 = await Deck.find({ name: searchTerm })
       // const allResults = results1.concat(results2)
      
-      const allResults = await Deck.find(condition)
+      const results1 = await Deck.find({category: new RegExp(searchTerm, "i")})
+      const results2 = await Deck.find({name: new RegExp(searchTerm, "i")})
+      const allResults = {...results1, ...results2}
       return res.json(allResults)
     }
     catch(err) {
