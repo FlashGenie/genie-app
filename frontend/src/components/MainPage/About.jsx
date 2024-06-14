@@ -5,8 +5,8 @@ function About() {
         <section id="about-section" className="flex flex-col justify-between h-[750px] w-full pt-20">
             <div className="flex flex-col justify-center items-center">
                 <h2 className="text-5xl font-medium mb-3 text-center">About Us</h2>
-                <p className="text-gray-600 pb-5 text-2xl font-light tracking-wider text-center mb-4 max-w-[700px]">
-                    Meet the team, who brings a diverse and global perspective to the project.(update this paragraph in about.jsx)
+                <p className="text-gray-600 pb-5 text-2xl font-light tracking-wider text-center mb-4">
+                We are a dedicated team of IT professionals passionate about transforming  ideas into seamless digital experiences. Our expertise spans from intuitive UI/UX design to robust backend development, ensuring the web application is not only visually appealing but also highly efficient and secure.
                 </p>
             </div>
 
