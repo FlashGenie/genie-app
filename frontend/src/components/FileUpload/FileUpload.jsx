@@ -1,7 +1,6 @@
 import { useState, useRef } from 'react';
 import { FiUpload, FiLoader, FiXCircle } from 'react-icons/fi';
 import { uploadPDF, generateFlashcards } from '../../store/genie';
-import { createDeck } from '../../store/decks';
 import { useDispatch } from 'react-redux';
 import { openGenerateDeckModal } from '../../store/modal';
 
@@ -58,20 +57,12 @@ function FileUpload() {
       // Generate flashcards from the extracted text
       const flashcards = await generateFlashcards(parsedText);
 
-      // Create a new deck with the generated flashcards
-      const deckData = {
-        name: 'My Deck', 
-        category: 'Study', 
-        cards: flashcards,
-        genieCreated: true
-      };
-
-      const response = dispatch(createDeck(deckData));
-
       setLoading(false);
 
+      // Open the modal to create a deck
+      const response = dispatch(openGenerateDeckModal(flashcards));
+      
       if (response) {
-        dispatch(openGenerateDeckModal());
         console.log('Deck created successfully!');
       } else {
         setLocalErrors(['File upload failed: Please try again.']);

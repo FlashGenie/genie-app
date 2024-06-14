@@ -21,8 +21,9 @@ export const closeLoginModal = () => ({
     type: CLOSE_LOGIN_MODAL
 });
 
-export const openGenerateDeckModal = () => ({
-    type: OPEN_GENERATE_DECK_MODAL
+export const openGenerateDeckModal = (flashcards) => ({
+    type: OPEN_GENERATE_DECK_MODAL,
+    payload: flashcards
 });
 
 export const closeGenerateDeckModal = () => ({
@@ -32,7 +33,8 @@ export const closeGenerateDeckModal = () => ({
 const initialState = {
     isLoginOpen: false,
     isRegisterOpen: false,
-    isGenerateDeckOpen: false
+    isGenerateDeckOpen: false,
+    flashcards: []
 };
 
 function modalReducer(state = initialState, action) {
@@ -60,12 +62,14 @@ function modalReducer(state = initialState, action) {
         case OPEN_GENERATE_DECK_MODAL:
             return {
                 ...state,
-                isGenerateDeckOpen: true
+                isGenerateDeckOpen: true,
+                flashcards: action.payload
             };
         case CLOSE_GENERATE_DECK_MODAL:
             return {
                 ...state,
-                isGenerateDeckOpen: false
+                isGenerateDeckOpen: false,
+                flashcards: []
             };
         default:
             return state;
