@@ -12,7 +12,7 @@ const FlashcardSet = ({ title, termCount, username, onClick, initialFav, genieCr
     setFav(!fav);
   };
 
-  const hoverEffect = "transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300";
+  const hoverEffect = "transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 hover:shadow-lg";
 
   return (
     <div onClick={onClick} className={genieCreated ? `p-[1px] bg-gradient-to-r from-[#FDAB1A] via-[#F63973] to-[#38B1EF] relative max-w-sm rounded-xl overflow-hidden shadow-sm cursor-pointer ${hoverEffect}` : `relative max-w-sm rounded-xl overflow-hidden shadow-sm cursor-pointer ${hoverEffect}`}>
