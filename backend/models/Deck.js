@@ -27,7 +27,7 @@ const deckSchema = new Schema ({
     },
     authorName: {
         type: String,
-        required: true
+      
     }
 }, {
     timestamps: true
