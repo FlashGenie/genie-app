@@ -62,8 +62,10 @@ function Dashboard() {
               onClick={() => handleFlashcardSetClick(set._id)}
             />
           ))}
-          <div onClick={handleNewFlashCardClick} className="max-w-sm rounded-lg overflow-hidden shadow-lg p-4 bg-white cursor-pointer flex items-center justify-center">
-            <div className="text-2xl font-bold text-gray-500">+ New Flash Card</div>
+          <div onClick={handleNewFlashCardClick}  className="p-[1px] bg-gradient-to-r from-slate-400 to-slate-400 relative max-w-sm rounded-xl overflow-hidden shadow-sm cursor-pointer transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 duration-300 hover:shadow-lg">
+            <div onClick={handleNewFlashCardClick} className="h-full w-full relative rounded-xl overflow-hidden shadow-lg p-4 bg-white flex items-center justify-center cursor-pointer">
+              <div className="text-2xl font-bold text-gray-500">+ New Deck</div>
+            </div>
           </div>
         </div>
       </div>
