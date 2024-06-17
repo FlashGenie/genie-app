@@ -1,9 +1,8 @@
-import Sidebar from '../Dashboard/Sidebar';
+
 import {useEffect, useState, useRef} from 'react';
 import { useDispatch,useSelector } from 'react-redux';
 import {fetchDecks} from  '../../store/decks';
 import FlashcardSet from '../Dashboard/FlashcardSet';
-import Modal from '../Modal/Modal'
 import { useNavigate } from 'react-router-dom';
 import SearchBar from './SearchBar'
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'; // Import left and right icons
@@ -11,7 +10,6 @@ import { FaChevronLeft, FaChevronRight } from 'react-icons/fa'; // Import left a
 function Explore() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    const [isModalOpen, setIsModalOpen] = useState(false);
     const [showChevrons, setShowChevrons] = useState(false);
     const allFavorites = useSelector(state => Object.values(state.favorites));
     
@@ -61,7 +59,7 @@ function Explore() {
         return b.favoriteCount - a.favoriteCount
     })
     const popularDecks = popularDecksSort.slice(0,24)
-    debugger;
+   
 
     return(
         <div className = "flex w-full">

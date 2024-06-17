@@ -24,8 +24,7 @@ function About() {
                     <AboutProfileBox
                         name={"Edison Li"}
                         role={"Team Lead"}
-                        // imgLink={"edison_profile.jpg"}
-                        imgLink={"default_profile.png"}
+                        imgLink={"edison.jpg"}
                         gitHubLink={"https://github.com/edison4354"}
                         linkedinLink={"https://www.linkedin.com/in/edison-l-832242167/"}
                     />
@@ -33,9 +32,9 @@ function About() {
                     <AboutProfileBox
                         name={"Jaspreet Singh"}
                         role={"Front-end"}
-                        imgLink={"default_profile.png"}
+                        imgLink={"jaspreet.png"}
                         gitHubLink={"https://github.com/jsingh0507"}
-                        linkedinLink={"https://www.linkedin.com/in/rafael-campos-60471a2b2/"}
+                        linkedinLink={"https://www.linkedin.com/in/jaspreet-singh-078ab028a/"}
                     />
                 </div>
                 <div className="flex justify-center items-center h-full w-full pr-30" >
@@ -43,7 +42,7 @@ function About() {
                     <AboutProfileBox
                         name={"Rafael Campos"}
                         role={"Back-end"}
-                        imgLink={"default_profile.png"}
+                        imgLink={"rafa.png"}
                         gitHubLink={"https://github.com/Rafa-Camp04"}
                         linkedinLink={"https://www.linkedin.com/in/rafael-campos-60471a2b2/"}
                     />
@@ -51,7 +50,7 @@ function About() {
                     <AboutProfileBox
                         name={"Dharani Yedavelly"}
                         role={"Front-end"}
-                        imgLink={"default_profile.png"}
+                        imgLink={"dharani.jpg"}
                         gitHubLink={"https://github.com/dyedavelly"}
                         linkedinLink={"https://www.linkedin.com/in/dharaniy/"}
                     />          

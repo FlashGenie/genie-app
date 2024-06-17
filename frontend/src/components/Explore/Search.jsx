@@ -3,7 +3,6 @@ import {useState, useEffect} from 'react'
 import { searchDecks } from '../../store/decks';
 import {useDispatch, useSelector} from 'react-redux'
 import SearchBar from './SearchBar'
-import Sidebar from '../Dashboard/Sidebar';
 import FlashcardSet from '../Dashboard/FlashcardSet';
 
 function Search(){
@@ -12,12 +11,11 @@ function Search(){
     const searchTerm = location.state.searchTerm
     const [results, setResults] = useState([]);
     const navigate = useNavigate();
-    const allFavorites = useSelector(state => Object.values(state.favorites));
-
+    const allFavoritesObj = useSelector(state => (state.favorites));
+    const allFavorites = Object.values(allFavoritesObj)
     useEffect(() => {
         const fetchResults = async () => {
             if (searchTerm) {
-                debugger;
                 try {
                     const resultsObject = await dispatch(searchDecks(searchTerm));
                     const resultsArray = Object.values(resultsObject);
