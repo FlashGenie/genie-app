@@ -19,8 +19,8 @@ const AboutProfileBox = ({ name, role, imgLink, gitHubLink, linkedinLink }) => {
             </div>
         </div>
         <div className="h-full w-[120px]">
-            <div className="h-[100px] w-[100px] mt-[10px]">
-                <img src={imgLink} />
+            <div className="h-[110px] w-[110px]">
+                <img className="rounded-full" src={imgLink} />
             </div>
         </div>
     </div>
