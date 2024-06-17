@@ -57,7 +57,7 @@ export const fetchDeck = (id) => async dispatch => {
   }
 };
 
-export const searchDecks = (searchTerm) => async dispatch => {
+export const searchDecks = (searchTerm) => async () => {
   try {
     const response = await jwtFetch(`/api/decks/search/${searchTerm}`)
     const data = await response.json();

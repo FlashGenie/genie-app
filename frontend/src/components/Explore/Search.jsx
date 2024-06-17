@@ -3,7 +3,6 @@ import {useState, useEffect} from 'react'
 import { searchDecks } from '../../store/decks';
 import {useDispatch, useSelector} from 'react-redux'
 import SearchBar from './SearchBar'
-import Sidebar from '../Dashboard/Sidebar';
 import FlashcardSet from '../Dashboard/FlashcardSet';
 
 function Search(){
@@ -17,7 +16,6 @@ function Search(){
     useEffect(() => {
         const fetchResults = async () => {
             if (searchTerm) {
-                debugger;
                 try {
                     const resultsObject = await dispatch(searchDecks(searchTerm));
                     const resultsArray = Object.values(resultsObject);
@@ -30,7 +28,7 @@ function Search(){
 
         fetchResults();
         console.log(results)
-    }, [dispatch, searchTerm]);
+    }, [dispatch, searchTerm, results]);
     
 
     const handleFlashcardSetClick = (id) => {

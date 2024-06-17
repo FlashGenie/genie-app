@@ -49,7 +49,7 @@ const startSession = (userInfo, route) => async dispatch => {
     });
     const { currentUser, userDecks, favorites } = await res.json();
     localStorage.setItem('jwtToken', currentUser.token);
-    // debugger
+ 
     const correctDecksId = {}
     const correctFavoritesId = {}
 
@@ -63,7 +63,7 @@ const startSession = (userInfo, route) => async dispatch => {
 
     dispatch(receiveDecks(correctDecksId))
     dispatch(getFavorites(correctFavoritesId))
-    debugger;
+ 
     return dispatch(receiveCurrentUser(currentUser.user));
   } catch(err) {
     const res = await err.json();
