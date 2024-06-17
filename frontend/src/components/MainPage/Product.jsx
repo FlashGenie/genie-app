@@ -1,7 +1,7 @@
 function Product() {
     return(
-        <section id="product" className='py-20'>
-            <div className="flex flex-col items-center mb-20">
+        <section id="product" className='py-20 pt-32'>
+            <div className="flex flex-col items-center mb-10">
                 <h2 className="text-5xl font-medium mb-3 text-center">
                     Transform Your Notes into Flashcards with <span className="font-extrabold">Genie.</span>
                 </h2>

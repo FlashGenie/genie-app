@@ -7,7 +7,7 @@ const Footer = () => {
 					<a href="#" className="flex items-center mb-0 space-x-2">
 						<span className="self-center text-2xl font-sans font-bold">Genie.</span>
 					</a>
-					<span className="block text-sm text-gray-500 text-center">© 2024 <a href="#" className="hover:underline">Genie™</a>. All Rights Reserved.</span>
+					<span className="block text-sm text-gray-500 text-center">© 2024 <a href="#" className="hover:underline">Genie</a>. All Rights Reserved.</span>
 				</div>
 			</div>
 		</footer>

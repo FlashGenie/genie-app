@@ -2,29 +2,32 @@ import { IoLogoGithub } from "react-icons/io";
 import { FaLinkedin } from "react-icons/fa";
 
 const AboutProfileBox = ({ name, role, imgLink, gitHubLink, linkedinLink }) => {
-  return (
-    <div className="flex h-[210px] w-[350px] mx-[20px] pt-[20px] pl-[30px] pr-[30px] pb-[30px] bg-zinc-50 rounded-xl border shadow-xl">
-        <div className="flex flex-col justify-between h-full w-full">
-            <div>
-                <h4 className="text-[22px] font-medium">{name}</h4>
-                <p className="text-gray-600">{role}</p>
+
+    const hoverEffect = "transition ease-in-out delay-150 hover:-translate-y-2 duration-300 hover:shadow-lg";
+
+    return (
+        <div className={`flex h-[180px] w-[370px] mx-[20px] px-5 py-4 bg-[#FCFCFC] rounded-lg border shadow-md ${hoverEffect}`}>
+            <div className="flex flex-col justify-between h-full w-full">
+                <div>
+                    <h4 className="text-2xl font-medium">{name}</h4>
+                    <p className="text-gray-400">{role}</p>
+                </div>
+                <div className="flex w-full mb-1">
+                    <a href={gitHubLink} className="h-[40px] w-[40px] rounded-full p-1.5 border mr-3" >
+                        <IoLogoGithub className="h-full w-full text-gray-800" />
+                    </a>
+                    <a href={linkedinLink} className="h-[40px] w-[40px] rounded-full p-2 border" >
+                        <FaLinkedin className="h-full w-full text-gray-800" />
+                    </a>
+                </div>
             </div>
-            <div className="flex h-[60px] w-full">
-                <a href={gitHubLink} className="h-[40px] w-[40px] mt-[10px] mr-[10px] mb-[10px]" >
-                    <IoLogoGithub className="h-full w-full" />
-                </a>
-                <a href={linkedinLink} className="h-[40px] w-[40px] m-[10px]" >
-                    <FaLinkedin className="h-full w-full" />
-                </a>
+            <div className="h-full w-[120px] mt-1">
+                <div className="h-[120px] w-[120px]">
+                    <img className="rounded-md" src={imgLink} />
+                </div>
             </div>
         </div>
-        <div className="h-full w-[120px]">
-            <div className="h-[100px] w-[100px] mt-[10px]">
-                <img src={imgLink} />
-            </div>
-        </div>
-    </div>
-  );
+    );
 };
 
 export default AboutProfileBox;

@@ -8,8 +8,8 @@ function MainPage() {
         <main className='max-w-[80%] 2xl:max-w-7xl mx-auto'>
             <Hero />
             <Product />
-            <Conversion />
             <About />
+            <Conversion />
         </main>
     )
 }

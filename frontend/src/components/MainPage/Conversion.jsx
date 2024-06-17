@@ -9,10 +9,10 @@ function Conversion() {
     }
 
     return(
-        <section id="conversion" className='mb-10 pt-40'>
+        <section id="conversion" className='pt-20'>
             <div className='flex flex-col justify-center items-center'>
                 <img className="w-80 -ml-2 relative animate-updown" src='logo.svg'/>
-                <div className="pt-10 flex flex-col items-center font-sans mb-28 lg:px-40">
+                <div className="pt-10 flex flex-col items-center font-sans pb-20 lg:px-40">
                     <h1 className="font-bold text-5xl text-center leading-none mb-4">
                         Ready to Transform Your Study Routine?
                     </h1>
