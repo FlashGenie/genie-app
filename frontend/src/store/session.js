@@ -47,6 +47,7 @@ const startSession = (userInfo, route) => async dispatch => {
       method: "POST",
       body: JSON.stringify(userInfo)
     });
+
     const { currentUser, userDecks, favorites } = await res.json();
     localStorage.setItem('jwtToken', currentUser.token);
  
@@ -63,7 +64,7 @@ const startSession = (userInfo, route) => async dispatch => {
 
     dispatch(receiveDecks(correctDecksId))
     dispatch(getFavorites(correctFavoritesId))
- 
+
     return dispatch(receiveCurrentUser(currentUser.user));
   } catch(err) {
     const res = await err.json();
@@ -85,18 +86,26 @@ const initialState = {
     const correctDecksId = {}
     const correctFavoritesId={}
 
-    results.userDecks.forEach(deck => {
-      correctDecksId[deck._id] = deck
-    });
+    if (results){
+      results.userDecks.forEach(deck => {
+        correctDecksId[deck._id] = deck
+      });
 
-    results.favorites.forEach(favorite=>{
-      correctFavoritesId[favorite._id] = favorite
-    })
+      results.favorites.forEach(favorite=>{
+        correctFavoritesId[favorite._id] = favorite
+      })
 
-    dispatch(receiveDecks(correctDecksId))
-    dispatch(getFavorites(correctFavoritesId))
+      dispatch(receiveDecks(correctDecksId))
+      dispatch(getFavorites(correctFavoritesId))
+    
+      return dispatch(receiveCurrentUser(results.user));
+
+    }
+    
+
+   
+
   
-    return dispatch(receiveCurrentUser(results.user));
   };
   
 

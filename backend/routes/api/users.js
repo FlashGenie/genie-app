@@ -54,7 +54,7 @@ router.post('/register', validateRegisterInput, async (req, res, next) => {
         newUser.hashedPassword = hashedPassword;
         const user = await newUser.save();
         const loggedInUser = await loginUser(user);
-        return res.json({currentUser: loggedInUser, userDecks: []});
+        return res.json({currentUser: loggedInUser, userDecks: [], favorites: []});
       }
       catch(err) {
         next(err);
@@ -74,7 +74,11 @@ router.post('/login', validateLoginInput, async (req, res, next) => {
     }
 
     const currentUser = await loginUser(user);
+
     const userDecks = await Deck.find({author: user._id})
+    .sort({ createdAt: -1 })
+    .populate();
+
     const favorites = await Favorite.find({ owner: user._id })
     .sort({ createdAt: -1 })
     .populate();
