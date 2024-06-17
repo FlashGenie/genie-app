@@ -11,8 +11,8 @@ function Search(){
     const searchTerm = location.state.searchTerm
     const [results, setResults] = useState([]);
     const navigate = useNavigate();
-    const allFavorites = useSelector(state => Object.values(state.favorites));
-
+    const allFavoritesObj = useSelector(state => (state.favorites));
+    const allFavorites = Object.values(allFavoritesObj)
     useEffect(() => {
         const fetchResults = async () => {
             if (searchTerm) {
@@ -28,7 +28,7 @@ function Search(){
 
         fetchResults();
         console.log(results)
-    }, [dispatch, searchTerm, results]);
+    }, [dispatch, searchTerm]);
     
 
     const handleFlashcardSetClick = (id) => {
