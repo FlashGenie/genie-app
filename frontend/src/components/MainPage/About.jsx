@@ -16,14 +16,14 @@ function About() {
                     <AboutProfileBox
                         name={"Charles Racine"}
                         role={"Back-end"}
-                        imgLink={"profile-default-img.png"}
+                        imgLink={"CharLee.png"}
                         gitHubLink={"https://github.com/cracine79"}
                         linkedinLink={"https://www.linkedin.com/in/charlee-racine-50241a7b/"}
                     />
                     {/* 2nd profile */}
                     <AboutProfileBox
                         name={"Edison Li"}
-                        role={""}
+                        role={"Project Lead"}
                         imgLink={"edison.jpg"}
                         gitHubLink={"https://github.com/edison4354"}
                         linkedinLink={"https://www.linkedin.com/in/edison-l-832242167/"}
